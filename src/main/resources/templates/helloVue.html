@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+	
+    <div id="app">     		
+	
+		<div id="app2">
+			<div class="filter-container">
+                <el-input placeholder="图书类别" v-model="pagination.type" style="width: 200px;" class="filter-item"></el-input>
+                <el-input placeholder="图书名称" v-model="pagination.name" style="width: 200px;" class="filter-item"></el-input>
+                <el-input placeholder="图书描述" v-model="pagination.description" style="width: 200px;" class="filter-item"></el-input>
+                <el-button @click="getAll()" class="dalfBut">查询</el-button>
+           
+            </div>
+		
+		<style>
+		  .el-table .warning-row {
+		    background: oldlace;
+		  }
+		
+		  .el-table .success-row {
+		    background: #f0f9eb;
+		  }
+		</style>
+		
+		<template>
+			
+		  <el-table
+	
+		    :data="dataList"
+			border
+			height="500"
+			style="width: 100%"
+			:row-class-name="tableRowClassName"
+			>
+
+		    <el-table-column
+		      type="selection"
+		      width="55">
+		    </el-table-column>
+		    <el-table-column
+			prop="departmentId"
+		      label="日期"
+		      width="240">
+			  
+		    </el-table-column>
+			<el-table-column
+			fixed
+			prop="serialNumber"
+			label="飞书编码"
+			width="200"
+			:filters="[]"
+			:filter-method="filterHandler"
+			show-overflow-tooltip>
+		  </el-table-column>
+		    <el-table-column
+		      prop="approvalName"
+		      label="单据名称"
+		      width="120">
+		    </el-table-column>
+		    <el-table-column
+		      prop="instanceCode"
+		      label="instanceCode"
+		      show-overflow-tooltip>
+		    </el-table-column>
+			<el-table-column
+			prop="status"
+			label="审核状态"
+			show-overflow-tooltip>
+		  </el-table-column>
+
+	
+
+		<el-table-column
+		prop="payaccount"
+		label="付款组织"
+		show-overflow-tooltip>
+	  </el-table-column>
+	  <el-table-column
+	  prop="accountname"
+	  label="收款账户名称"
+	  :formatter="formatter"
+	  show-overflow-tooltip>
+	</el-table-column>
+    <el-table-column
+		      prop="paytype"
+		      label="单据类型"
+		      show-overflow-tooltip>
+		    </el-table-column>
+
+			<el-table-column
+			prop="uploadSuccess"
+			label="上传标识"
+			show-overflow-tooltip>
+		  </el-table-column>
+		  <el-table-column
+		  prop="isupload"
+		  label="上传信息"
+		  :formatter="formatter"
+		  show-overflow-tooltip>
+		</el-table-column>
+		<el-table-column
+		prop="payAccountFnumber"
+		label="付款组织编码"
+		show-overflow-tooltip>
+	  </el-table-column>
+	  <el-table-column
+	  prop="currency"
+	  label="币别"
+	  show-overflow-tooltip>
+	</el-table-column>
+	<el-table-column
+	prop="currency"
+	label="币别"
+	show-overflow-tooltip>
+  </el-table-column>
+  <el-table-column
+  prop="currency"
+  label="币别"
+  show-overflow-tooltip>
+</el-table-column>
+<el-table-column
+prop="currency"
+label="币别"
+show-overflow-tooltip>
+</el-table-column>
+<el-table-column
+prop="currency"
+label="币别"
+show-overflow-tooltip>
+</el-table-column>
+<el-table-column
+prop="currency"
+label="币别"
+show-overflow-tooltip>
+</el-table-column>
+<el-table-column
+prop="currency"
+label="币别"
+show-overflow-tooltip>
+</el-table-column>
+<el-table-column >
+	fixed="right"
+<template slot="header" slot-scope="scope">
+  <el-input
+	v-model="search"
+	size="mini"
+	placeholder="输入关键字搜索"/>
+</template>
+</el-table-column>
+	<el-table-column
+      fixed="right"
+      label="操作"
+      width="200">
+      <template slot-scope="scope">
+        <el-button @click="handleClick(scope.row)" type="text" size="small">明细</el-button>
+        <el-button @click="drawer = true;handleClick(scope.row)" type="text" size="small">编辑1</el-button>
+		<el-button type="text" size="small">编辑</el-button>
+      </template>
+
+		  </el-table>
+		  <div style="margin-top: 20px">
+		    <el-button @click="toggleSelection([dataList[1], dataList[2]])">切换第二、第三行的选中状态</el-button>
+		    <el-button @click="toggleSelection()">取消选择</el-button>
+		  </div>
+		</template>
+
+		<el-drawer
+		title="我是标题"
+		:visible.sync="drawer"
+		:direction="direction"
+		:before-close="handleClose">
+		<p>姓名: 111</p>
+        <p>住址: 222</p>
+	  </el-drawer>
+
+	</div>
+	
+    </div>
+	
+</body>
+
+
+
+<script>
+    var vue = new Vue({
+        el: '#app',
+        data:{
+			some:"sss",
+			drawer: false,
+
+        direction: 'ltr',
+            dataList:[{
+            "id": "1663582555767",
+            "instanceCode": "21AB450F-2D83-4B45-A5F0-CF18866B8FCB",
+            "approvalCode": "566B93DE-ACD9-4288-A861-EF7CDFB352B0",
+            "approvalName": "付款申请-4.0",
+            "departmentId": "2022-09-19 18:15:35:960",
+            "status": "APPROVED",
+            "serialNumber": "202209190013",
+            "startTim": "1663556873576",
+            "endTime": "1663582535960",
+            "uuid": "dcf33619",
+            "userId": "2328ec7e",
+            "department": "[{\"open_id\":\"od-221156631794cb6b69dc5898c32425ee\",\"name\":\"财务中心\"}]",
+            "payaccount": "香港那云商贸有限公司",
+            "recaccount": "848787891838",
+            "accountname": "瑞豐德永國際商務(中國)有限公司",
+            "paytype": "有票付款",
+            "uploadSuccess": "2",
+            "isupload": "飞书单号：202209190013==>应付单:AP00000150保存成功;==>下推成功,生成付款单id:100317",
+            "payAccountFnumber": "02",
+            "fremark": "支付-香港那云ODI大使馆报道代办费用1200HKD",
+            "departmentName": "财务中心",
+            "departmentOpen_id": "od-221156631794cb6b69dc5898c32425ee",
+            "kingdeeDepartment": "20001",
+            "currency": "香港元",
+            "currencyFnumber": "PRE002",
+            "isokpaybill": "100317",
+            "isokpayable": "AP00000150",
+            "isokotherpayable": null,
+            "accountNameNumber": "VEN00166"
+        },
+        {
+            "id": "1663554587980",
+            "instanceCode": "2DB8BC97-DC4E-4A58-A8AD-2E97C5C06CAD",
+            "approvalCode": "7312B2C7-5E94-4F55-9ED5-578D9104F1AB",
+            "approvalName": "日常报销-4.0",
+            "departmentId": "2022-09-19 10:29:41:864",
+            "status": "APPROVED",
+            "serialNumber": "202209190012",
+            "startTim": "1663554393724",
+            "endTime": "1663554581864",
+            "uuid": "4d9fdec3-a0c5-4e90-ab22-6bb22806cb48",
+            "userId": "def34e75",
+            "department": "[{\"open_id\":\"od-08e77bf976b48f753e849345cf96cf42\",\"name\":\"供应链部门\"}]",
+            "payaccount": "大川云创（杭州）网络科技有限公司",
+            "recaccount": "6230830006660511478",
+            "accountname": "王江平",
+            "paytype": null,
+            "uploadSuccess": "2",
+            "isupload": "2DB8BC97-DC4E-4A58-A8AD-2E97C5C06CAD其他应付单 QTYFD00000091保存成功==>下推成功,生成付款单id:100316",
+            "payAccountFnumber": null,
+            "fremark": "大川云创快递面单充值费5500单12100",
+            "departmentName": "供应链部门",
+            "departmentOpen_id": "od-08e77bf976b48f753e849345cf96cf42",
+            "kingdeeDepartment": "54001",
+            "currency": "人民币",
+            "currencyFnumber": "PRE001",
+            "isokpaybill": "100316",
+            "isokpayable": null,
+            "isokotherpayable": "QTYFD00000091",
+            "accountNameNumber": "CUST0116"
+        },
+        {
+            "id": "1663553724277",
+            "instanceCode": "CD287B37-8100-45EF-94FE-962B62C6975E",
+            "approvalCode": "7312B2C7-5E94-4F55-9ED5-578D9104F1AB",
+            "approvalName": "日常报销-4.0",
+            "departmentId": "2022-09-19 10:15:21:931",
+            "status": "APPROVED",
+            "serialNumber": "202209160025",
+            "startTim": "1663316491818",
+            "endTime": "1663553721931",
+            "uuid": "03630dfd-202e-44e2-b7e7-758a5407ad0a",
+            "userId": "9g919eb5",
+            "department": "[{\"open_id\":\"od-1ae8a8be38704a491536930172061a90\",\"name\":\"运营管理中心\"}]",
+            "payaccount": "东阳市蜗牛电子商务有限公司",
+            "recaccount": "6230830006660511395",
+            "accountname": "葛志强",
+            "paytype": null,
+            "uploadSuccess": null,
+            "isupload": null,
+            "payAccountFnumber": "01",
+            "fremark": "5楼仓库电费预存200元",
+            "departmentName": "运营管理中心",
+            "departmentOpen_id": "od-1ae8a8be38704a491536930172061a90",
+            "kingdeeDepartment": null,
+            "currency": "人民币",
+            "currencyFnumber": "PRE001",
+            "isokpaybill": null,
+            "isokpayable": null,
+            "isokotherpayable": null,
+            "accountNameNumber": "50054"
+        },
+        {
+            "id": "1663553685497",
+            "instanceCode": "CAAB41FA-52F0-40D7-9541-4A81E370F7D0",
+            "approvalCode": "7312B2C7-5E94-4F55-9ED5-578D9104F1AB",
+            "approvalName": "日常报销-4.0",
+            "departmentId": "2022-09-19 10:14:43:160",
+            "status": "APPROVED",
+            "serialNumber": "202209160034",
+            "startTim": "1663324795616",
+            "endTime": "1663553683160",
+            "uuid": "4de0f7c0-3e2b-4a70-9c9f-6bebc4bd4848",
+            "userId": "g8432e71",
+            "department": "[{\"open_id\":\"od-d65b41454c90049b865e63e36f255f6b\",\"name\":\"国际站组\"}]",
+            "payaccount": "东阳市蜗牛电子商务有限公司",
+            "recaccount": "6212261208005644156",
+            "accountname": "金巧琪",
+            "paytype": null,
+            "uploadSuccess": "2",
+            "isupload": "CAAB41FA-52F0-40D7-9541-4A81E370F7D0其他应付单 QTYFD00000092保存成功==>下推成功,生成付款单id:100318",
+            "payAccountFnumber": "01",
+            "fremark": "支付金巧琪货款￥479.89",
+            "departmentName": "国际站组",
+            "departmentOpen_id": "od-d65b41454c90049b865e63e36f255f6b",
+            "kingdeeDepartment": "42005",
+            "currency": "人民币",
+            "currencyFnumber": "PRE001",
+            "isokpaybill": "100318",
+            "isokpayable": null,
+            "isokotherpayable": "QTYFD00000092",
+            "accountNameNumber": "CUST0104"
+        },
+        {
+            "id": "1663553642168",
+            "instanceCode": "58CB940C-F3EF-4820-A764-D5312DAFD8E6",
+            "approvalCode": "7312B2C7-5E94-4F55-9ED5-578D9104F1AB",
+            "approvalName": "日常报销-4.0",
+            "departmentId": "2022-09-19 10:13:50:679",
+            "status": "APPROVED",
+            "serialNumber": "202209160026",
+            "startTim": "1663316778170",
+            "endTime": "1663553630679",
+            "uuid": "9f1f9ddb-e84f-4b0e-9ba6-4b261ccdd174",
+            "userId": "9g919eb5",
+            "department": "[{\"open_id\":\"od-1ae8a8be38704a491536930172061a90\",\"name\":\"运营管理中心\"}]",
+            "payaccount": "东阳市蜗牛电子商务有限公司",
+            "recaccount": "6230830006660511395",
+            "accountname": "葛志强",
+            "paytype": null,
+            "uploadSuccess": null,
+            "isupload": null,
+            "payAccountFnumber": "01",
+            "fremark": "4楼仓库电费预存200元",
+            "departmentName": "运营管理中心",
+            "departmentOpen_id": "od-1ae8a8be38704a491536930172061a90",
+            "kingdeeDepartment": null,
+            "currency": "人民币",
+            "currencyFnumber": "PRE001",
+            "isokpaybill": null,
+            "isokpayable": null,
+            "isokotherpayable": null,
+            "accountNameNumber": "50054"
+        },
+        {
+            "id": "1663553306581",
+            "instanceCode": "B458F7F0-7063-46B1-A1F0-F165AB14989C",
+            "approvalCode": "566B93DE-ACD9-4288-A861-EF7CDFB352B0",
+            "approvalName": "付款申请-4.0",
+            "departmentId": "2022-09-19 10:08:23:233",
+            "status": "APPROVED",
+            "serialNumber": "202209150035",
+            "startTim": "1663232613584",
+            "endTime": "1663553303233",
+            "uuid": "e58e63ef",
+            "userId": "e3e89cdd",
+            "department": "[{\"open_id\":\"od-1ebac74984700ef0204c7cc4260a926a\",\"name\":\"自主开发组\"}]",
+            "payaccount": "香港那云商贸有限公司",
+            "recaccount": "755940505410308",
+            "accountname": "深圳市立飞国际货运代理有限公司",
+            "paytype": "有票付款",
+            "uploadSuccess": "2",
+            "isupload": "飞书单号：202209150035==>应付单:AP00000151保存成功;==>下推成功,生成付款单id:100325",
+            "payAccountFnumber": "02",
+            "fremark": "Benjamin 订单支付给深圳市立飞国际货运代理有限公司运费450元",
+            "departmentName": "自主开发组",
+            "departmentOpen_id": "od-1ebac74984700ef0204c7cc4260a926a",
+            "kingdeeDepartment": "42004",
+            "currency": "人民币",
+            "currencyFnumber": "PRE001",
+            "isokpaybill": "100325",
+            "isokpayable": "AP00000151",
+            "isokotherpayable": null,
+            "accountNameNumber": "VEN00165"
+        },
+        {
+            "id": "1663553077006",
+            "instanceCode": "D1E526A1-E944-4CA5-B903-326DE0E3979A",
+            "approvalCode": "566B93DE-ACD9-4288-A861-EF7CDFB352B0",
+            "approvalName": "付款申请-4.0",
+            "departmentId": "2022-09-19 10:04:32:839",
+            "status": "APPROVED",
+            "serialNumber": "202209150032",
+            "startTim": "1663230224182",
+            "endTime": "1663553072839",
+            "uuid": "01d51de7-876b-445a-b7b6-0e5536573b0f",
+            "userId": "9g919eb5",
+            "department": "[{\"open_id\":\"od-1ae8a8be38704a491536930172061a90\",\"name\":\"运营管理中心\"}]",
+            "payaccount": "香港那云商贸有限公司",
+            "recaccount": "622908353177070718",
+            "accountname": "江胜先",
+            "paytype": "有票付款",
+            "uploadSuccess": null,
+            "isupload": null,
+            "payAccountFnumber": "02",
+            "fremark": "胶带15箱5100元",
+            "departmentName": "运营管理中心",
+            "departmentOpen_id": "od-1ae8a8be38704a491536930172061a90",
+            "kingdeeDepartment": null,
+            "currency": "人民币",
+            "currencyFnumber": "PRE001",
+            "isokpaybill": null,
+            "isokpayable": null,
+            "isokotherpayable": null,
+            "accountNameNumber": "VEN00164"
+        },
+        {
+            "id": "1663552457173",
+            "instanceCode": "EF43B178-4530-41F8-BDC7-9DE8F2018EC0",
+            "approvalCode": "7312B2C7-5E94-4F55-9ED5-578D9104F1AB",
+            "approvalName": "日常报销-4.0",
+            "departmentId": "2022-09-19 09:54:15:047",
+            "status": "APPROVED",
+            "serialNumber": "202209150033",
+            "startTim": "1663231807163",
+            "endTime": "1663552455047",
+            "uuid": "c4beca30",
+            "userId": "62a5bd9a",
+            "department": "[{\"open_id\":\"od-9e8fbfc0a9899b2ae62187c6565fe21a\",\"name\":\"1688平台组\"}]",
+            "payaccount": "东阳市羚羊户外用品有限公司",
+            "recaccount": "6230830006660511288",
+            "accountname": "谢轩",
+            "paytype": null,
+            "uploadSuccess": "2",
+            "isupload": "EF43B178-4530-41F8-BDC7-9DE8F2018EC0其他应付单 QTYFD00000090保存成功==>下推成功,生成付款单id:100315",
+            "payAccountFnumber": null,
+            "fremark": "支付-谢轩报销-快递单费用-共计1500元人民币",
+            "departmentName": "1688平台组",
+            "departmentOpen_id": "od-9e8fbfc0a9899b2ae62187c6565fe21a",
+            "kingdeeDepartment": "42006",
+            "currency": "人民币",
+            "currencyFnumber": "PRE001",
+            "isokpaybill": "100315",
+            "isokpayable": null,
+            "isokotherpayable": "QTYFD00000090",
+            "accountNameNumber": "CUST0114"
+        },
+        {
+            "id": "1663552457173",
+            "instanceCode": "EF43B178-4530-41F8-BDC7-9DE8F2018EC0",
+            "approvalCode": "7312B2C7-5E94-4F55-9ED5-578D9104F1AB",
+            "approvalName": "日常报销-4.0",
+            "departmentId": "2022-09-19 09:54:15:047",
+            "status": "APPROVED",
+            "serialNumber": "202209150033",
+            "startTim": "1663231807163",
+            "endTime": "1663552455047",
+            "uuid": "c4beca30",
+            "userId": "62a5bd9a",
+            "department": "[{\"open_id\":\"od-9e8fbfc0a9899b2ae62187c6565fe21a\",\"name\":\"1688平台组\"}]",
+            "payaccount": "东阳市羚羊户外用品有限公司",
+            "recaccount": "6230830006660511288",
+            "accountname": "谢轩",
+            "paytype": null,
+            "uploadSuccess": "2",
+            "isupload": "EF43B178-4530-41F8-BDC7-9DE8F2018EC0其他应付单 QTYFD00000090保存成功==>下推成功,生成付款单id:100315",
+            "payAccountFnumber": null,
+            "fremark": "支付-谢轩报销-快递单费用-共计1500元人民币",
+            "departmentName": "1688平台组",
+            "departmentOpen_id": "od-9e8fbfc0a9899b2ae62187c6565fe21a",
+            "kingdeeDepartment": "42006",
+            "currency": "人民币",
+            "currencyFnumber": "PRE001",
+            "isokpaybill": "100315",
+            "isokpayable": null,
+            "isokotherpayable": "QTYFD00000090",
+            "accountNameNumber": "CUST0114"
+        },
+        {
+            "id": "1663552457173",
+            "instanceCode": "EF43B178-4530-41F8-BDC7-9DE8F2018EC0",
+            "approvalCode": "7312B2C7-5E94-4F55-9ED5-578D9104F1AB",
+            "approvalName": "日常报销-4.0",
+            "departmentId": "2022-09-19 09:54:15:047",
+            "status": "APPROVED",
+            "serialNumber": "202209150033",
+            "startTim": "1663231807163",
+            "endTime": "1663552455047",
+            "uuid": "c4beca30",
+            "userId": "62a5bd9a",
+            "department": "[{\"open_id\":\"od-9e8fbfc0a9899b2ae62187c6565fe21a\",\"name\":\"1688平台组\"}]",
+            "payaccount": "东阳市羚羊户外用品有限公司",
+            "recaccount": "6230830006660511288",
+            "accountname": "谢轩",
+            "paytype": null,
+            "uploadSuccess": "2",
+            "isupload": "EF43B178-4530-41F8-BDC7-9DE8F2018EC0其他应付单 QTYFD00000090保存成功==>下推成功,生成付款单id:100315",
+            "payAccountFnumber": null,
+            "fremark": "支付-谢轩报销-快递单费用-共计1500元人民币",
+            "departmentName": "1688平台组",
+            "departmentOpen_id": "od-9e8fbfc0a9899b2ae62187c6565fe21a",
+            "kingdeeDepartment": "42006",
+            "currency": "人民币",
+            "currencyFnumber": "PRE001",
+            "isokpaybill": "100315",
+            "isokpayable": null,
+            "isokotherpayable": "QTYFD00000090",
+            "accountNameNumber": "CUST0114"
+        },
+        {
+            "id": "1663552457173",
+            "instanceCode": "EF43B178-4530-41F8-BDC7-9DE8F2018EC0",
+            "approvalCode": "7312B2C7-5E94-4F55-9ED5-578D9104F1AB",
+            "approvalName": "日常报销-4.0",
+            "departmentId": "2022-09-19 09:54:15:047",
+            "status": "APPROVED",
+            "serialNumber": "202209150033",
+            "startTim": "1663231807163",
+            "endTime": "1663552455047",
+            "uuid": "c4beca30",
+            "userId": "62a5bd9a",
+            "department": "[{\"open_id\":\"od-9e8fbfc0a9899b2ae62187c6565fe21a\",\"name\":\"1688平台组\"}]",
+            "payaccount": "东阳市羚羊户外用品有限公司",
+            "recaccount": "6230830006660511288",
+            "accountname": "谢轩",
+            "paytype": null,
+            "uploadSuccess": "2",
+            "isupload": "EF43B178-4530-41F8-BDC7-9DE8F2018EC0其他应付单 QTYFD00000090保存成功==>下推成功,生成付款单id:100315",
+            "payAccountFnumber": null,
+            "fremark": "支付-谢轩报销-快递单费用-共计1500元人民币",
+            "departmentName": "1688平台组",
+            "departmentOpen_id": "od-9e8fbfc0a9899b2ae62187c6565fe21a",
+            "kingdeeDepartment": "42006",
+            "currency": "人民币",
+            "currencyFnumber": "PRE001",
+            "isokpaybill": "100315",
+            "isokpayable": null,
+            "isokotherpayable": "QTYFD00000090",
+            "accountNameNumber": "CUST0114"
+        },
+        {
+            "id": "1663552457173",
+            "instanceCode": "EF43B178-4530-41F8-BDC7-9DE8F2018EC0",
+            "approvalCode": "7312B2C7-5E94-4F55-9ED5-578D9104F1AB",
+            "approvalName": "日常报销-4.0",
+            "departmentId": "2022-09-19 09:54:15:047",
+            "status": "APPROVED",
+            "serialNumber": "202209150033",
+            "startTim": "1663231807163",
+            "endTime": "1663552455047",
+            "uuid": "c4beca30",
+            "userId": "62a5bd9a",
+            "department": "[{\"open_id\":\"od-9e8fbfc0a9899b2ae62187c6565fe21a\",\"name\":\"1688平台组\"}]",
+            "payaccount": "东阳市羚羊户外用品有限公司",
+            "recaccount": "6230830006660511288",
+            "accountname": "谢轩",
+            "paytype": null,
+            "uploadSuccess": "2",
+            "isupload": "EF43B178-4530-41F8-BDC7-9DE8F2018EC0其他应付单 QTYFD00000090保存成功==>下推成功,生成付款单id:100315",
+            "payAccountFnumber": null,
+            "fremark": "支付-谢轩报销-快递单费用-共计1500元人民币",
+            "departmentName": "1688平台组",
+            "departmentOpen_id": "od-9e8fbfc0a9899b2ae62187c6565fe21a",
+            "kingdeeDepartment": "42006",
+            "currency": "人民币",
+            "currencyFnumber": "PRE001",
+            "isokpaybill": "100315",
+            "isokpayable": null,
+            "isokotherpayable": "QTYFD00000090",
+            "accountNameNumber": "CUST0114"
+        },
+        {
+            "id": "1663552457173",
+            "instanceCode": "EF43B178-4530-41F8-BDC7-9DE8F2018EC0",
+            "approvalCode": "7312B2C7-5E94-4F55-9ED5-578D9104F1AB",
+            "approvalName": "日常报销-4.0",
+            "departmentId": "2022-09-19 09:54:15:047",
+            "status": "APPROVED",
+            "serialNumber": "202209150033",
+            "startTim": "1663231807163",
+            "endTime": "1663552455047",
+            "uuid": "c4beca30",
+            "userId": "62a5bd9a",
+            "department": "[{\"open_id\":\"od-9e8fbfc0a9899b2ae62187c6565fe21a\",\"name\":\"1688平台组\"}]",
+            "payaccount": "东阳市羚羊户外用品有限公司",
+            "recaccount": "6230830006660511288",
+            "accountname": "谢轩",
+            "paytype": null,
+            "uploadSuccess": "2",
+            "isupload": "EF43B178-4530-41F8-BDC7-9DE8F2018EC0其他应付单 QTYFD00000090保存成功==>下推成功,生成付款单id:100315",
+            "payAccountFnumber": null,
+            "fremark": "支付-谢轩报销-快递单费用-共计1500元人民币",
+            "departmentName": "1688平台组",
+            "departmentOpen_id": "od-9e8fbfc0a9899b2ae62187c6565fe21a",
+            "kingdeeDepartment": "42006",
+            "currency": "人民币",
+            "currencyFnumber": "PRE001",
+            "isokpaybill": "100315",
+            "isokpayable": null,
+            "isokotherpayable": "QTYFD00000090",
+            "accountNameNumber": "CUST0114"
+        },
+        {
+            "id": "1663552457173",
+            "instanceCode": "EF43B178-4530-41F8-BDC7-9DE8F2018EC0",
+            "approvalCode": "7312B2C7-5E94-4F55-9ED5-578D9104F1AB",
+            "approvalName": "日常报销-4.0",
+            "departmentId": "2022-09-19 09:54:15:047",
+            "status": "APPROVED",
+            "serialNumber": "202209150033",
+            "startTim": "1663231807163",
+            "endTime": "1663552455047",
+            "uuid": "c4beca30",
+            "userId": "62a5bd9a",
+            "department": "[{\"open_id\":\"od-9e8fbfc0a9899b2ae62187c6565fe21a\",\"name\":\"1688平台组\"}]",
+            "payaccount": "东阳市羚羊户外用品有限公司",
+            "recaccount": "6230830006660511288",
+            "accountname": "谢轩",
+            "paytype": null,
+            "uploadSuccess": "2",
+            "isupload": "EF43B178-4530-41F8-BDC7-9DE8F2018EC0其他应付单 QTYFD00000090保存成功==>下推成功,生成付款单id:100315",
+            "payAccountFnumber": null,
+            "fremark": "支付-谢轩报销-快递单费用-共计1500元人民币",
+            "departmentName": "1688平台组",
+            "departmentOpen_id": "od-9e8fbfc0a9899b2ae62187c6565fe21a",
+            "kingdeeDepartment": "42006",
+            "currency": "人民币",
+            "currencyFnumber": "PRE001",
+            "isokpaybill": "100315",
+            "isokpayable": null,
+            "isokotherpayable": "QTYFD00000090",
+            "accountNameNumber": "CUST0114"
+        },
+        {
+            "id": "1663552457173",
+            "instanceCode": "EF43B178-4530-41F8-BDC7-9DE8F2018EC0",
+            "approvalCode": "7312B2C7-5E94-4F55-9ED5-578D9104F1AB",
+            "approvalName": "日常报销-4.0",
+            "departmentId": "2022-09-19 09:54:15:047",
+            "status": "APPROVED",
+            "serialNumber": "202209150033",
+            "startTim": "1663231807163",
+            "endTime": "1663552455047",
+            "uuid": "c4beca30",
+            "userId": "62a5bd9a",
+            "department": "[{\"open_id\":\"od-9e8fbfc0a9899b2ae62187c6565fe21a\",\"name\":\"1688平台组\"}]",
+            "payaccount": "东阳市羚羊户外用品有限公司",
+            "recaccount": "6230830006660511288",
+            "accountname": "谢轩",
+            "paytype": null,
+            "uploadSuccess": "2",
+            "isupload": "EF43B178-4530-41F8-BDC7-9DE8F2018EC0其他应付单 QTYFD00000090保存成功==>下推成功,生成付款单id:100315",
+            "payAccountFnumber": null,
+            "fremark": "支付-谢轩报销-快递单费用-共计1500元人民币",
+            "departmentName": "1688平台组",
+            "departmentOpen_id": "od-9e8fbfc0a9899b2ae62187c6565fe21a",
+            "kingdeeDepartment": "42006",
+            "currency": "人民币",
+            "currencyFnumber": "PRE001",
+            "isokpaybill": "100315",
+            "isokpayable": null,
+            "isokotherpayable": "QTYFD00000090",
+            "accountNameNumber": "CUST0114"
+        },
+        {
+            "id": "1663552457173",
+            "instanceCode": "EF43B178-4530-41F8-BDC7-9DE8F2018EC0",
+            "approvalCode": "7312B2C7-5E94-4F55-9ED5-578D9104F1AB",
+            "approvalName": "日常报销-4.0",
+            "departmentId": "2022-09-19 09:54:15:047",
+            "status": "APPROVED",
+            "serialNumber": "202209150033",
+            "startTim": "1663231807163",
+            "endTime": "1663552455047",
+            "uuid": "c4beca30",
+            "userId": "62a5bd9a",
+            "department": "[{\"open_id\":\"od-9e8fbfc0a9899b2ae62187c6565fe21a\",\"name\":\"1688平台组\"}]",
+            "payaccount": "东阳市羚羊户外用品有限公司",
+            "recaccount": "6230830006660511288",
+            "accountname": "谢轩",
+            "paytype": null,
+            "uploadSuccess": "2",
+            "isupload": "EF43B178-4530-41F8-BDC7-9DE8F2018EC0其他应付单 QTYFD00000090保存成功==>下推成功,生成付款单id:100315",
+            "payAccountFnumber": null,
+            "fremark": "支付-谢轩报销-快递单费用-共计1500元人民币",
+            "departmentName": "1688平台组",
+            "departmentOpen_id": "od-9e8fbfc0a9899b2ae62187c6565fe21a",
+            "kingdeeDepartment": "42006",
+            "currency": "人民币",
+            "currencyFnumber": "PRE001",
+            "isokpaybill": "100315",
+            "isokpayable": null,
+            "isokotherpayable": "QTYFD00000090",
+            "accountNameNumber": "CUST0114"
+        },
+        {
+            "id": "1663552457173",
+            "instanceCode": "EF43B178-4530-41F8-BDC7-9DE8F2018EC0",
+            "approvalCode": "7312B2C7-5E94-4F55-9ED5-578D9104F1AB",
+            "approvalName": "日常报销-4.0",
+            "departmentId": "2022-09-19 09:54:15:047",
+            "status": "APPROVED",
+            "serialNumber": "202209150033",
+            "startTim": "1663231807163",
+            "endTime": "1663552455047",
+            "uuid": "c4beca30",
+            "userId": "62a5bd9a",
+            "department": "[{\"open_id\":\"od-9e8fbfc0a9899b2ae62187c6565fe21a\",\"name\":\"1688平台组\"}]",
+            "payaccount": "东阳市羚羊户外用品有限公司",
+            "recaccount": "6230830006660511288",
+            "accountname": "谢轩",
+            "paytype": null,
+            "uploadSuccess": "2",
+            "isupload": "EF43B178-4530-41F8-BDC7-9DE8F2018EC0其他应付单 QTYFD00000090保存成功==>下推成功,生成付款单id:100315",
+            "payAccountFnumber": null,
+            "fremark": "支付-谢轩报销-快递单费用-共计1500元人民币",
+            "departmentName": "1688平台组",
+            "departmentOpen_id": "od-9e8fbfc0a9899b2ae62187c6565fe21a",
+            "kingdeeDepartment": "42006",
+            "currency": "人民币",
+            "currencyFnumber": "PRE001",
+            "isokpaybill": "100315",
+            "isokpayable": null,
+            "isokotherpayable": "QTYFD00000090",
+            "accountNameNumber": "CUST0114"
+        },
+        {
+            "id": "1663552457173",
+            "instanceCode": "EF43B178-4530-41F8-BDC7-9DE8F2018EC0",
+            "approvalCode": "7312B2C7-5E94-4F55-9ED5-578D9104F1AB",
+            "approvalName": "日常报销-4.0",
+            "departmentId": "2022-09-19 09:54:15:047",
+            "status": "APPROVED",
+            "serialNumber": "202209150033",
+            "startTim": "1663231807163",
+            "endTime": "1663552455047",
+            "uuid": "c4beca30",
+            "userId": "62a5bd9a",
+            "department": "[{\"open_id\":\"od-9e8fbfc0a9899b2ae62187c6565fe21a\",\"name\":\"1688平台组\"}]",
+            "payaccount": "东阳市羚羊户外用品有限公司",
+            "recaccount": "6230830006660511288",
+            "accountname": "谢轩",
+            "paytype": null,
+            "uploadSuccess": "2",
+            "isupload": "EF43B178-4530-41F8-BDC7-9DE8F2018EC0其他应付单 QTYFD00000090保存成功==>下推成功,生成付款单id:100315",
+            "payAccountFnumber": null,
+            "fremark": "支付-谢轩报销-快递单费用-共计1500元人民币",
+            "departmentName": "1688平台组",
+            "departmentOpen_id": "od-9e8fbfc0a9899b2ae62187c6565fe21a",
+            "kingdeeDepartment": "42006",
+            "currency": "人民币",
+            "currencyFnumber": "PRE001",
+            "isokpaybill": "100315",
+            "isokpayable": null,
+            "isokotherpayable": "QTYFD00000090",
+            "accountNameNumber": "CUST0114"
+        },
+        {
+            "id": "1663552457173",
+            "instanceCode": "EF43B178-4530-41F8-BDC7-9DE8F2018EC0",
+            "approvalCode": "7312B2C7-5E94-4F55-9ED5-578D9104F1AB",
+            "approvalName": "日常报销-4.0",
+            "departmentId": "2022-09-19 09:54:15:047",
+            "status": "APPROVED",
+            "serialNumber": "202209150033",
+            "startTim": "1663231807163",
+            "endTime": "1663552455047",
+            "uuid": "c4beca30",
+            "userId": "62a5bd9a",
+            "department": "[{\"open_id\":\"od-9e8fbfc0a9899b2ae62187c6565fe21a\",\"name\":\"1688平台组\"}]",
+            "payaccount": "东阳市羚羊户外用品有限公司",
+            "recaccount": "6230830006660511288",
+            "accountname": "谢轩",
+            "paytype": null,
+            "uploadSuccess": "2",
+            "isupload": "EF43B178-4530-41F8-BDC7-9DE8F2018EC0其他应付单 QTYFD00000090保存成功==>下推成功,生成付款单id:100315",
+            "payAccountFnumber": null,
+            "fremark": "支付-谢轩报销-快递单费用-共计1500元人民币",
+            "departmentName": "1688平台组",
+            "departmentOpen_id": "od-9e8fbfc0a9899b2ae62187c6565fe21a",
+            "kingdeeDepartment": "42006",
+            "currency": "人民币",
+            "currencyFnumber": "PRE001",
+            "isokpaybill": "100315",
+            "isokpayable": null,
+            "isokotherpayable": "QTYFD00000090",
+            "accountNameNumber": "CUST0114"
+        },
+        {
+            "id": "1663552457173",
+            "instanceCode": "EF43B178-4530-41F8-BDC7-9DE8F2018EC0",
+            "approvalCode": "7312B2C7-5E94-4F55-9ED5-578D9104F1AB",
+            "approvalName": "日常报销-4.0",
+            "departmentId": "2022-09-19 09:54:15:047",
+            "status": "APPROVED",
+            "serialNumber": "202209150033",
+            "startTim": "1663231807163",
+            "endTime": "1663552455047",
+            "uuid": "c4beca30",
+            "userId": "62a5bd9a",
+            "department": "[{\"open_id\":\"od-9e8fbfc0a9899b2ae62187c6565fe21a\",\"name\":\"1688平台组\"}]",
+            "payaccount": "东阳市羚羊户外用品有限公司",
+            "recaccount": "6230830006660511288",
+            "accountname": "谢轩",
+            "paytype": null,
+            "uploadSuccess": "2",
+            "isupload": "EF43B178-4530-41F8-BDC7-9DE8F2018EC0其他应付单 QTYFD00000090保存成功==>下推成功,生成付款单id:100315",
+            "payAccountFnumber": null,
+            "fremark": "支付-谢轩报销-快递单费用-共计1500元人民币",
+            "departmentName": "1688平台组",
+            "departmentOpen_id": "od-9e8fbfc0a9899b2ae62187c6565fe21a",
+            "kingdeeDepartment": "42006",
+            "currency": "人民币",
+            "currencyFnumber": "PRE001",
+            "isokpaybill": "100315",
+            "isokpayable": null,
+            "isokotherpayable": "QTYFD00000090",
+            "accountNameNumber": "CUST0114"
+        },
+        {
+            "id": "1663552457173",
+            "instanceCode": "EF43B178-4530-41F8-BDC7-9DE8F2018EC0",
+            "approvalCode": "7312B2C7-5E94-4F55-9ED5-578D9104F1AB",
+            "approvalName": "日常报销-4.0",
+            "departmentId": "2022-09-19 09:54:15:047",
+            "status": "APPROVED",
+            "serialNumber": "202209150033",
+            "startTim": "1663231807163",
+            "endTime": "1663552455047",
+            "uuid": "c4beca30",
+            "userId": "62a5bd9a",
+            "department": "[{\"open_id\":\"od-9e8fbfc0a9899b2ae62187c6565fe21a\",\"name\":\"1688平台组\"}]",
+            "payaccount": "东阳市羚羊户外用品有限公司",
+            "recaccount": "6230830006660511288",
+            "accountname": "谢轩",
+            "paytype": null,
+            "uploadSuccess": "2",
+            "isupload": "EF43B178-4530-41F8-BDC7-9DE8F2018EC0其他应付单 QTYFD00000090保存成功==>下推成功,生成付款单id:100315",
+            "payAccountFnumber": null,
+            "fremark": "支付-谢轩报销-快递单费用-共计1500元人民币",
+            "departmentName": "1688平台组",
+            "departmentOpen_id": "od-9e8fbfc0a9899b2ae62187c6565fe21a",
+            "kingdeeDepartment": "42006",
+            "currency": "人民币",
+            "currencyFnumber": "PRE001",
+            "isokpaybill": "100315",
+            "isokpayable": null,
+            "isokotherpayable": "QTYFD00000090",
+            "accountNameNumber": "CUST0114"
+        },
+        {
+            "id": "1663552457173",
+            "instanceCode": "EF43B178-4530-41F8-BDC7-9DE8F2018EC0",
+            "approvalCode": "7312B2C7-5E94-4F55-9ED5-578D9104F1AB",
+            "approvalName": "日常报销-4.0",
+            "departmentId": "2022-09-19 09:54:15:047",
+            "status": "APPROVED",
+            "serialNumber": "202209150033",
+            "startTim": "1663231807163",
+            "endTime": "1663552455047",
+            "uuid": "c4beca30",
+            "userId": "62a5bd9a",
+            "department": "[{\"open_id\":\"od-9e8fbfc0a9899b2ae62187c6565fe21a\",\"name\":\"1688平台组\"}]",
+            "payaccount": "东阳市羚羊户外用品有限公司",
+            "recaccount": "6230830006660511288",
+            "accountname": "谢轩",
+            "paytype": null,
+            "uploadSuccess": "2",
+            "isupload": "EF43B178-4530-41F8-BDC7-9DE8F2018EC0其他应付单 QTYFD00000090保存成功==>下推成功,生成付款单id:100315",
+            "payAccountFnumber": null,
+            "fremark": "支付-谢轩报销-快递单费用-共计1500元人民币",
+            "departmentName": "1688平台组",
+            "departmentOpen_id": "od-9e8fbfc0a9899b2ae62187c6565fe21a",
+            "kingdeeDepartment": "42006",
+            "currency": "人民币",
+            "currencyFnumber": "PRE001",
+            "isokpaybill": "100315",
+            "isokpayable": null,
+            "isokotherpayable": "QTYFD00000090",
+            "accountNameNumber": "CUST0114"
+        },
+        {
+            "id": "1663552457173",
+            "instanceCode": "EF43B178-4530-41F8-BDC7-9DE8F2018EC0",
+            "approvalCode": "7312B2C7-5E94-4F55-9ED5-578D9104F1AB",
+            "approvalName": "日常报销-4.0",
+            "departmentId": "2022-09-19 09:54:15:047",
+            "status": "APPROVED",
+            "serialNumber": "202209150033",
+            "startTim": "1663231807163",
+            "endTime": "1663552455047",
+            "uuid": "c4beca30",
+            "userId": "62a5bd9a",
+            "department": "[{\"open_id\":\"od-9e8fbfc0a9899b2ae62187c6565fe21a\",\"name\":\"1688平台组\"}]",
+            "payaccount": "东阳市羚羊户外用品有限公司",
+            "recaccount": "6230830006660511288",
+            "accountname": "谢轩",
+            "paytype": null,
+            "uploadSuccess": "2",
+            "isupload": "EF43B178-4530-41F8-BDC7-9DE8F2018EC0其他应付单 QTYFD00000090保存成功==>下推成功,生成付款单id:100315",
+            "payAccountFnumber": null,
+            "fremark": "支付-谢轩报销-快递单费用-共计1500元人民币",
+            "departmentName": "1688平台组",
+            "departmentOpen_id": "od-9e8fbfc0a9899b2ae62187c6565fe21a",
+            "kingdeeDepartment": "42006",
+            "currency": "人民币",
+            "currencyFnumber": "PRE001",
+            "isokpaybill": "100315",
+            "isokpayable": null,
+            "isokotherpayable": "QTYFD00000090",
+            "accountNameNumber": "CUST0114"
+        },
+        {
+            "id": "1663552457173",
+            "instanceCode": "EF43B178-4530-41F8-BDC7-9DE8F2018EC0",
+            "approvalCode": "7312B2C7-5E94-4F55-9ED5-578D9104F1AB",
+            "approvalName": "日常报销-4.0",
+            "departmentId": "2022-09-19 09:54:15:047",
+            "status": "APPROVED",
+            "serialNumber": "202209150033",
+            "startTim": "1663231807163",
+            "endTime": "1663552455047",
+            "uuid": "c4beca30",
+            "userId": "62a5bd9a",
+            "department": "[{\"open_id\":\"od-9e8fbfc0a9899b2ae62187c6565fe21a\",\"name\":\"1688平台组\"}]",
+            "payaccount": "东阳市羚羊户外用品有限公司",
+            "recaccount": "6230830006660511288",
+            "accountname": "谢轩",
+            "paytype": null,
+            "uploadSuccess": "2",
+            "isupload": "EF43B178-4530-41F8-BDC7-9DE8F2018EC0其他应付单 QTYFD00000090保存成功==>下推成功,生成付款单id:100315",
+            "payAccountFnumber": null,
+            "fremark": "支付-谢轩报销-快递单费用-共计1500元人民币",
+            "departmentName": "1688平台组",
+            "departmentOpen_id": "od-9e8fbfc0a9899b2ae62187c6565fe21a",
+            "kingdeeDepartment": "42006",
+            "currency": "人民币",
+            "currencyFnumber": "PRE001",
+            "isokpaybill": "100315",
+            "isokpayable": null,
+            "isokotherpayable": "QTYFD00000090",
+            "accountNameNumber": "CUST0114"
+        }],
+			  dialogFormVisible: false,//添加表单是否可见
+            dialogFormVisible4Edit:false,//编辑表单是否可见
+            formData: {},//表单数据
+            rules: {//校验规则
+                type: [{ required: true, message: '图书类别为必填项', trigger: 'blur' }],
+                name: [{ required: true, message: '图书名称为必填项', trigger: 'blur' }]
+            },
+            pagination: {//分页相关模型数据
+                currentPage: 1,//当前页码
+                pageSize:10,//每页显示的记录数
+                total:0,//总记录数
+                type: "",
+                name: "",
+                description: ""
+            }
+        },
+
+        //钩子函数，VUE对象初始化完成后自动执行
+        created() {
+            //调用查询全部数据的操作
+           // this.getAll();
+        },
+
+        methods: {
+            //列表
+            // getAll() {
+            //     //发送异步请求
+            //     axios.get("/books").then((res)=>{
+            //         // console.log(res.data);
+            //         this.dataList = res.data.data;
+            //     });
+            // },
+
+            //分页查询
+             getAll() {
+//                 //组织参数，拼接url请求地址
+//                 // console.log(this.pagination.type);
+//                 param = "?type="+this.pagination.type;
+//                 param +="&name="+this.pagination.name;
+//                 param +="&description="+this.pagination.description;
+//                 // console.log(param);
+
+//                 //发送异步请求
+//                 // axios.get("/books/"+this.pagination.currentPage+"/"+this.pagination.pageSize+param).then((res)=>{
+//                 //     this.pagination.pageSize = res.data.data.size;
+//                 //     this.pagination.currentPage = res.data.data.current;
+//                 //     this.pagination.total = res.data.data.total;
+
+//                 //     this.dataList = res.data.data.records;
+//                 // });
+// // 				resp.setContentType("text/json; charset=utf-8");
+// //              resp.setHeader("Access-Control-Allow-Origin", "*");
+
+
+				
+
+// 				    axios.get("http://b3596o2929.wicp.vip/index/fishuform/fishuformDESC").then((res)=>{
+//                     //this.pagination.pageSize = res.data.data.size;
+//                     //this.pagination.currentPage = res.data.data.current;
+//                     //this.pagination.total = res.data.data.total;
+// 					console.log(res);
+//                     this.dataList = res.data.data;
+// 					console.log(this.dataList);
+//                 });
+            },
+			handleClose(done) {
+        this.$confirm('确认关闭？')
+          .then(_ => {
+            done();
+          })
+          .catch(_ => {});
+      },
+			filterHandler(value, row, column) {
+        const property = column['property'];
+        return row[property] === value;
+      },
+			formatter(row, column) {
+        return row.accountname;
+      },
+	  tableRowClassName({row, rowIndex}) {
+        if (rowIndex === 1) {
+          return 'warning-row';
+        } else if (rowIndex === 3) {
+          return 'success-row';
+        }
+        return '';
+      },
+	  handleClick(row){
+
+		var str = JSON.stringify(row); 
+		drawer = true;
+		this.some = str;
+		//alert(str);
+
+	  },
+
+
+
+
+
+
+
+            //切换页码
+            handleCurrentChange(currentPage) {
+                //修改页码值为当前选中的页码值
+                this.pagination.currentPage = currentPage;
+                //执行查询
+                this.getAll();
+            },
+
+            //弹出添加窗口
+            handleCreate() {
+                this.dialogFormVisible = true;
+                this.resetForm();
+            },
+
+            //重置表单
+            resetForm() {
+                this.formData = {};
+            },
+
+            //添加
+            handleAdd () {
+                axios.post("/books",this.formData).then((res)=>{
+                    //判断当前操作是否成功
+                    if(res.data.flag){
+                        //1.关闭弹层
+                        this.dialogFormVisible = false;
+                        this.$message.success(res.data.msg);
+                    }else{
+                        this.$message.error(res.data.msg);
+                    }
+                }).finally(()=>{
+                    //2.重新加载数据
+                    this.getAll();
+                });
+            },
+
+            //取消
+            cancel(){
+                this.dialogFormVisible = false;
+                this.dialogFormVisible4Edit = false;
+                this.$message.info("当前操作取消");
+            },
+
+            // 删除
+            handleDelete(row) {
+                // console.log(row);
+                this.$confirm("此操作永久删除当前信息，是否继续？","提示",{type:"info"}).then(()=>{
+                    axios.delete("/books/"+row.id).then((res)=>{
+                        if(res.data.flag){
+                            this.$message.success("删除成功");
+                        }else{
+                            this.$message.error("数据同步失败，自动刷新");
+                        }
+                    }).finally(()=>{
+                        //2.重新加载数据
+                        this.getAll();
+                    });
+                }).catch(()=>{
+                    this.$message.info("取消操作");
+                });
+            },
+
+            //弹出编辑窗口
+            handleUpdate(row) {
+                axios.get("/books/"+row.id).then((res)=>{
+                    if(res.data.flag && res.data.data != null ){
+                        this.dialogFormVisible4Edit = true;
+                        this.formData = res.data.data;
+                    }else{
+                        this.$message.error("数据同步失败，自动刷新");
+                    }
+                }).finally(()=>{
+                    //2.重新加载数据
+                    this.getAll();
+                });
+            },
+
+            //修改
+            handleEdit() {
+                axios.put("/books",this.formData).then((res)=>{
+                    //判断当前操作是否成功
+                    if(res.data.flag){
+                        //1.关闭弹层
+                        this.dialogFormVisible4Edit = false;
+                        this.$message.success("修改成功");
+                    }else{
+                        this.$message.error("修改失败");
+                    }
+                }).finally(()=>{
+                    //2.重新加载数据
+                    this.getAll();
+                });
+            },
+
+            //条件查询
+        }
+    })
+	
+</script>
+
+</html>

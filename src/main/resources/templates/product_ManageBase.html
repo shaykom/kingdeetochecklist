@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <link href="/css/bksystem.css" rel="stylesheet" type="text/css"/>
+    <link href="/font/iconfont.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/module.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/pages.css" rel="stylesheet" type="text/css"/>
+    <title>商品管理</title>
+    <script src="/js/jquery-1.9.1.min.js" type="text/javascript"></script>
+    <script src="/js/jquery.nicescroll.js" type="text/javascript"></script>
+    <script src="/js/HUpages.js" type="text/javascript"></script>
+    <script src="/js/common.js" type="text/javascript"></script>
+</head>
+
+<body id="situation">
+<div class="pages-style">
+    <!--左侧菜单栏-->
+    <div class="bk-con-menu " id="bk-con-menu">
+        <div class="menubtn">
+            <span class="close_btn samebtn"><i>隐藏</i></span>
+            <span class="show_btn samebtn"><i>显示</i></span>
+        </div>
+        <div class="title-menu">栏目分类</div>
+        <div class="breadcrumb" id="breadcrumb">
+            <ul class="clearfix menu-section menulist" id="menu-section">
+
+            </ul>
+        </div>
+    </div>
+    <!--右侧内容-->
+    <div class="bk-con-message message-section" id="iframe_box">
+        <!--编辑内容-->
+        <div class="operation  mb15">
+            <button class="btn button_btn btn-danger" type="button" onclick="updateMaterial()"><i class="iconfont"></i>&nbsp;更新金蝶物料表
+                <button class="btn button_btn bg-deep-blue" type="button" onclick="updateCustomer()"><i class="iconfont"></i>更新金蝶客户表
+                    <button class="btn button_btn btn-green" type="button" onclick="updateGYMaterial()"><i class="iconfont"></i>&nbsp;更新管易商品表
+
+
+            </button>
+<!--            <button class="btn button_btn bg-deep-blue" type="button" onclick="updateCustomer()"><i class="iconfont"></i>&nbsp;上传至金蝶-->
+<!--            </button>-->
+        </div>
+        <div id="warning">正在处理，请稍等..........</div>
+        <!--列表内容-->
+<!--        <div class="page_content clearfix mb15 table-module " style="overflow:auto;">-->
+<!--            <table class="gallery table table_list table_striped table-bordered " id="sal">-->
+<!--                <thead>-->
+<!--                <tr>-->
+<!--                    <th>编号</th>-->
+<!--                    <th><label><input type="checkbox" class="ace" id="selectAll" name="selectAll" ><span class="lbl"></span></label></th>-->
+<!--                    <th>客户</th>-->
+<!--                    <th>日期</th>-->
+<!--                    <th>错误原因</th>-->
+<!--                    <th>客户类型</th>-->
+<!--                    <th>金蝶编码</th>-->
+<!--                    <th>汇总表内码</th>-->
+<!--                </tr>-->
+<!--                </thead>-->
+<!--                <tbody>-->
+
+<!--                </tbody>-->
+<!--            </table>-->
+<!--            <table class="gallery table table_list table_striped table-bordered" id="salentry">-->
+<!--                <thead>-->
+<!--                <tr>-->
+<!--                    <th>子单编号</th>-->
+<!--                    <th>万里牛sku编码</th>-->
+<!--                    <th>实发数量</th>-->
+<!--                    <th>含税单价</th>-->
+<!--                    <th>客户</th>-->
+<!--                    <th>内码编码</th>-->
+<!--                </tr>-->
+<!--                </thead>-->
+<!--                <tbody>-->
+<!--                </tbody>-->
+<!--            </table>-->
+
+
+<!--        </div>-->
+    </div>
+</div>
+</body>
+</html>
+<script>
+    $(function () {
+        //内页框架结构编辑
+        $("#situation").Hupage({
+            slide: '#breadcrumb',
+            padding: 15,
+            menuModule: '#bk-con-menu', //菜单模块
+            pagecontent: '.page_content',//自定义属性
+            operation: '.operation',//自定义属性
+            scrollbar: function (e) {
+                e.niceScroll({
+                    cursorcolor: "#dddddd",
+                    cursoropacitymax: 1,
+                    touchbehavior: false,
+                    cursorwidth: "3px",
+                    cursorborder: "0",
+                    cursorborderradius: "3px",
+                });
+            },
+            expand: function (thisBox, settings) {
+                var pc = "";
+                $(settings.pagecontent).css("margin-bottom") != null ? pc = parseInt($(settings.pagecontent).css("margin-bottom").replace("px", "")) : '';
+                $(settings.pagecontent).css({height: $(window).height() - $(settings.operation).outerHeight() - pc - (settings.padding * 2)})
+                settings.scrollbar($(settings.slide) && $(settings.pagecontent));
+            }//自定义方法
+        });
+    });
+
+
+//转换时间参数
+    Date.prototype.format = function(format) {
+        var o = {
+            "M+" : this.getMonth() + 1,// month
+            "d+" : this.getDate(),// day
+            "h+" : this.getHours(),// hour
+            "m+" : this.getMinutes(),// minute
+            "s+" : this.getSeconds(),// second
+            "q+" : Math.floor((this.getMonth() + 3) / 3),// quarter
+            "S" : this.getMilliseconds()
+            // millisecond
+        };
+        if (/(y+)/.test(format) || /(Y+)/.test(format)) {
+            format = format.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+        }
+        for ( var k in o) {
+            if (new RegExp("(" + k + ")").test(format)) {
+                format = format.replace(RegExp.$1, RegExp.$1.length == 1 ? o[k] : ("00" + o[k]).substr(("" + o[k]).length));
+            }
+        }
+        return format;
+    };
+
+//打开页面直接运行此方法
+  //  DisplayMyTable1();
+    loadingclose();
+//明细单切换
+    function DisplayMyTable() {
+        //删除除了第一行的内容
+        $("#salentry  tr:not(:first)").html("");
+        var str = "";//定义用于拼接的字符串
+        var number=1;
+            document.getElementById("sal").style.display="none";
+            document.getElementById("salentry").style.display="block";
+        if (event.srcElement.tagName == "TD") {
+            curRow = event.srcElement.parentElement;
+            tr = curRow.innerHTML;
+            var td = curRow.cells;
+            var td_host = td[0].innerHTML;
+            var entryValue=getjson[td_host-1].salOutStockEntrys;
+            for (var i = 0; i < entryValue.length; i++) {
+                //拼接表格的行和列
+                str = "<tr>\n" +
+                    "<td>" + number +
+                    "</td><td>" + entryValue[i].FMaterialID +
+                    "</td><td>" + entryValue[i].FRealQty +
+                    "</td><td>" + entryValue[i].FTaxPrice +
+                    "</td><td>" + getjson[td_host-1].FCustomerID +
+                    "</td><td>" + getjson[td_host-1].FBillNo  +
+                "</td></tr>";
+                //追加到table中
+                $("#salentry").append(str);
+                number++;
+            }
+        }
+
+
+
+
+    }
+    //主表，明细表 显示与关闭
+    function DisplayMyTableEntry() {
+        document.getElementById("salentry").style.display="none";
+        document.getElementById("sal").style.display="block";
+    }
+    function DisplayMyTable1() {
+        document.getElementById("salentry").style.display="none";
+        document.getElementById("sal").style.display="block";
+    }
+    //复选框全选，全不选
+    $('input[name="selectAll"]').on("click",function(){
+        if($(this).is(':checked')){
+            $('input[name="chooseInfo"]').each(function(){
+                $(this).prop("checked",true);
+            });
+        }else{
+            $('input[name="chooseInfo"]').each(function(){
+                $(this).prop("checked",false);
+            });
+        }
+    });
+
+    function loadingclose() {
+        document.getElementById("warning").style.display="none";
+    }
+    function loadingopen() {
+        document.getElementById("warning").style.display="block";
+    }
+
+  var  isClick = true;
+    function updateMaterial() {
+        if(isClick) {
+//定时器
+            isClick = false;
+            setTimeout(function() {
+                isClick = true;
+            }, 3000);//3秒内不能重复点击
+        }else{
+            alert("请不要短时间内重复点击按钮")
+            return;
+        }
+        $.ajax(
+            {data:{'updateMaterial':"updateMaterial"},
+                dataType:'text',
+                success: function(data){
+                    alert(data);
+                    loadingclose();
+                },
+                type:'post',
+                url:'updateMaterial',
+                traditional:true,
+                async: true, //同步请求(false)，默认情况下是异步（true）
+                beforeSend: function(){
+                    loadingopen();
+                }
+            },
+        );
+
+    }
+    function updateCustomer() {
+        if(isClick) {
+//定时器
+            isClick = false;
+            setTimeout(function() {
+                isClick = true;
+            }, 3000);//3秒内不能重复点击
+        }else{
+            alert("请不要短时间内重复点击按钮")
+            return;
+        }
+        $.ajax(
+            {data:{'updateMaterial':"updateMaterial"},
+                dataType:'text',
+                success: function(data){
+                    alert(data);
+                    loadingclose();
+                },
+                type:'post',
+                url:'updateCustomer',
+                traditional:true,
+                async: true, //同步请求(false)，默认情况下是异步（true）
+                beforeSend: function(){
+                    loadingopen();
+                }
+            },
+        );
+
+    }
+
+
+    function updateGYMaterial() {
+        if(isClick) {
+//定时器
+            isClick = false;
+            setTimeout(function() {
+                isClick = true;
+            }, 3000);//3秒内不能重复点击
+        }else{
+            alert("请不要短时间内重复点击按钮")
+            return;
+        }
+        $.ajax(
+            {data:{'updateMaterial':"updateMaterial"},
+                dataType:'text',
+                success: function(data){
+                    alert(data);
+                    loadingclose();
+                },
+                type:'post',
+                url:'updateGYMaterial',
+                traditional:true,
+                async: true, //同步请求(false)，默认情况下是异步（true）
+                beforeSend: function(){
+                    loadingopen();
+                }
+            },
+        );
+
+    }
+</script>

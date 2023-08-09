@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <link href="/css/bksystem.css" rel="stylesheet" type="text/css"/>
+    <link href="/font/iconfont.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/module.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/pages.css" rel="stylesheet" type="text/css"/>
+    <title>商品管理</title>
+    <script src="/js/jquery-1.9.1.min.js" type="text/javascript"></script>
+    <script src="/js/jquery.nicescroll.js" type="text/javascript"></script>
+    <script src="/js/HUpages.js" type="text/javascript"></script>
+    <script src="/js/common.js" type="text/javascript"></script>
+    <script src="/js/jquery.table2excel.js" type="text/javascript"></script>
+
+</head>
+
+<body id="situation">
+<div class="pages-style">
+    <!--左侧菜单栏-->
+    <div class="bk-con-menu " id="bk-con-menu">
+        <div class="menubtn">
+            <span class="close_btn samebtn"><i>隐藏</i></span>
+            <span class="show_btn samebtn"><i>显示</i></span>
+        </div>
+        <div class="title-menu">栏目分类
+
+        </div>
+        <div class="breadcrumb" id="breadcrumb">
+            <ul class="clearfix menu-section menulist" id="menu-section">
+
+            </ul>
+        </div>
+        <!--右侧内容-->
+        <div class="bk-con-message message-section" id="iframe_box">
+            <!--编辑内容-->
+            <div class="operation  mb15">
+                <button class="btn button_btn btn-danger" type="button" onclick="findsal()"><i class="iconfont"></i>&nbsp;库存同步失败单据
+                </button>
+                <button class="btn button_btn bg-deep-blue" type="button" onclick="salload()"><i class="iconfont"></i>&nbsp;重新同步
+                </button>
+                <button class="btn button_btn btn-danger" type="button" id="k3invent" onclick="findK3invent()"><i class="iconfont"></i>&nbsp;重新获取金蝶库存并同步
+                </button>
+                <button class="btn button_btn btn-green" type="button" onclick="table2excel()"><i
+                        class="iconfont"></i>下载表格
+                </button>
+            </div>
+            <div id="warning">正在处理，请稍等..........</div>
+            <!--列表内容-->
+            <div class="page_content clearfix mb15 table-module " style="overflow:auto;">
+                <table class="gallery table table_list table_striped table-bordered " id="sal">
+                    <thead>
+                    <tr>
+                        <th>编号</th>
+                        <th><label><input type="checkbox" class="ace" id="selectAll" name="selectAll"><span
+                                class="lbl"></span></label></th>
+                        <th>金蝶物料编码</th>
+
+                        <th>管易商品编码</th>
+                        <th>物料名称</th>
+                        <th>库存量</th>
+                        <th>错误原因</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
+<script>
+    $(function () {
+        //内页框架结构编辑
+        $("#situation").Hupage({
+            slide: '#breadcrumb',
+            padding: 15,
+            menuModule: '#bk-con-menu', //菜单模块
+            pagecontent: '.page_content',//自定义属性
+            operation: '.operation',//自定义属性
+            scrollbar: function (e) {
+                e.niceScroll({
+                    cursorcolor: "#dddddd",
+                    cursoropacitymax: 1,
+                    touchbehavior: false,
+                    cursorwidth: "3px",
+                    cursorborder: "0",
+                    cursorborderradius: "3px",
+                });
+            },
+            expand: function (thisBox, settings) {
+                var pc = "";
+                $(settings.pagecontent).css("margin-bottom") != null ? pc = parseInt($(settings.pagecontent).css("margin-bottom").replace("px", "")) : '';
+                $(settings.pagecontent).css({height: $(window).height() - $(settings.operation).outerHeight() - pc - (settings.padding * 2)})
+                settings.scrollbar($(settings.slide) && $(settings.pagecontent));
+            }//自定义方法
+        });
+    });
+
+    var getjson = "";
+
+    //查询上传失败的
+    function findsal() {
+        if(isClick) {
+//定时器
+            isClick = false;
+            setTimeout(function() {
+                isClick = true;
+            }, 3000);//3秒内不能重复点击
+        }else{
+            alert("请不要短时间内重复点击按钮")
+            return;
+        }
+        $.ajax({
+            url: "GYinventError",
+            type: "post",
+            dataType: "json",
+            success: function (data) {
+                /*这个方法里是ajax发送请求成功之后执行的代码*/
+                showData(data);//我们仅做数据展示
+                getjson = data;
+            },
+            error: function (msg) {
+                alert("ajax连接异常：" + msg);
+            }
+        });
+    };
+
+
+
+    //展示数据
+    function showData(data) {
+        //删除除了第一行的内容
+        $("#sal  tr:not(:first)").html("");
+        var str = "";//定义用于拼接的字符串
+        var number = 1;
+        for (var i = 0; i < data.length; i++) {
+            //拼接表格的行和列
+            str = "<tr>\n" +
+                "</td><td>" + number +
+                "</td><td><label><input type=\"checkbox\" class=\"ace\" name=\"chooseInfo\" value=" +data[i].fMaterialId + "><span class=\"lbl\"></span></label>" +
+                "</td><td>" + data[i].fMaterialId +
+                "</td><td>" + data[i].fOldNumber +
+                "</td><td>" + data[i].fMaterialName +
+
+                "</td><td>" + data[i].FBaseQty +
+                "</td><td>" + data[i].errorCause +
+                "</td></tr>";
+            //追加到table中
+            $("#sal").append(str);
+            number++;
+
+        }
+    };
+
+    //打开页面直接运行此方法
+    loadingclose();
+
+    //复选框全选，全不选
+    $('input[name="selectAll"]').on("click", function () {
+        if ($(this).is(':checked')) {
+            $('input[name="chooseInfo"]').each(function () {
+                $(this).prop("checked", true);
+            });
+        } else {
+            $('input[name="chooseInfo"]').each(function () {
+                $(this).prop("checked", false);
+            });
+        }
+    });
+
+    //提交复选框内容
+    function salload() {
+        if(isClick) {
+//定时器
+            isClick = false;
+            setTimeout(function() {
+                isClick = true;
+            }, 3000);//3秒内不能重复点击
+        }else{
+            alert("请不要短时间内重复点击按钮")
+            return;
+        }
+        var salID = [];
+        $("input[name='chooseInfo']:checked").each(function (i) {
+            salID[i] = $(this).val();
+
+            if (salID[i] == "" || salID[i] == "null" || salID[i] == null) {
+                alert("出现未知错误");
+                return;
+            }
+        });
+        if (salID.length == 0) {
+            alert("未选中数据");
+            return;
+        };
+        if(salID.length>5000){
+            salID=salID.slice(0,5000)
+            alert("数据过大，自动选取前5000条");
+        };
+
+        $.ajax(
+            {
+                data: {'salID': salID},
+                dataType: 'text',
+                success: function () {
+                    alert("重传结束")
+                    loadingclose();
+                    findsal();
+                },
+                type: 'post',
+                url: 'GYinventAgain',
+                traditional: true,
+                async: true, //同步请求(false)，默认情况下是异步（true）
+                beforeSend: function () {
+                    loadingopen();
+                }
+            },
+        );
+    }
+
+    function loadingclose() {
+        document.getElementById("warning").style.display = "none";
+    }
+
+    function loadingopen() {
+        document.getElementById("warning").style.display = "block";
+    }
+
+    var isClick = true;
+
+    function table2excel(){
+        $("#sal").table2excel({
+            // 不被导出的表格行的class类
+            exclude: ".ace",
+            // 导出的Excel文档的名称
+            // name: "表格-" + new Date().getTime(),
+            name: "领星订单",
+            // Excel文件的名称
+            filename: "领星订单"+new Date().getTime(),
+            //文件后缀名
+            fileext: ".xls",
+            //是否导出图片
+            exclude_img: false,
+            //是否导出超链接
+            exclude_links: false,
+            //是否导出输入框中的内容
+            exclude_inputs: false
+        });
+    }
+
+    //重新获取金蝶库存并同步
+    function findK3invent() {
+        if(isClick) {
+//定时器
+            isClick = false;
+            setTimeout(function() {
+                isClick = true;
+            }, 3000);//3秒内不能重复点击
+        }else{
+            alert("请不要短时间内重复点击按钮")
+            return;
+        }
+        $.ajax({
+            url: "k3toGYinvent",
+            type: "post",
+
+            success: function () {
+                alert("同步完成")
+                loadingclose();
+                // document.getElementById("k3invent").disabled=false;
+            },
+            beforeSend: function(){
+                // document.getElementById("k3invent").disabled=true;
+                loadingopen();
+            },
+            error: function (msg) {
+                alert("ajax连接异常：" + msg);
+            }
+        });
+    };
+</script>

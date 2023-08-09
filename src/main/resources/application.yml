@@ -1,0 +1,118 @@
+# 应用名称
+#spring:
+##  application:
+##    name: kingdeetofeishu
+### 应用服务 WEB 访问端口
+##server:
+##  port: 8090
+
+spring:
+  boot:
+    admin:
+      client:
+        url: http://localhost:${server.port}/${server.servlet.context-path}/admin
+  profiles:
+    active: test #引入开发环境
+#    active: dev #引入开发环境
+  autoconfigure:
+    #  application:
+    #    name: demo #服务名
+    exclude: com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure
+  datasource:
+    #    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      initial-size: 10 #初始化时建立物理连接的个数
+      min-idle: 10 #最小连接池数量
+      maxActive: 100 #最大连接池数量
+      maxWait: 20000 #获取连接时最大等待时间，单位毫秒
+      #申请连接的时候检测，如果空闲时间大于timeBetweenEvictionRunsMillis，执行validationQuery检测连接是否有效。
+      test-while-idle: true
+      time-between-eviction-runs-millis: 20000 #既作为检测的间隔时间又作为test-while-idle执行的依据
+      min-evictable-idle-time-millis: 30000 #销毁线程时检测当前连接的最后活动时间和当前时间差大于该值时，关闭当前连接
+      #用来检测连接是否有效的sql
+      #mysql中为 select 'x'
+      #oracle中为 select 1 from dual
+      #      validation-query: SELECT 1
+      test-on-borrow: false #申请连接时会执行validationQuery检测连接是否有效,开启会降低性能,默认为true
+      test-on-return: false #归还连接时会执行validationQuery检测连接是否有效,开启会降低性能,默认为true
+#      exception-sorter: true #当数据库抛出不可恢复的异常时,抛弃该连接
+      pool-prepared-statements: true #是否缓存preparedStatement,mysql5.5+建议开启
+      max-pool-prepared-statement-per-connection-size: 20 #当值大于20时poolPreparedStatements会自动修改为true
+      #通过connectProperties属性来打开mergeSql功能；慢SQL记录
+      connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      use-global-data-source-stat: true #合并多个DruidDataSource的监控数据
+      #filters通过别名的方式配置扩展插件，常用的插件有：
+      #监控统计用的filter:stat 日志用的filter:log4j 防御sql注入的filter:wall
+      filters: stat,wall,log4j
+      #设置访问druid监控页面的拦截路径及账号和密码,默认没有
+      stat-view-servlet:
+        enabled: true
+        url-pattern: /druid/*
+        login-username: admin
+        login-password: admin
+#########################################################
+#### spring 配置
+#########################################################
+#spring:
+#  application:
+#    name: demo-server
+#  http:
+#    encoding:
+#      charset: UTF-8
+#      enabled: true
+#      force: true
+#  jackson:
+#    date-format: yyyy-MM-dd HH:mm:ss
+#    time-zone: GMT+8
+#  banner:
+#    charset: UTF-8
+#    location: classpath:config/banner.txt
+#
+#########################################################
+#### 访问路径、端口tomcat
+#########################################################
+#server:
+#  port: 8080
+#  servlet:
+#    contextPath: /demo-server
+#  tomcat:
+#    max-threads: 1000
+#    min-spare-threads: 30
+#    uri-encoding: UTF-8
+#
+############################## Spring boot admin start ##############################
+
+
+
+
+# 开启和暴露所有端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+    logfile:
+      enabled: true         #可在线查看日志
+########################################################
+### Log configuration
+### 方便Spring Boot Admin页面上实时查看日志
+### logback.xml中有详细的日志配置
+#########################################################
+logging:
+  level:
+    root: ${LOG_LEVEL:INFO}
+    com.test.demo: info
+  #  方便Spring Boot Admin页面上实时查看日志
+  file:
+   name: logs/demo-server.log
+
+  logback:
+    rollingpolicy:
+      max-file-size: 2MB
+      file-name-pattern: fxiaokeAndkingdee.%d{yyyy-MM-dd}.%i.log
+
+
+
