@@ -2,7 +2,7 @@ server:
   port: 8090
   #feishu.EncryptKey=FXNs61zHHXeFUonzNpb4yeTiu18H0YFQ
 feishu:
-  VerificationToken: test
+  VerificationToken: test2
   app_id:
   app_secret:
   approval_code_reimbursement:
