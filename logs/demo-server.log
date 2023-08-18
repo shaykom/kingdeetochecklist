@@ -4813,3 +4813,28 @@ org.thymeleaf.exceptions.TemplateInputException: Error resolving template [Brand
 2023-08-18 15:04:11.414  INFO 22872 --- [SpringContextShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closing ...
 2023-08-18 15:04:11.415  INFO 22872 --- [SpringContextShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
 2023-08-18 15:04:11.416  INFO 22872 --- [SpringContextShutdownHook] c.b.d.d.DynamicRoutingDataSource         : dynamic-datasource all closed success,bye
+2023-08-18 15:04:14.427  INFO 6672 --- [restartedMain] c.c.k.KingdeetofeishuApplication         : Starting KingdeetofeishuApplication on DESKTOP-L4HHB2S with PID 6672 (E:\IDEAWorkSpace\kingdeetochecklist\target\classes started by Ray in E:\IDEAWorkSpace\kingdeetochecklist)
+2023-08-18 15:04:14.430  INFO 6672 --- [restartedMain] c.c.k.KingdeetofeishuApplication         : The following profiles are active: test
+2023-08-18 15:04:14.463  INFO 6672 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-08-18 15:04:14.463  INFO 6672 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-08-18 15:04:15.356  INFO 6672 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'spring.datasource.dynamic-com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceProperties' of type [com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-08-18 15:04:15.358  INFO 6672 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceAutoConfiguration' of type [com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceAutoConfiguration$$EnhancerBySpringCGLIB$$3678a392] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-08-18 15:04:15.363  INFO 6672 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'dsProcessor' of type [com.baomidou.dynamic.datasource.processor.DsHeaderProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-08-18 15:04:15.364  INFO 6672 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'dynamicDatasourceAnnotationAdvisor' of type [com.baomidou.dynamic.datasource.aop.DynamicDataSourceAnnotationAdvisor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-08-18 15:04:15.582  INFO 6672 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8090 (http)
+2023-08-18 15:04:15.590  INFO 6672 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-08-18 15:04:15.591  INFO 6672 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.41]
+2023-08-18 15:04:15.673  INFO 6672 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-08-18 15:04:15.673  INFO 6672 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1209 ms
+2023-08-18 15:04:15.915  INFO 6672 --- [restartedMain] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1,master} inited
+2023-08-18 15:04:15.915  INFO 6672 --- [restartedMain] c.b.d.d.DynamicRoutingDataSource         : dynamic-datasource - load a datasource named [master] success
+2023-08-18 15:04:15.916  INFO 6672 --- [restartedMain] c.b.d.d.DynamicRoutingDataSource         : dynamic-datasource initial loaded [1] datasource,primary datasource named [master]
+2023-08-18 15:04:16.859  INFO 6672 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2023-08-18 15:04:16.916  INFO 6672 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2023-08-18 15:04:17.169  INFO 6672 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-08-18 15:04:17.173  INFO 6672 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 14 endpoint(s) beneath base path '/actuator'
+2023-08-18 15:04:17.216  INFO 6672 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8090 (http) with context path ''
+2023-08-18 15:04:17.227  INFO 6672 --- [restartedMain] c.c.k.KingdeetofeishuApplication         : Started KingdeetofeishuApplication in 3.126 seconds (JVM running for 4.013)
+2023-08-18 15:04:17.680  INFO 6672 --- [RMI TCP Connection(2)-192.168.1.5] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-08-18 15:04:17.680  INFO 6672 --- [RMI TCP Connection(2)-192.168.1.5] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-08-18 15:04:17.685  INFO 6672 --- [RMI TCP Connection(2)-192.168.1.5] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
