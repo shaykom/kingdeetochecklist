@@ -1,6 +1,6 @@
 (function($) {
 	"use strict";
-	$.fn.Hupage = function(options) {
+	$.fn.Hupage = function(options ) {
 		var page = this;
 		var defaults = {
 			boxname:'',//盒子模块
@@ -14,6 +14,9 @@
 			content: '.content-section',//内容区
 			message: '#iframe_box',//设置窗体显示位置
 			menuModule:'#bk-con-menu', //菜单模块
+			menuModule2: '#bk-con-menu2', //菜单模块
+			menuPosition:'left',
+			menuPosition2:'right',
 			menu:'.menu-section',
 			padding:15,//设置内间距距离
 			closebtn: '.close_btn', //点击隐藏
@@ -35,6 +38,7 @@
 			prompname = thisBox.find(settings.Promp),
 			messageform = thisBox.find(settings.message),
 			leftmenu = thisBox.find(settings.menuModule),
+			rightmenu = thisBox.find(settings.menuModule2),
 			tabsform = thisBox.find(settings.tabs),	
 			showmenu = thisBox.find(settings.showbtn),
 			menuform = thisBox.find(settings.menu),
@@ -67,6 +71,7 @@
 			    	 var mw='';
 			    	 var pw='';
 			    	 leftmenu.css("width")!=null ? mw=parseInt(leftmenu.css("width").replace("px","")):'';
+					 rightmenu.css("width")!=null ? mw=parseInt(rightmenu.css("width").replace("px","")):'';
 			    	 if(mw==0){
 			    	 	 messageform.addClass("leftMessage").css({
 						left:0,
@@ -76,11 +81,16 @@
 			    	 	leftmenu.addClass("leftModule").css({
 						width: settings.menuWidth,
 						height: $(window).height(),
-						float: "left"
+						float: settings.menuPosition
 					    });
+						 rightmenu.addClass("leftModule").css({
+							 width: settings.menuWidth,
+							 height: $(window).height(),
+							 float: settings.menuPosition2
+						 });
 					    messageform.addClass("leftMessage").css({
 						left: settings.menuWidth + "px",
-						width: $(window).width() - settings.menuWidth,
+						width: $(window).width() - settings.menuWidth - settings.menuWidth,
 					    });		
 			    	}
 			    	messageform.addClass("leftMessage").css({

@@ -64,6 +64,17 @@ body
     border: 1px solid #dddddd;
     padding: 10px;
 }
+.container{
+    display: flex;
+    /*justify-content: center; !* 水平居中对齐 *!*/
+    align-items: center; /* 垂直居中对齐 */
+    /*flex-direction: row;*/
+    /*height: 100vh; !* 设置容器高度，可以根据需要调整 *!*/
+}
+.containerRight{
+    display: flex;
+    justify-content: flex-end; /* 右对齐 */
+}
 .page_content{
 	border: 1px solid #dddddd;
 	overflow: hidden;
@@ -74,7 +85,8 @@ body
 	text-align: center!important;
 	font-weight: inherit!important;
 }
-/*******Inside padding style*******/
+
+    /*******Inside padding style*******/
 .padding0{padding:0px !important;}
 .padding5{padding: 5px!important;}
 .padding10{padding: 10px!important;}
@@ -135,8 +147,10 @@ body
 .mr15{margin-right: 15px;}
 .mr20{margin-right: 20px;}
 /***********************************/
+.width64{width:64px;}
 .width100{width:100px;}
 .width120{width:120px;}
+.width174{width:174.67px;}
 .width100b{width:100%;}
 .width30b{width:30%;}
 .width20b{width:20%;}
@@ -146,6 +160,7 @@ body
 .width50b{width:50%;}
 .width55b{width:35%;}
 .width60b{width:60%;}
+.width80b{width:80%;}
 .height100b{height: 100%;}
 .height100{height: 100px;}
 .height200{height: 200px;}
