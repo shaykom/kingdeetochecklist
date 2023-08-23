@@ -94,7 +94,7 @@
 
         <!--        列表内容-->
         <div class="page_content clearfix mb15 table-module " style="overflow:auto;">
-            <table class="gallery table table_list table_striped table-bordered " id="sal">
+            <table class="gallery table table_list table_striped table-bordered" id="editable-table">
                 <thead>
                 <tr>
                     <th>米数</th>
@@ -103,14 +103,14 @@
                     <th>面料问题描述</th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody id="table-body">
 
                 </tbody>
             </table>
         </div>
 
-        <button class="btn button_btn btn-green margin" type="button" onclick=""><i class="iconfont">新增卷</i>&nbsp; </button>
-        <button class="btn button_btn btn-danger margin" type="button" onclick=""><i class="iconfont">删除卷</i>&nbsp; </button>
+        <button class="btn button_btn btn-green margin" type="button" onclick="" id="addRow"><i class="iconfont">新增卷</i>&nbsp; </button>
+        <button class="btn button_btn btn-danger margin" type="button" onclick="" id="deleteRow"><i class="iconfont">删除卷</i>&nbsp; </button>
 
     </div>
 
@@ -147,8 +147,68 @@
 </html>
 
 <script>
+
+
     var numericInput = document.getElementById("numericInput");
     var virtualKeyboard = document.getElementById("virtualKeyboard");
+    var editableTable = document.getElementById("editable-table");
+    var tbody = document.getElementById("table-body");
+    var addRow = document.getElementById("addRow");
+    var deleteRow = document.getElementById("deleteRow");
+
+
+    addRow.addEventListener("click", function() {
+        // 创建新行
+        var newRow = document.createElement("tr");
+        newRow.className = "height30";
+
+        // 创建新单元格并设置内容
+        var cell1 = document.createElement("td");
+        cell1.className = "editable";
+        cell1.textContent = "";
+        newRow.appendChild(cell1);
+
+        var cell2 = document.createElement("td");
+        cell2.textContent = "";
+        newRow.appendChild(cell2);
+
+        var cell3 = document.createElement("td");
+        cell3.textContent = "";
+        newRow.appendChild(cell3);
+
+        var cell4 = document.createElement("td");
+        cell4.className = "editable";
+        cell4.textContent = "";
+        newRow.appendChild(cell4);
+
+        // 将新行添加到tbody中
+        tbody.appendChild(newRow);
+
+        makeEditable('editable-table', {
+            editableColumns: [1, 4] // 年龄和邮箱列可编辑
+        });
+    });
+
+    deleteRow.addEventListener("click", function() {
+        var rows = document.querySelectorAll("tbody tr");
+
+        rows.forEach(function(row) {
+            row.addEventListener("click", function() {
+                // 移除其他行的焦点样式
+                rows.forEach(function(r) {
+                    r.classList.remove("focused-row");
+                });
+
+                // 添加焦点样式到当前行
+                row.classList.add("focused-row");
+            });
+        });
+        var focusedRow = document.querySelector(".focused-row");
+        if (focusedRow) {
+            focusedRow.remove(); // 从DOM中删除焦点行
+        }
+    });
+
 
     numericInput.addEventListener("focus", function() {
         virtualKeyboard.style.display = "block";
@@ -175,6 +235,53 @@
     printButton.addEventListener("click", function() {
         window.print(); // 调用浏览器的打印功能
     });
+
+
+    function makeEditable(tableId, config) {
+        // 默认配置
+        const defaultConfig = {
+            editableColumns: [], // 可编辑列的下标（从 0 开始）
+        };
+        // 合并配置
+        const mergedConfig = Object.assign(defaultConfig, config);
+        // 获取表格元素
+        const table = document.getElementById(tableId);
+        // 获取表体
+        const tbody = table.querySelector('tbody');
+        // 获取所有可编辑单元格
+        const editableCells = Array.from(tbody.querySelectorAll('.editable'));
+        // 为每个可编辑单元格添加 click 事件监听器
+        editableCells.forEach(cell => {
+            cell.addEventListener('click', () => {
+                // 获取单元格中的原数据
+                const originalData = cell.textContent;
+                // 创建一个文本框
+                const input = document.createElement('input');
+                // 设置文本框的初始值为原数据
+                input.value = originalData;
+                // 将文本框插入到单元格中
+                cell.textContent = '';
+                cell.appendChild(input);
+                // 为文本框添加 blur 事件监听器
+                input.addEventListener('blur', () => {
+                    // 获取文本框中的新数据
+                    const newData = input.value;
+                    // 获取单元格的下标
+                    const cellIndex = Array.from(cell.parentElement.children).indexOf(cell);
+                    // 判断单元格是否可编辑
+                    if (mergedConfig.editableColumns.includes(cellIndex)) {
+                        cell.textContent = newData;
+                    } else {
+                        // 单元格不可编辑，直接更新数据
+                        cell.textContent = newData;
+                    }
+                });
+                // 让文本框获得焦点
+                input.focus();
+            });
+        });
+    }
+
 
     $(function () {
         //内页框架结构编辑
