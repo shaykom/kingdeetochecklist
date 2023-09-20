@@ -37,6 +37,12 @@ body
   color: #393939;
   line-height: 1.5; 
 }
+.tab-content {
+    display: none;
+}
+/*.active-tab {*/
+/*    display: block;*/
+/*}*/
 .row{margin-right:0px; margin-left: 0px;}
 .margin-top{ margin-top:10px}
 .r_f{ float:right}
@@ -44,6 +50,7 @@ body
 .mleft{ margin-left:10px;}
 .relative{position: relative}
 .margin{ margin:15px;}
+.margin5{ margin:10px;}
 .inherit{position: inherit!important}
 .align{text-align: center}
 .border{ border:1px solid #ddd; padding:10px; height:60px; line-height:36px; margin-bottom:20px; }
@@ -60,9 +67,16 @@ body
 }
 .center, .align-center {text-align: center!important;}
 .block{display: block}
+.clicked {
+    background-color: #98e4fc; /* 单击时的背景颜色 */
+}
 .operation {
     border: 1px solid #dddddd;
     padding: 10px;
+}
+.operation5 {
+    border: 1px solid #dddddd;
+    padding: 5px;
 }
 .container{
     display: flex;
@@ -75,9 +89,16 @@ body
     display: flex;
     justify-content: flex-end; /* 右对齐 */
 }
+
+.containerDown {
+    display: flex;
+    flex: 1; /* 占据剩余空间 */
+    justify-content: center; /* 水平居中 */
+    align-items: flex-end; /* 底部对齐 */
+}
 .page_content{
 	border: 1px solid #dddddd;
-	overflow: hidden;
+	overflow: auto;  /* hidden */
     position: relative;
 	
 }
@@ -137,6 +158,8 @@ body
 .mt10{margin-top: 10px;}
 .mt15{margin-top: 15px;}
 .mt20{margin-top: 20px;}
+.mb3{margin-bottom: 3px;}
+.mb5{margin-bottom: 5px;}
 .mb10{margin-bottom: 10px;}
 .mb15{margin-bottom: 15px;}
 .mb20{margin-bottom: 20px;}

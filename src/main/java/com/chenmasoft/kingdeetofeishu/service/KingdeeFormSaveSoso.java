@@ -5,9 +5,12 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.chenmasoft.kingdeetofeishu.apiRequst.KingdeeApi;
+import com.chenmasoft.kingdeetofeishu.dao.entity.CheckList;
 import com.chenmasoft.kingdeetofeishu.dao.entity.Fishuform;
 import com.chenmasoft.kingdeetofeishu.dao.service.FishuformService;
 import com.chenmasoft.kingdeetofeishu.pojo.formPojo.*;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -293,6 +296,41 @@ public class KingdeeFormSaveSoso {
 
     }
 
+    public void  checkListSSA(Form form){
+        StringBuffer stringBuffer = new StringBuffer();
+        JSONObject resultSaveJson = kingdeeApi.kingdeeSave(form);
+        JSONObject jsonObject = resultSaveJson.getJSONObject("Result").getJSONObject("ResponseStatus");
+        if (jsonObject.getBoolean("IsSuccess")) {
+            log.info("检验单" + form.toString() + "保存成功");
+        } else {
+            JSONArray jsonArray = jsonObject.getJSONArray("Errors");
+            log.error("检验单" + form.toString() + "保存失败" + jsonArray.toJSONString());
+        }
+    }
+
+    public void  purReceiveSSA(Form form){
+        StringBuffer stringBuffer = new StringBuffer();
+        JSONObject resultSaveJson = kingdeeApi.kingdeeSave(form);
+        JSONObject jsonObject = resultSaveJson.getJSONObject("Result").getJSONObject("ResponseStatus");
+        if (jsonObject.getBoolean("IsSuccess")) {
+            log.info("收料通知单" + form.toString() + "保存成功");
+        } else {
+            JSONArray jsonArray = jsonObject.getJSONArray("Errors");
+            log.error("收料通知单" + form.toString() + "保存失败" + jsonArray.toJSONString());
+        }
+    }
+
+    public void  barCodeSSA(Form form){
+        StringBuffer stringBuffer = new StringBuffer();
+        JSONObject resultSaveJson = kingdeeApi.kingdeeSave(form);
+        JSONObject jsonObject = resultSaveJson.getJSONObject("Result").getJSONObject("ResponseStatus");
+        if (jsonObject.getBoolean("IsSuccess")) {
+            log.info("条码" + form.toString() + "保存成功");
+        } else {
+            JSONArray jsonArray = jsonObject.getJSONArray("Errors");
+            log.error("条码" + form.toString() + "保存失败" + jsonArray.toJSONString());
+        }
+    }
 
     public boolean submitForm(String number,String formID,Fishuform fishuform){
 
@@ -303,7 +341,7 @@ public class KingdeeFormSaveSoso {
             add(number);
         }});//填写单据编号
         submitform.setIds("");
-        submitform.setSelectedPostId(0);
+//        submitform.setSelectedPostId(0);
         submitform.setNetworkCtrl("");
         Form formSubmit = new Form();
         formSubmit.setFormid(formID);//"AP_Payable"
@@ -508,7 +546,7 @@ public class KingdeeFormSaveSoso {
                 add(PayBillSaveJsonnumber);
             }});//填写单据编号
             submitform.setIds("");
-            submitform.setSelectedPostId(0);
+//            submitform.setSelectedPostId(0);
             submitform.setNetworkCtrl("");
             Form formSubmit = new Form();
             formSubmit.setFormid("BD_Supplier");
@@ -650,7 +688,7 @@ public class KingdeeFormSaveSoso {
                 add(PayBillSaveJsonnumber);
             }});//填写单据编号
             submitform.setIds("");
-            submitform.setSelectedPostId(0);
+//            submitform.setSelectedPostId(0);
             submitform.setNetworkCtrl("");
             Form formSubmit = new Form();
             formSubmit.setFormid("BD_Customer");
@@ -795,7 +833,7 @@ public class KingdeeFormSaveSoso {
         }});//填写单据编号
 
         submitform.setIds("");
-        submitform.setSelectedPostId(0);
+//        submitform.setSelectedPostId(0);
         submitform.setNetworkCtrl("");
         Form formSubmit = new Form();
         formSubmit.setFormid(formid);

@@ -2,10 +2,13 @@ package com.chenmasoft.kingdeetofeishu.service;
 
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.chenmasoft.kingdeetofeishu.apiRequst.KingdeeApi;
 import com.chenmasoft.kingdeetofeishu.dao.entity.Fishuform;
 import com.chenmasoft.kingdeetofeishu.pojo.formPojo.ExecuteBillQuery;
 import com.chenmasoft.kingdeetofeishu.pojo.formPojo.Form;
+import com.chenmasoft.kingdeetofeishu.pojo.formPojo.Submit;
 import lombok.extern.slf4j.Slf4j;
 import org.omg.CORBA.OBJ_ADAPTER;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,33 +16,183 @@ import org.springframework.context.annotation.Description;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 
 @Service
 @Slf4j
 public class SelectForm {
-        @Autowired
-        private KingdeeApi kingdeeApi;
-        @Autowired
-        private KingdeeFormSaveSoso kingdeeFormSaveSoso;
-        public  String selectBD_Supplier(String name, String orgid, Fishuform fishuform){
+    @Autowired
+    private KingdeeApi kingdeeApi;
+    @Autowired
+    private KingdeeFormSaveSoso kingdeeFormSaveSoso;
 
-            ExecuteBillQuery executeBillQuery=new ExecuteBillQuery();
-            executeBillQuery.setFormId("BD_Supplier");
-            executeBillQuery.setFieldKeys("FNumber");
-            executeBillQuery.setFilterString("FName='"+name+"' and FUseOrgId.FNumber='100' and FForbidStatus='A'");//+fishuform.getPayAccountFnumber()
-            //executeBillQuery.setFilterString("FName='"+name+"'");
-            executeBillQuery.setOrderString("");
-            executeBillQuery.setTopRowCount(0);
-            executeBillQuery.setStartRow(0);
-            executeBillQuery.setLimit(0);
-            Form form =new Form();
-            form.setFormid("BD_Supplier");
-            form.setData(executeBillQuery);
+    public JSONArray selectBar_Code(String code) {
+        ExecuteBillQuery executeBillQuery=new ExecuteBillQuery();
+        executeBillQuery.setFormId("PUR_ReceiveBill");
+        executeBillQuery.setFieldKeys("FBillNo,FSupplierId.FName,FMaterialId.FNumber,FMaterialId.FName,F_WSL_EWM,FMateriaModel," +
+                "FStockOrgId.FNumber,FUnitID.FNumber,FBillTypeID.FNumber,FSupplierId.FNumber,FAuxPropId,FLot.FNumber," +
+                "FExtAuxUnitId.FNumber,F_SUWI_Qty6,FBaseUnitId.FNumber,FActReceiveQty,FID,FDetailEntity_FEntryID");
+        executeBillQuery.setFilterString("F_WSL_EWM='"+code+"'");
+        executeBillQuery.setOrderString("");
+        executeBillQuery.setTopRowCount(0);
+        executeBillQuery.setStartRow(0);
+        executeBillQuery.setLimit(0);
+        Form form =new Form();
+        form.setFormid("PUR_ReceiveBill");
+        form.setData(executeBillQuery);
+        String barCodeJson = kingdeeApi.kingdeeExecuteBillQuery(form);
+        JSONArray jaData = JSON.parseArray(barCodeJson);
+        return jaData;
+    }
+
+    public JSONArray selectCheckJoinQty(String fEntryId) {
+        ExecuteBillQuery executeBillQuery=new ExecuteBillQuery();
+        executeBillQuery.setFormId("PUR_ReceiveBill");
+        executeBillQuery.setFieldKeys("FCheckJoinBaseQty");
+        executeBillQuery.setFilterString("FDetailEntity_FEntryId = " + fEntryId);
+        executeBillQuery.setOrderString("");
+        executeBillQuery.setTopRowCount(0);
+        executeBillQuery.setStartRow(0);
+        executeBillQuery.setLimit(0);
+        Form form =new Form();
+        form.setFormid("PUR_ReceiveBill");
+        form.setData(executeBillQuery);
+        String barCodeJson = kingdeeApi.kingdeeExecuteBillQuery(form);
+        JSONArray jaData = JSON.parseArray(barCodeJson);
+        return jaData;
+    }
+
+    public JSONArray selectChecker(String code) {
+        ExecuteBillQuery executeBillQuery=new ExecuteBillQuery();
+        executeBillQuery.setFormId("BD_OPERATOR");
+        executeBillQuery.setFieldKeys("FStaffId.FNumber,FStaffId.FName");
+        executeBillQuery.setFilterString("FOperatorType = 'ZJY'");
+        executeBillQuery.setOrderString("");
+        executeBillQuery.setTopRowCount(0);
+        executeBillQuery.setStartRow(0);
+        executeBillQuery.setLimit(0);
+        Form form =new Form();
+        form.setFormid("BD_OPERATOR");
+        form.setData(executeBillQuery);
+        String barCodeJson = kingdeeApi.kingdeeExecuteBillQuery(form);
+        JSONArray jaData = JSON.parseArray(barCodeJson);
+        return jaData;
+    }
+
+    public JSONArray selectCheck_List(String code) {
+        ExecuteBillQuery executeBillQuery=new ExecuteBillQuery();
+        executeBillQuery.setFormId("QM_InspectBill");
+        executeBillQuery.setFieldKeys("F_JH");
+        executeBillQuery.setFilterString("F_TXM <> ' ' and SUBSTRING(F_TXM, 1, CHARINDEX('-', F_TXM) - 1) = '"+code+"'");
+        executeBillQuery.setOrderString("CONVERT(int,F_JH) desc");
+        executeBillQuery.setTopRowCount(0);
+        executeBillQuery.setStartRow(0);
+        executeBillQuery.setLimit(1);
+        Form form =new Form();
+        form.setFormid("QM_InspectBill");
+        form.setData(executeBillQuery);
+        String barCodeJson = kingdeeApi.kingdeeExecuteBillQuery(form);
+        JSONArray jaData = JSON.parseArray(barCodeJson);
+        return jaData;
+    }
+
+    public JSONArray selectBPCheck_List(String code) {
+        ExecuteBillQuery executeBillQuery=new ExecuteBillQuery();
+        executeBillQuery.setFormId("QM_InspectBill");
+        executeBillQuery.setFieldKeys("FBillNo,FDocumentStatus,FMaterialId.FNumber,FMaterialId.FName,F_BH2,FDescription,FDate," +
+                "FMaterialModel,FSupplierId.FName,FSrcBillNo0,FID,FInspectOrgId.FNumber,FBusinessType,FUnitID.FNumber,fSupplierId.FNumber," +
+                "FEntity_Link_FSBillId,FEntity_Link_FSId");
+        executeBillQuery.setFilterString("F_BPJY = 1 and FSEQ = 1");
+        executeBillQuery.setOrderString("FBillNo desc");
+        executeBillQuery.setTopRowCount(0);
+        executeBillQuery.setStartRow(0);
+        executeBillQuery.setLimit(1000);
+        Form form =new Form();
+        form.setFormid("QM_InspectBill");
+        form.setData(executeBillQuery);
+        String barCodeJson = kingdeeApi.kingdeeExecuteBillQuery(form);
+        JSONArray jaData = JSON.parseArray(barCodeJson);
+        return jaData;
+    }
+
+    public JSONArray selectBPCheck_ListDetails(String FBillNo) {
+        ExecuteBillQuery executeBillQuery=new ExecuteBillQuery();
+        executeBillQuery.setFormId("QM_InspectBill");
+        executeBillQuery.setFieldKeys("F_MS2,F_JH,F_TXM,F_WTMS");
+        executeBillQuery.setFilterString("FBillNo = '"+FBillNo+"'");
+        executeBillQuery.setOrderString("");
+        executeBillQuery.setTopRowCount(0);
+        executeBillQuery.setStartRow(0);
+        executeBillQuery.setLimit(0);
+        Form form =new Form();
+        form.setFormid("QM_InspectBill");
+        form.setData(executeBillQuery);
+        String barCodeJson = kingdeeApi.kingdeeExecuteBillQuery(form);
+        JSONArray jaData = JSON.parseArray(barCodeJson);
+        return jaData;
+    }
+    public JSONObject submitBill(String FBillNo) {
+        Submit submit=new Submit();
+        submit.setNumbers(Collections.singletonList(FBillNo));
+        Form form =new Form();
+        form.setFormid("QM_InspectBill");
+        form.setData(submit);
+        String barCodeJson = kingdeeApi.kingdeeSubmit(form);
+        JSONObject jaData = JSON.parseObject(barCodeJson);
+        return jaData;
+    }
+    public JSONObject auditBill(String FBillNo) {
+        Submit submit=new Submit();
+        submit.setNumbers(Collections.singletonList(FBillNo));
+        Form form =new Form();
+        form.setFormid("QM_InspectBill");
+        form.setData(submit);
+        String barCodeJson = kingdeeApi.kingdeeAudit(form);
+        JSONObject jaData = JSON.parseObject(barCodeJson);
+        return jaData;
+    }
+    public JSONObject unAuditBill(String FBillNo) {
+        Submit submit=new Submit();
+        submit.setNumbers(Collections.singletonList(FBillNo));
+        Form form =new Form();
+        form.setFormid("QM_InspectBill");
+        form.setData(submit);
+        String barCodeJson = kingdeeApi.kingdeeUnAudit(form);
+        JSONObject jaData = JSON.parseObject(barCodeJson);
+        return jaData;
+    }
+    public JSONObject deleteBill(String FBillNo) {
+        Submit submit=new Submit();
+        submit.setNumbers(Collections.singletonList(FBillNo));
+        Form form =new Form();
+        form.setFormid("QM_InspectBill");
+        form.setData(submit);
+        String barCodeJson = kingdeeApi.kingdeeDelete(form);
+        JSONObject jaData = JSON.parseObject(barCodeJson);
+        return jaData;
+    }
 
 
-            String result=kingdeeApi.kingdeeExecuteBillQuery(form);
-            String FNumber=new String();
+    public  String selectBD_Supplier(String name, String orgid, Fishuform fishuform){
+
+        ExecuteBillQuery executeBillQuery=new ExecuteBillQuery();
+        executeBillQuery.setFormId("BD_Supplier");
+        executeBillQuery.setFieldKeys("FNumber");
+        executeBillQuery.setFilterString("FName='"+name+"' and FUseOrgId.FNumber='100' and FForbidStatus='A'");//+fishuform.getPayAccountFnumber()
+        //executeBillQuery.setFilterString("FName='"+name+"'");
+        executeBillQuery.setOrderString("");
+        executeBillQuery.setTopRowCount(0);
+        executeBillQuery.setStartRow(0);
+        executeBillQuery.setLimit(0);
+        Form form =new Form();
+        form.setFormid("BD_Supplier");
+        form.setData(executeBillQuery);
+
+
+        String result=kingdeeApi.kingdeeExecuteBillQuery(form);
+        String FNumber=new String();
 //        try{
 //
 //
@@ -49,18 +202,18 @@ public class SelectForm {
 //
 //        }
 
-            if(JSON.parseArray(result).size()==0){
-                FNumber=   kingdeeFormSaveSoso.ssaSupplier(orgid,name,fishuform);
+        if(JSON.parseArray(result).size()==0){
+            FNumber=   kingdeeFormSaveSoso.ssaSupplier(orgid,name,fishuform);
 
 
-            }else{
+        }else{
 
-                FNumber = selectBD_SupplierUseOrg(name, orgid, fishuform);
-            }
-
-            return FNumber;
-
+            FNumber = selectBD_SupplierUseOrg(name, orgid, fishuform);
         }
+
+        return FNumber;
+
+    }
     /**
      * @param
      * @param
@@ -211,7 +364,7 @@ public class SelectForm {
         ExecuteBillQuery executeBillQuery=new ExecuteBillQuery();
         executeBillQuery.setFormId("BD_Customer");//客户 BD_Customer    员工  BD_Empinfo
         executeBillQuery.setFieldKeys("FNumber");
-       // executeBillQuery.setFilterString("FName='"+name+"'"+fishuform.getPayAccountFnumber());
+        // executeBillQuery.setFilterString("FName='"+name+"'"+fishuform.getPayAccountFnumber());
         executeBillQuery.setFilterString("FName='"+name+"' and FUseOrgId.FNumber='100' and FForbidStatus='A'");//+fishuform.getPayAccountFnumber()
         executeBillQuery.setOrderString("");
         executeBillQuery.setTopRowCount(0);

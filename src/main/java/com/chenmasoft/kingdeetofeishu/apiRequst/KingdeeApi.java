@@ -127,8 +127,26 @@ public class KingdeeApi {
 
         log.info("金蝶保存接口审核的响应json: "+form1Save.body());
         return form1Save.body();
+    }
+    public String kingdeeUnAudit(Form form){
+        login();
+        log.info("金蝶反审核接口开始工作。。。。。。。。");
+        String formStr=JSON.toJSONString(form);
+        HttpResponse form1Save = HttpRequest.post(serverurl+"Kingdee.BOS.WebApi.ServicesStub.DynamicFormService.UnAudit.common.kdsvc")
+                .cookie(Cookie.getCookStr()).body(formStr).execute();
 
+        log.info("金蝶保存接口反审核的响应json: "+form1Save.body());
+        return form1Save.body();
+    }
+    public String kingdeeDelete(Form form){
+        login();
+        log.info("金蝶删除接口开始工作。。。。。。。。");
+        String formStr=JSON.toJSONString(form);
+        HttpResponse form1Save = HttpRequest.post(serverurl+"Kingdee.BOS.WebApi.ServicesStub.DynamicFormService.Delete.common.kdsvc")
+                .cookie(Cookie.getCookStr()).body(formStr).execute();
 
+        log.info("金蝶保存接口删除的响应json: "+form1Save.body());
+        return form1Save.body();
     }
     //金蝶下推接口
     public String kingdeePush(Form form){

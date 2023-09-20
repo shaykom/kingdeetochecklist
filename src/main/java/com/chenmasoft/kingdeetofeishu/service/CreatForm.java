@@ -1,24 +1,20 @@
 package com.chenmasoft.kingdeetofeishu.service;
 import java.math.BigDecimal;
+
+import com.alibaba.fastjson.JSONArray;
+import com.chenmasoft.kingdeetofeishu.dao.entity.*;
 import com.chenmasoft.kingdeetofeishu.pojo.formPojo.*;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-
+import java.util.*;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.chenmasoft.kingdeetofeishu.dao.entity.Fishuform;
-import com.chenmasoft.kingdeetofeishu.dao.entity.Fishuformentry;
 import com.chenmasoft.kingdeetofeishu.dao.service.FishuformService;
 import com.chenmasoft.kingdeetofeishu.dao.service.FishuformentryService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 @Slf4j
@@ -29,6 +25,10 @@ public class CreatForm {
     private FishuformentryService fishuformentryService;
     @Autowired
     private SelectForm selectForm;
+    @Autowired
+    private SaveTokingdee saveTokingdee;
+    @Autowired
+    private KingdeeFormSaveSoso kingdeeFormSaveSoso;
     public  Form payAble(Fishuform fishuform){
 
         SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -442,6 +442,272 @@ try {
             payBillEntities.add( payBillEntity);
         }
 
+
+        return form;
+    }
+
+    public  Form barCode(BarCodeForm code){
+        Form form=new Form();
+        DataEntity  dataEntity=new DataEntity();
+        BarCodeModel barCodeModel=new BarCodeModel();
+
+        form.setFormid("BD_BarCodeMainFile");
+        form.setData(dataEntity);
+
+        dataEntity.setNeedUpDateFields(new ArrayList());
+        dataEntity.setNeedReturnFields( new ArrayList());
+        dataEntity.setIsDeleteEntry("true");
+        dataEntity.setSubSystemId("");
+        dataEntity.setIsVerifyBaseDataField("false");
+        dataEntity.setIsEntryBatchFill("true");
+        dataEntity.setValidateFlag("true");
+        dataEntity.setNumberSearch("true");
+        dataEntity.setIsAutoAdjustField("false");
+        dataEntity.setInterationFlags("");
+        dataEntity.setIgnoreInterationFlag("");
+        dataEntity.setModel(barCodeModel);
+
+        barCodeModel.setFBarCode(code.getBarCode()); //条码
+        barCodeModel.setFBarCodeRule(new HashMap<String, String>() {{
+            put("FNumber", "07");
+        }});//  条码规则
+        barCodeModel.setFMaterialId(new HashMap<String, String>() {{
+            put("FNumber", code.getMaterialNumber() == null ? "" : code.getMaterialNumber());
+        }}); //物料编码
+        barCodeModel.setFAuxPropId(new HashMap<String, BigDecimal>() {{
+            put("FID", code.getAuxProp() == null ? BigDecimal.valueOf(0) : new BigDecimal(code.getAuxProp()));
+        }});
+        barCodeModel.setFLot(new HashMap<String, String>() {{
+            put("FNumber", code.getLot() == null ? "" : code.getLot());
+        }});
+        barCodeModel.setFAuxiliaryUnitId(new HashMap<String, String>() {{
+            put("FNumber", code.getAuxUnit() == null ? "" : code.getAuxUnit());
+        }});
+        barCodeModel.setFAuxiliaryQty(new BigDecimal(code.getAuxQty()));
+        barCodeModel.setFBaseUnitId(new HashMap<String, String>() {{
+            put("FNumber", code.getBaseUnit() == null ? "" : code.getBaseUnit());
+        }});
+        barCodeModel.setFBaseQty(new BigDecimal(code.getBaseQty()));
+        barCodeModel.setFSupplierId(new HashMap<String, String>() {{
+            put("FNumber", code.getSupplierNumber() == null ? "" : code.getSupplierNumber());
+        }});
+        return form;
+    }
+
+    public Form checkList(CheckList checkListform){
+        Form form=new Form();
+        DataEntity  dataEntity=new DataEntity();
+        CheckListModel checkListModel=new CheckListModel();
+
+        List<CheckListEntity> checkListEntityList = new ArrayList<>();
+
+        CheckListArray[] checkListArrays = checkListform.getCheckListArray();
+
+        form.setFormid("QM_InspectBill");
+        form.setData(dataEntity);
+
+        dataEntity.setNeedUpDateFields(new ArrayList());
+        dataEntity.setNeedReturnFields( new ArrayList());
+        dataEntity.setIsDeleteEntry("true");
+        dataEntity.setSubSystemId("");
+        dataEntity.setIsVerifyBaseDataField("false");
+        dataEntity.setIsEntryBatchFill("true");
+        dataEntity.setValidateFlag("true");
+        dataEntity.setNumberSearch("true");
+        dataEntity.setIsAutoAdjustField("false");
+        dataEntity.setInterationFlags("");
+        dataEntity.setIgnoreInterationFlag("");
+//        dataEntity.setIsAutoSubmitAndAudit("true");
+        dataEntity.setModel(checkListModel);
+        if(!Objects.equals(checkListform.getFid(), "") && !Objects.equals(checkListform.getFid(), "自动生成")){
+            checkListModel.setFid(Integer.parseInt(checkListform.getFid()));
+        }
+        else {
+            checkListModel.setFid(0);
+            dataEntity.setIsAutoSubmitAndAudit("true");
+        }
+        checkListModel.setFBillTypeID(new HashMap<String, String>() {{
+            put("FNumber", "JYD001_SYS");
+        }});//  单据类型
+        if(Objects.equals(checkListform.getBillTypeNumber(), "SLD03_SYS"))
+        {
+            checkListModel.setFBusinessType("2");
+        }
+        else
+        {
+            checkListModel.setFBusinessType("1");
+        }
+        checkListModel.setFDATE(checkListform.getCheckDate()); //日期
+        checkListModel.setFSourceOrgId(new HashMap<String, String>() {{
+            put("FNumber", checkListform.getOrgNumber());
+        }});  //  来源组织
+        checkListModel.setFInspectOrgId(new HashMap<String, String>() {{
+            put("FNumber", checkListform.getOrgNumber());
+        }});//  质检组织
+        checkListModel.setF_BH2(checkListform.getBagNumber());
+        checkListModel.setFDescription(checkListform.getBagNote());
+        checkListModel.setF_BPJY(true);
+        checkListModel.setFInspectorId(new HashMap<String, String>() {{
+            put("FNumber", checkListform.getCheckerNumber());
+        }});
+        checkListModel.setFEntity(checkListEntityList);//
+
+        BigDecimal allMeter = new BigDecimal(0);
+
+        for (CheckListArray checkListArray: checkListArrays) {
+
+            CheckListEntity checkListEntity = new CheckListEntity();
+            checkListEntity.setFMaterialId(new HashMap<String, String>() {{
+                put("Fnumber", checkListform.getMaterialNumber());//
+            }});//物料编码
+            checkListEntity.setFUnitID(new HashMap<String, String>() {{
+                put("Fnumber", checkListform.getUnitNumber());//
+            }});//单位
+            checkListEntity.setF_MS2(checkListArray.getMeter());
+            allMeter = allMeter.add(new BigDecimal(checkListArray.getMeter()));
+            checkListEntity.setF_JH(checkListArray.getSeq());
+            checkListEntity.setF_TXM(checkListArray.getBarCode());
+
+            if(Objects.equals(checkListform.getFid(), "") || Objects.equals(checkListform.getFid(), "自动生成")) {
+                BarCodeForm barCodeForm = new BarCodeForm();
+                barCodeForm.setMaterialNumber(checkListform.getMaterialNumber());
+                barCodeForm.setMaterialName(checkListform.getMaterialName());
+                barCodeForm.setSpecification(checkListform.getSpecification());
+                barCodeForm.setAuxProp(checkListform.getAuxPropId());
+                barCodeForm.setLot(checkListform.getLotNumber());
+                barCodeForm.setAuxUnit(checkListform.getExtAuxUnitNumber());
+                barCodeForm.setAuxQty(checkListform.getQty6());
+                barCodeForm.setBaseUnit(checkListform.getBaseUnitNumber());
+                barCodeForm.setBaseQty(checkListform.getActReceiveQty());
+                barCodeForm.setSupplierNumber(checkListform.getSupplierNumber());
+                barCodeForm.setBarCode(checkListArray.getBarCode());
+                saveTokingdee.saveBarCode(barCodeForm);
+            }
+
+            checkListEntity.setF_WTMS(checkListArray.getNote());
+            checkListEntity.setFSupplierId(new HashMap<String, String>() {{
+                put("Fnumber", checkListform.getSupplierNumber());//
+            }});
+            checkListEntity.setFSrcBillNo0(checkListform.getSourceBillNo());
+
+            String isPass = checkListform.getIsPass();
+            if(Objects.equals(isPass, "合格")) {
+                checkListEntity.setFInspectQty(new BigDecimal(checkListArray.getMeter()));//检验数量
+
+                checkListEntity.setFQualifiedQty(new BigDecimal(checkListArray.getMeter()));//合格数量
+
+                checkListEntity.setFUnqualifiedQty(BigDecimal.valueOf(0));// 不合格数量
+
+                checkListEntity.setFInspectResult("1");
+
+
+                PolicyDetail[] policyDetails = {new PolicyDetail(
+                        new HashMap<String, String>() {{
+                            put("Fnumber", checkListform.getMaterialNumber());//
+                        }},"1",new BigDecimal(checkListArray.getMeter()),new BigDecimal(checkListArray.getMeter()),"A"
+                )};
+                checkListEntity.setFPolicyDetail(policyDetails);
+            }
+            if(Objects.equals(isPass, "不合格")) {
+                checkListEntity.setFInspectQty(new BigDecimal(checkListArray.getMeter()));//检验数量
+
+                checkListEntity.setFQualifiedQty(BigDecimal.valueOf(0));//合格数量
+
+                checkListEntity.setFUnqualifiedQty(new BigDecimal(checkListArray.getMeter()));// 不合格数量
+
+                checkListEntity.setFInspectResult("2");
+
+                PolicyDetail[] policyDetails = {new PolicyDetail(
+                        new HashMap<String, String>() {{
+                            put("Fnumber", checkListform.getMaterialNumber());//
+                        }},"2",new BigDecimal(checkListArray.getMeter()),new BigDecimal(checkListArray.getMeter()),"F"
+                )};
+                checkListEntity.setFPolicyDetail(policyDetails);
+            }
+            if(Objects.equals(isPass, "让步接收")) {
+                checkListEntity.setFInspectQty(new BigDecimal(checkListArray.getMeter()));//检验数量
+
+                checkListEntity.setFQualifiedQty(BigDecimal.valueOf(0));//合格数量
+
+                checkListEntity.setFUnqualifiedQty(new BigDecimal(checkListArray.getMeter()));// 不合格数量
+
+                checkListEntity.setFInspectResult("2");
+
+                PolicyDetail[] policyDetails = {new PolicyDetail(
+                        new HashMap<String, String>() {{
+                            put("Fnumber", checkListform.getMaterialNumber());//
+                        }},"2",new BigDecimal(checkListArray.getMeter()),new BigDecimal(checkListArray.getMeter()),"B"
+                )};
+                checkListEntity.setFPolicyDetail(policyDetails);
+            }
+            LinkDetail[] linkDetails = {new LinkDetail(
+                    "QM_PURReceive2Inspect","T_PUR_ReceiveEntry",
+                    Integer.parseInt(checkListform.getReceiveFid() == null ? "0" : checkListform.getReceiveFid()),
+                    Integer.parseInt(checkListform.getReceiveFEntryId() == null ? "0" : checkListform.getReceiveFEntryId()),
+                    new BigDecimal(checkListform.getActReceiveQty()),new BigDecimal(checkListform.getActReceiveQty())
+            )};
+            checkListEntity.setFEntity_Link(linkDetails);
+
+            checkListEntityList.add(checkListEntity);
+        }
+
+        JSONArray ja = selectForm.selectCheckJoinQty(checkListform.getReceiveFEntryId());
+        if(ja.size() > 0)
+        {
+            JSONArray ja0 = (JSONArray) ja.get(0);
+            BigDecimal checkJoinQty = ja0.getBigDecimal(0);
+            Form purReceiveForm=  purReceiveUpdateQty(Integer.parseInt(checkListform.getReceiveFid()),
+                    Integer.parseInt(checkListform.getReceiveFEntryId()),checkJoinQty.add(allMeter));
+            kingdeeFormSaveSoso.purReceiveSSA(purReceiveForm);
+        }
+
+
+//        "FEntity_Link":[
+//        {
+//            "FEntity_Link_FRuleId":"QM_PURReceive2Inspect",
+//                "FEntity_Link_FSTableName":"T_PUR_ReceiveEntry",
+//                "FEntity_Link_FSBillId":110060,
+//                "FEntity_Link_FSId":110093,
+//                "FEntity_Link_FBaseInspectQtyOld":1.0,
+//                "FEntity_Link_FBaseInspectQty":1.0
+//        }
+//]
+
+
+        return form;
+    }
+
+    public Form purReceiveUpdateQty(int fid,int fEntryId,BigDecimal qty){
+        Form form=new Form();
+        DataEntity  dataEntity=new DataEntity();
+        PurReceiveUpdateModel purReceiveUpdateModel=new PurReceiveUpdateModel();
+
+        List<PurReceiveUpdateEntity> purReceiveUpdateEntities = new ArrayList<>();
+
+        form.setFormid("PUR_ReceiveBill");
+        form.setData(dataEntity);
+
+        dataEntity.setNeedUpDateFields(new ArrayList());
+        dataEntity.setNeedReturnFields( new ArrayList());
+        dataEntity.setIsDeleteEntry("false");
+        dataEntity.setSubSystemId("");
+        dataEntity.setIsVerifyBaseDataField("false");
+        dataEntity.setIsEntryBatchFill("true");
+        dataEntity.setValidateFlag("true");
+        dataEntity.setNumberSearch("true");
+        dataEntity.setIsAutoAdjustField("false");
+        dataEntity.setInterationFlags("");
+        dataEntity.setIgnoreInterationFlag("");
+        dataEntity.setModel(purReceiveUpdateModel);
+
+        purReceiveUpdateModel.setFid(fid);
+        purReceiveUpdateModel.setFDetailEntity(purReceiveUpdateEntities);
+
+        PurReceiveUpdateEntity purReceiveUpdateEntity = new PurReceiveUpdateEntity();
+        purReceiveUpdateEntity.setFEntryID(fEntryId);
+        purReceiveUpdateEntity.setFActReceiveQty(qty);
+
+        purReceiveUpdateEntities.add(purReceiveUpdateEntity);
 
         return form;
     }

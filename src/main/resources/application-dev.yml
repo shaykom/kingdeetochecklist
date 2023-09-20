@@ -1,18 +1,18 @@
 server:
-  port: 8088
+  port: 8090
   #feishu.EncryptKey=FXNs61zHHXeFUonzNpb4yeTiu18H0YFQ
 feishu:
-  VerificationToken: cdriYsmGeHdwf2d8WG68rfLgSw3sejN7
-  app_id: cli_a2edfb5f4278100e
-  app_secret: lM7OChCS5oF4nWEZ2grbPdUUzgh10AJW
-  approval_code_reimbursement: D0C7C011-A26C-4074-8C6C-87F1624CD7E7
-  approval_code_payment: 6251185F-ED8B-4584-A2F0-D1BFB02A49D5
+  VerificationToken:
+  app_id:
+  app_secret:
+  approval_code_reimbursement:
+  approval_code_payment:
 kingdee:
-  acctId: 5fc49a6fdd111b
-  username: administrator
-  password: 8888882
+  acctId: 6426d47ba9ad91
+  username: 王典
+  password: 888888
   lcid: 2052
-  serverurl: http://nayun2020.yicp.io/k3cloud/
+  serverurl: http://172.16.100.161//k3cloud/
 spring:
   datasource:
     dynamic:

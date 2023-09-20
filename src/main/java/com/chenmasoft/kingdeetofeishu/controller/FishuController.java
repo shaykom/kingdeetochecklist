@@ -19,21 +19,21 @@ public class FishuController {
     private FishuEvent fishuEvent;
     @PostMapping("/fishu")
     public String eventData(@RequestBody String s) throws InterruptedException {
-        log.error(" url/fishu收到接口访问数据"+s);
+        log.info(" url/fishu收到接口访问数据"+s);
         if(s==null){
             return null;
         }
 
     //在此进行逻辑处理
-       JSONObject jsonpObject= JSON.parseObject(s);
-        fishuEvent.getEvent(jsonpObject);
+//       JSONObject jsonpObject= JSON.parseObject(s);
+//        fishuEvent.getEvent(jsonpObject);
 
 
 
 
 
-        log.error("此时代表已经成功回调"+s);
-        return s;
+        log.info("此时代表已经成功回调"+s);
+        return "调用成功";
     }
 
 

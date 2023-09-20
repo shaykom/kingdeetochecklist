@@ -28,11 +28,11 @@ public class Submit  {
      */
     @JSONField(name = "Ids",ordinal = 4)
     private String ids;
-    /**
-     * selectedPostId
-     */
-    @JSONField(name = "SelectedPostId",ordinal = 6)
-    private Integer selectedPostId;
+//    /**
+//     * selectedPostId
+//     */
+//    @JSONField(name = "SelectedPostId",ordinal = 6)
+//    private Integer selectedPostId;
     /**
      * networkCtrl
      */

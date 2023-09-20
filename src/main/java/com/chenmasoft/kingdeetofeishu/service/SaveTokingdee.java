@@ -5,6 +5,8 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.chenmasoft.kingdeetofeishu.apiRequst.KingdeeApi;
+import com.chenmasoft.kingdeetofeishu.dao.entity.BarCodeForm;
+import com.chenmasoft.kingdeetofeishu.dao.entity.CheckList;
 import com.chenmasoft.kingdeetofeishu.dao.entity.Event;
 import com.chenmasoft.kingdeetofeishu.dao.entity.Fishuform;
 import com.chenmasoft.kingdeetofeishu.dao.service.EventService;
@@ -230,6 +232,18 @@ public void  selectForm(){
 
 //        Form payBillForm= creatForm.payBillTwo(fishuform);
 //        kingdeeApi.kingdeeDraft(payBillForm);
+    }
+
+    public void saveCheckList(CheckList checkList) {
+        //检验单
+        Form checkListForm=  creatForm.checkList(checkList);
+        kingdeeFormSaveSoso.checkListSSA(checkListForm);
+    }
+
+    public void saveBarCode(BarCodeForm barCode) {
+        //检验单
+        Form barCodeForm=  creatForm.barCode(barCode);
+        kingdeeFormSaveSoso.barCodeSSA(barCodeForm);
     }
 
 

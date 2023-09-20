@@ -3,11 +3,11 @@ server:
   port: 8090
   #feishu.EncryptKey=FXNs61zHHXeFUonzNpb4yeTiu18H0YFQ
 feishu:
-  VerificationToken: cdriYsmGeHdwf2d8WG68rfLgSw3sejN7
-  app_id: cli_a2edfada0538100b
-  app_secret: SENn7dB9FJaSGeyNg8Bxne4mY0OQtjXz
-  approval_code_reimbursement: 7312B2C7-5E94-4F55-9ED5-578D9104F1AB
-  approval_code_payment: 566B93DE-ACD9-4288-A861-EF7CDFB352B0
+  VerificationToken:
+  app_id:
+  app_secret:
+  approval_code_reimbursement:
+  approval_code_payment:
 kingdee:
   acctId: 6369ebd98ea40b
   username: administrator

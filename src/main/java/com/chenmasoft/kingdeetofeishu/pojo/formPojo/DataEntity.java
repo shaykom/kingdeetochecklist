@@ -65,8 +65,13 @@ public class DataEntity  {
     @JSONField(name = "IgnoreInterationFlag",ordinal = 10)
     private String ignoreInterationFlag;
     /**
+     * isAutoSubmitAndAudit
+     */
+    @JSONField(name = "IsAutoSubmitAndAudit",ordinal = 11)
+    private String isAutoSubmitAndAudit;
+    /**
      * model
      */
-    @JSONField(name = "Model",ordinal = 11)
+    @JSONField(name = "Model",ordinal = 12)
     private Object model;
 }

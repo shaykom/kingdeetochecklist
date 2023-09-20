@@ -26,64 +26,200 @@
 <body id="situation">
 <div class="pages-style">
     <!--左侧菜单栏-->
-    <div class="bk-con-menu" id="bk-con-menu">
+    <div class="bk-con-menu" id="bk-con-menu" style="overflow: auto">
         <div class="menubtn">
             <span class="close_btn samebtn"><i>隐藏</i></span>
             <span class="show_btn samebtn"><i>显示</i></span>
         </div>
         <div class="operation mb15 align">
-            <button class="btn button_btn btn-green margin" type="button" onclick=""><i class="iconfont">新增检验</i>&nbsp; </button><br>
+            <button class="btn button_btn btn-green margin" type="button" onclick="clearData()"><i class="iconfont">新增检验</i>&nbsp; </button><br>
+            <button class="btn button_btn btn-info margin" type="button" onclick="selectBarCode()"><i class="iconfont">获取条码信息</i>&nbsp; </button><br>
             <label class="margin"><i class="iconfont">扫描条码</i></label><br>
-            <textarea class="textarea block width100b" type="text" onclick="" disabled> </textarea><br>
-            <label class="margin"><i class="iconfont">检验类型</i></label><br>
-            <select class="textarea block width100b align" disabled>
-                <option>坯布</option>
+            <textarea class="textarea block width100b container" type="text" id="barCode"></textarea><br>
+            <!--            <label class="margin"><i class="iconfont">检验类型</i></label><br>-->
+            <!--            <select class="textarea block width100b align" disabled>-->
+            <!--                <option>坯布</option>-->
+            <!--            </select><br>-->
+            <!--            <label class="margin"><i class="iconfont">难度</i></label><br>-->
+            <!--            <select class="textarea block width100b align">-->
+            <!--                <option>一级</option>-->
+            <!--                <option>二级</option>-->
+            <!--            </select><br>-->
+            <label class="margin"><i class="iconfont">卷合格判定</i></label><br>
+            <select class="textarea block width100b align" id="isPass">
+                <option>合格</option>
+                <option>让步接收</option>
+                <option>返修</option>
+                <option>报废</option>
             </select><br>
-            <label class="margin"><i class="iconfont">难度</i></label><br>
-            <select class="textarea block width100b align">
-                <option>一级</option>
-                <option>二级</option>
-            </select><br>
+
+        </div>
+        <div class="align">
+            <button class="btn button_btn btn-blue margin" type="button" onclick="saveCheckList()"  id=""><i class="iconfont">提交检验</i>&nbsp; </button><br>
+        </div>
+        <div class="align">
+            <button class="btn button_btn btn-green margin" type="button" onclick=""  id="openHistoryButton"><i class="iconfont">金蝶检验单</i>&nbsp; </button><br>
+        </div>
+        <div class="align">
+            <button class="btn button_btn btn-green margin" type="button" onclick=""  id="recordCD"><i class="iconfont">记录疵点</i>&nbsp; </button><br>
+        </div>
+        <div class="containerDown">
+            <button class="btn button_btn btn-gray margin" type="button" onclick=""  id="printButton"><i class="iconfont">打印</i>&nbsp; </button><br>
         </div>
     </div>
     <!--右侧内容-->
-    <div class="bk-con-message message-section" id="iframe_box">
+    <div class="bk-con-message message-section" id="iframe_box" style="overflow: auto">
         <!--编辑内容-->
-        <div class="operation  mb15">
+        <div class="operation5  mb5">
             <div class="container block">
-                <label class="margin"><i class="iconfont">检验单号</i></label>
-                <textarea class="textarea" type="text" onclick="" disabled> </textarea>
+                <label class="margin5 containerRight">检验单号</label>
+                <textarea class="textarea" type="text" onclick="" id="checkNumber" disabled></textarea>
 
-                <label class="margin"><i class="iconfont">物料编号</i></label>
-                <textarea class="textarea" type="text" onclick="" disabled> </textarea>
+                <label class="margin5 containerRight">物料编号</label>
+                <textarea class="textarea" type="text" onclick="" id="materialNumber" disabled></textarea>
 
-                <label class="margin"><i class="iconfont">物料名称</i></label>
-                <textarea class="textarea" type="text" onclick="" disabled> </textarea>
+                <label class="margin5 containerRight">物料名称</label>
+                <textarea class="textarea" type="text" onclick="" id="materialName" disabled></textarea>
 
-                <label class="margin"><i class="iconfont">门幅</i></label>
-                <textarea class="textarea" type="text" onclick="" disabled> </textarea>
+                <label class="margin5 containerRight">门幅</label>
+                <textarea class="textarea" type="text" onclick="" id="doorWidth" disabled></textarea>
+
+                <label class="margin5 containerRight">颜色</label>
+                <textarea class="textarea" type="text" onclick="" id="color" disabled></textarea>
+
+                <label class="margin5 containerRight">花号</label>
+                <textarea class="textarea" type="text" onclick="" id="flNumber" disabled></textarea>
             </div>
-            <div class="container block width80b">
-                <label class="margin"><i class="iconfont">检验类型</i></label>
-                <select class="width174 align" disabled>
-                    <option>坯布</option>
+            <div class="container block">
+                <label class="margin5 containerRight">花型描述</label>
+                <textarea class="textarea" type="text" onclick="" id="flNote" disabled></textarea>
+
+                <label class="margin5 containerRight">检验类型</label>
+                <select class="width174 align">
+                    <option>染色</option>
+                    <option>数码印花</option>
                 </select>
 
-                <label class="margin width64 containerRight"><i class="iconfont">检验员</i></label>
-                <textarea class="textarea" type="text" onclick="" disabled> </textarea>
+                <label class="margin5 containerRight">检验员</label>
+                <select class="width174 align" id="checker">
+                </select>
 
-                <label class="margin width64 containerRight"><i class="iconfont">难度</i></label>
-                <select class="width174 align">
+                <label class="margin5 containerRight">难度</label>
+                <select class="width174 align" id="difficulty">
                     <option>一级</option>
                     <option>二级</option>
                 </select>
+
+                <label class="margin5 containerRight">缸号</label>
+                <textarea class="textarea" type="text" onclick="" id="gangNumber"></textarea>
+
+            </div>
+<!--            <div class="container block">-->
+<!--                <label class="margin"><i class="iconfont">问题描述</i></label>-->
+<!--                <textarea class="textarea" type="text" onclick="" id="bagProblem"></textarea>-->
+
+<!--                <label class="margin"><i class="iconfont">源单编号</i></label>-->
+<!--                <textarea class="textarea container" type="text" onclick="" id="sourceBillNo" disabled></textarea>-->
+
+<!--                <label class="margin"><i class="iconfont">检验日期</i></label>-->
+<!--                <textarea class="textarea" type="text" onclick="" id="checkDate" disabled></textarea>-->
+
+<!--                <label class="margin width64 containerRight"><i class="iconfont">供应商</i></label>-->
+<!--                <textarea class="textarea" type="text" onclick="" id="supplier" disabled></textarea>-->
+<!--            </div>-->
+        </div>
+        <!--编辑内容-->
+        <div class="operation5  mb5">
+            <div class="container block">
+                <label class="margin5 containerRight">实测值</label>
+                <textarea class="textarea" type="text" onclick="" id="actualValue"></textarea>
+
+                <label class="margin5 containerRight">标称值</label>
+                <textarea class="textarea" type="text" onclick="" id="normalValue"></textarea>
+
+                <label class="margin5 containerRight">高度</label>
+                <textarea class="textarea" type="text" onclick="" id="height"></textarea>
+
+                <label class="margin5 containerRight">纬弓/纬斜数值</label>
+                <textarea class="textarea" type="text" onclick="" id="textValue"></textarea>
+            </div>
+            <div class="container block">
+                <label class="margin5 containerRight">门幅 全/有效</label>
+                <textarea class="textarea" type="text" onclick="" id="doorWidthAll"></textarea>
+
+                <label class="margin5 containerRight">姆米数 克重（整卷/刻量）</label>
+                <textarea class="textarea" type="text" onclick="" id="MMS"></textarea>
+
+                <label class="margin5 containerRight">标称值</label>
+                <textarea class="textarea" type="text" onclick="" id="normalValue2"></textarea>
+
+                <label class="margin5 containerRight">实测值</label>
+                <textarea class="textarea" type="text" onclick="" id="actualValue2"></textarea>
+            </div>
+        </div>
+
+        <div class="operation5  mb5">
+            <div class="container block">
+                <label class="margin5 containerRight">与参考样</label>
+                <input type="checkbox" name="andExample" id="isAndExample"><label for="isAndExample">符合</label>
+                <select id="andExample">
+                    <option></option>
+                    <option>1</option>
+                    <option>1-2</option>
+                    <option>2</option>
+                    <option>2-3</option>
+                    <option>3</option>
+                    <option>3-4</option>
+                    <option>4</option>
+                    <option>4-5</option>
+                    <option>5</option>
+                </select>
+                <label class="margin5 containerRight">卷内边中差</label>
+                <input type="checkbox" name="andExample" id="isJNBZC"><label for="isJNBZC">符合</label>
+                <select id="JNBZC">
+                    <option></option>
+                    <option>1</option>
+                    <option>1-2</option>
+                    <option>2</option>
+                    <option>2-3</option>
+                    <option>3</option>
+                    <option>3-4</option>
+                    <option>4</option>
+                    <option>4-5</option>
+                    <option>5</option>
+                </select>
+                <label class="margin5 containerRight">卷内头尾差</label>
+                <input type="checkbox" name="andExample" id="isJNTWC"><label for="isJNTWC">符合</label>
+                <select id="JNTWC">
+                    <option></option>
+                    <option>1</option>
+                    <option>1-2</option>
+                    <option>2</option>
+                    <option>2-3</option>
+                    <option>3</option>
+                    <option>3-4</option>
+                    <option>4</option>
+                    <option>4-5</option>
+                    <option>5</option>
+                </select>
+
+                <label class="margin5 width64 containerRight">备注</label>
+                <textarea class="textarea" type="text" onclick="" id="remark"></textarea>
+
+                <label class="margin5 width64 containerRight">折让</label>
+                <textarea class="textarea" type="text" onclick="" id="discus"></textarea>
             </div>
 
         </div>
 
+        <!-- 标签页 -->
+        <ul>
+            <li><button href="#" id="tab1">卷明细信息</button><button href="#" id="tab2">卷疵点信息</button></li>
+        </ul>
+
         <!--        列表内容-->
         <div class="page_content clearfix mb15 table-module " style="overflow:auto;">
-            <table class="gallery table table_list table_striped table-bordered " id="sal">
+            <table class="gallery table table_list table_striped table-bordered" id="mainTable">
                 <thead>
                 <tr>
                     <th>米数</th>
@@ -92,49 +228,64 @@
                     <th>面料问题描述</th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody id="table-body">
+
+                </tbody>
+            </table>
+
+            <table class="gallery table table_list table_striped table-bordered tab-content" id="subTable">
+                <thead>
+                <tr>
+                    <th>疵点名称</th>
+                    <th>疵点个</th>
+                    <th>疵点总</th>
+                    <th>疵点长</th>
+                    <th>明细备注</th>
+                    <th>疵点位置</th>
+                    <th>疵点分值</th>
+                </tr>
+                </thead>
+                <tbody id="sub-table-body">
 
                 </tbody>
             </table>
         </div>
+
+
+        <button class="btn button_btn btn-green margin" type="button" onclick="" id="addRow"><i class="iconfont">新增卷</i>&nbsp; </button>
+        <button class="btn button_btn btn-danger margin" type="button" onclick="" id="deleteRow"><i class="iconfont">删除卷</i>&nbsp; </button>
     </div>
-    <div class="bk-con-menu" id="bk-con-menu2" >
-        <div class="operation mb15 align">
-            <button class="btn button_btn btn-gray margin" type="button" onclick="" id="printButton"><i class="iconfont">打印</i>&nbsp; </button><br>
-        </div>
-    </div>
+
+
+
+    <!--    <div class="bk-con-menu" id="bk-con-menu2" >-->
+    <!--        <div class="operation mb15 align">-->
+    <!--            <button class="btn button_btn btn-gray margin" type="button" onclick=""  id="printButton"><i class="iconfont">打印</i>&nbsp; </button><br>-->
+    <!--            <input type="text" id="numericInput">-->
+    <!--            <div id="virtualKeyboard" style="display: none;">-->
+    <!--                &lt;!&ndash; 创建虚拟数字键盘按钮 &ndash;&gt;-->
+    <!--                <button>1</button>-->
+    <!--                <button>2</button>-->
+    <!--                <button>3</button><br>-->
+
+    <!--                <button>4</button>-->
+    <!--                <button>5</button>-->
+    <!--                <button>6</button><br>-->
+
+    <!--                <button>7</button>-->
+    <!--                <button>8</button>-->
+    <!--                <button>9</button><br>-->
+
+    <!--                <button>.</button>-->
+    <!--                <button>0</button>-->
+    <!--                <button>X</button>-->
+    <!--                &lt;!&ndash; 其他数字按钮... &ndash;&gt;-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--    </div>-->
+
 </div>
 </body>
 </html>
 
-<script>
-    $(function () {
-        //内页框架结构编辑
-        $("#situation").Hupage({
-            slide: '#breadcrumb',
-            padding: 15,
-            menuModule: '#bk-con-menu', //菜单模块
-            menuModule2: '#bk-con-menu2', //菜单模块
-            menuPosition:'left',
-            menuPosition2:'right',
-            pagecontent: '.page_content',//自定义属性
-            operation: '.operation',//自定义属性
-            scrollbar: function (e) {
-                e.niceScroll({
-                    cursorcolor: "#dddddd",
-                    cursoropacitymax: 1,
-                    touchbehavior: false,
-                    cursorwidth: "3px",
-                    cursorborder: "0",
-                    cursorborderradius: "3px",
-                });
-            },
-            expand: function (thisBox, settings) {
-                var pc = "";
-                $(settings.pagecontent).css("margin-bottom") != null ? pc = parseInt($(settings.pagecontent).css("margin-bottom").replace("px", "")) : '';
-                $(settings.pagecontent).css({height: $(window).height() - $(settings.operation).outerHeight() - pc - (settings.padding * 2)})
-                settings.scrollbar($(settings.slide) && $(settings.pagecontent));
-            }//自定义方法
-        });
-    });
-</script>
+<script src="/js/checkList_CPJY.js"></script>
