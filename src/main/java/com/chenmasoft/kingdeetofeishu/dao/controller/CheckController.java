@@ -98,8 +98,9 @@ public class CheckController extends ApiController {
     }
 
     @PostMapping("checkList")
-    public void saveKDCheckList(@RequestBody CheckList requestData) {
-        saveTokingdee.saveCheckList(requestData);
+    public JSONObject saveKDCheckList(@RequestBody CheckList requestData) {
+        JSONObject jaData = saveTokingdee.saveCheckList(requestData);
+        return jaData;
     }
 }
 

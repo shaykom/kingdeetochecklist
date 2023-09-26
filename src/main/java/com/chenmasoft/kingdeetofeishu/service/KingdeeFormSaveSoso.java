@@ -296,7 +296,7 @@ public class KingdeeFormSaveSoso {
 
     }
 
-    public void  checkListSSA(Form form){
+    public JSONObject checkListSSA(Form form){
         StringBuffer stringBuffer = new StringBuffer();
         JSONObject resultSaveJson = kingdeeApi.kingdeeSave(form);
         JSONObject jsonObject = resultSaveJson.getJSONObject("Result").getJSONObject("ResponseStatus");
@@ -306,9 +306,10 @@ public class KingdeeFormSaveSoso {
             JSONArray jsonArray = jsonObject.getJSONArray("Errors");
             log.error("检验单" + form.toString() + "保存失败" + jsonArray.toJSONString());
         }
+        return resultSaveJson;
     }
 
-    public void  purReceiveSSA(Form form){
+    public JSONObject purReceiveSSA(Form form){
         StringBuffer stringBuffer = new StringBuffer();
         JSONObject resultSaveJson = kingdeeApi.kingdeeSave(form);
         JSONObject jsonObject = resultSaveJson.getJSONObject("Result").getJSONObject("ResponseStatus");
@@ -318,6 +319,7 @@ public class KingdeeFormSaveSoso {
             JSONArray jsonArray = jsonObject.getJSONArray("Errors");
             log.error("收料通知单" + form.toString() + "保存失败" + jsonArray.toJSONString());
         }
+        return resultSaveJson;
     }
 
     public void  barCodeSSA(Form form){

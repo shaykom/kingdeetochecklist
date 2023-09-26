@@ -1,6 +1,7 @@
 package com.chenmasoft.kingdeetofeishu.service;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
@@ -234,10 +235,17 @@ public void  selectForm(){
 //        kingdeeApi.kingdeeDraft(payBillForm);
     }
 
-    public void saveCheckList(CheckList checkList) {
-        //检验单
-        Form checkListForm=  creatForm.checkList(checkList);
-        kingdeeFormSaveSoso.checkListSSA(checkListForm);
+    public JSONObject saveCheckList(CheckList checkList) {
+        JSONObject joCheckListForm=  creatForm.purReceive(checkList);
+        JSONObject jsonObject = joCheckListForm.getJSONObject("Result").getJSONObject("ResponseStatus");
+        if (jsonObject.getBoolean("IsSuccess")) {
+            //检验单
+            Form checkListForm=  creatForm.checkList(checkList);
+            JSONObject joCheck = kingdeeFormSaveSoso.checkListSSA(checkListForm);
+            return joCheck;
+        } else {
+            return joCheckListForm;
+        }
     }
 
     public void saveBarCode(BarCodeForm barCode) {

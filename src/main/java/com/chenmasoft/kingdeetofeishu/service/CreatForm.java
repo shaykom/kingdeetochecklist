@@ -1,7 +1,9 @@
 package com.chenmasoft.kingdeetofeishu.service;
 import java.math.BigDecimal;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.chenmasoft.kingdeetofeishu.dao.entity.*;
 import com.chenmasoft.kingdeetofeishu.pojo.formPojo.*;
 
@@ -474,23 +476,29 @@ try {
         barCodeModel.setFMaterialId(new HashMap<String, String>() {{
             put("FNumber", code.getMaterialNumber() == null ? "" : code.getMaterialNumber());
         }}); //物料编码
-        barCodeModel.setFAuxPropId(new HashMap<String, BigDecimal>() {{
-            put("FID", code.getAuxProp() == null ? BigDecimal.valueOf(0) : new BigDecimal(code.getAuxProp()));
-        }});
+        barCodeModel.setFAuxPropId(
+                Integer.parseInt(code.getAuxProp())
+//                new HashMap<String, BigDecimal>() {{
+//                    put("FID", code.getAuxProp() == null ? BigDecimal.valueOf(0) : new BigDecimal(code.getAuxProp()));
+//                }}
+        );
         barCodeModel.setFLot(new HashMap<String, String>() {{
             put("FNumber", code.getLot() == null ? "" : code.getLot());
         }});
         barCodeModel.setFAuxiliaryUnitId(new HashMap<String, String>() {{
             put("FNumber", code.getAuxUnit() == null ? "" : code.getAuxUnit());
         }});
-        barCodeModel.setFAuxiliaryQty(new BigDecimal(code.getAuxQty()));
+//        barCodeModel.setFAuxiliaryQty(new BigDecimal(code.getAuxQty()));
+        barCodeModel.setFAuxiliaryQty(new BigDecimal(1));
         barCodeModel.setFBaseUnitId(new HashMap<String, String>() {{
             put("FNumber", code.getBaseUnit() == null ? "" : code.getBaseUnit());
         }});
         barCodeModel.setFBaseQty(new BigDecimal(code.getBaseQty()));
+        barCodeModel.setFQty(new BigDecimal(code.getBaseQty()));
         barCodeModel.setFSupplierId(new HashMap<String, String>() {{
             put("FNumber", code.getSupplierNumber() == null ? "" : code.getSupplierNumber());
         }});
+        barCodeModel.setF_JH(code.getJH());
         return form;
     }
 
@@ -517,14 +525,14 @@ try {
         dataEntity.setIsAutoAdjustField("false");
         dataEntity.setInterationFlags("");
         dataEntity.setIgnoreInterationFlag("");
-//        dataEntity.setIsAutoSubmitAndAudit("true");
+        dataEntity.setIsAutoSubmitAndAudit("true");
         dataEntity.setModel(checkListModel);
         if(!Objects.equals(checkListform.getFid(), "") && !Objects.equals(checkListform.getFid(), "自动生成")){
             checkListModel.setFid(Integer.parseInt(checkListform.getFid()));
         }
         else {
             checkListModel.setFid(0);
-            dataEntity.setIsAutoSubmitAndAudit("true");
+            //dataEntity.setIsAutoSubmitAndAudit("true");
         }
         checkListModel.setFBillTypeID(new HashMap<String, String>() {{
             put("FNumber", "JYD001_SYS");
@@ -554,6 +562,21 @@ try {
 
         BigDecimal allMeter = new BigDecimal(0);
 
+        BigDecimal actReceiveQty = new BigDecimal(checkListform.getActReceiveQty());
+        if(Objects.equals(actReceiveQty, new BigDecimal(0)))
+        {
+            String receiveFEntryId = checkListform.getReceiveFEntryId() == null ? "0" : checkListform.getReceiveFEntryId();
+            JSONArray ja = selectForm.selectCheckJoinQty(receiveFEntryId);
+            if(ja.size() > 0) {
+                JSONArray ja0 = (JSONArray) ja.get(0);
+                BigDecimal FCheckBaseQty = ja0.getBigDecimal(0);
+                for (CheckListArray checkListArray: checkListArrays) {
+                    allMeter = allMeter.add(new BigDecimal(checkListArray.getMeter()));
+                }
+                actReceiveQty = FCheckBaseQty.add(allMeter);
+            }
+        }
+
         for (CheckListArray checkListArray: checkListArrays) {
 
             CheckListEntity checkListEntity = new CheckListEntity();
@@ -564,9 +587,9 @@ try {
                 put("Fnumber", checkListform.getUnitNumber());//
             }});//单位
             checkListEntity.setF_MS2(checkListArray.getMeter());
-            allMeter = allMeter.add(new BigDecimal(checkListArray.getMeter()));
+            //allMeter = allMeter.add(new BigDecimal(checkListArray.getMeter()));
             checkListEntity.setF_JH(checkListArray.getSeq());
-            checkListEntity.setF_TXM(checkListArray.getBarCode());
+            checkListEntity.setF_TXM(checkListArray.getBarCode());;
 
             if(Objects.equals(checkListform.getFid(), "") || Objects.equals(checkListform.getFid(), "自动生成")) {
                 BarCodeForm barCodeForm = new BarCodeForm();
@@ -578,9 +601,10 @@ try {
                 barCodeForm.setAuxUnit(checkListform.getExtAuxUnitNumber());
                 barCodeForm.setAuxQty(checkListform.getQty6());
                 barCodeForm.setBaseUnit(checkListform.getBaseUnitNumber());
-                barCodeForm.setBaseQty(checkListform.getActReceiveQty());
+                barCodeForm.setBaseQty(checkListArray.getMeter());
                 barCodeForm.setSupplierNumber(checkListform.getSupplierNumber());
                 barCodeForm.setBarCode(checkListArray.getBarCode());
+                barCodeForm.setJH(checkListArray.getSeq());
                 saveTokingdee.saveBarCode(barCodeForm);
             }
 
@@ -644,40 +668,88 @@ try {
                     "QM_PURReceive2Inspect","T_PUR_ReceiveEntry",
                     Integer.parseInt(checkListform.getReceiveFid() == null ? "0" : checkListform.getReceiveFid()),
                     Integer.parseInt(checkListform.getReceiveFEntryId() == null ? "0" : checkListform.getReceiveFEntryId()),
-                    new BigDecimal(checkListform.getActReceiveQty()),new BigDecimal(checkListform.getActReceiveQty())
+                    actReceiveQty,
+                    actReceiveQty
             )};
             checkListEntity.setFEntity_Link(linkDetails);
 
             checkListEntityList.add(checkListEntity);
         }
-
-        JSONArray ja = selectForm.selectCheckJoinQty(checkListform.getReceiveFEntryId());
-        if(ja.size() > 0)
-        {
-            JSONArray ja0 = (JSONArray) ja.get(0);
-            BigDecimal checkJoinQty = ja0.getBigDecimal(0);
-            Form purReceiveForm=  purReceiveUpdateQty(Integer.parseInt(checkListform.getReceiveFid()),
-                    Integer.parseInt(checkListform.getReceiveFEntryId()),checkJoinQty.add(allMeter));
-            kingdeeFormSaveSoso.purReceiveSSA(purReceiveForm);
-        }
-
-
-//        "FEntity_Link":[
-//        {
-//            "FEntity_Link_FRuleId":"QM_PURReceive2Inspect",
-//                "FEntity_Link_FSTableName":"T_PUR_ReceiveEntry",
-//                "FEntity_Link_FSBillId":110060,
-//                "FEntity_Link_FSId":110093,
-//                "FEntity_Link_FBaseInspectQtyOld":1.0,
-//                "FEntity_Link_FBaseInspectQty":1.0
-//        }
-//]
-
-
         return form;
     }
 
-    public Form purReceiveUpdateQty(int fid,int fEntryId,BigDecimal qty){
+    public JSONObject purReceive(CheckList checkListform){
+//        if(!Objects.equals(checkListform.getFid(), "") && !Objects.equals(checkListform.getFid(), "自动生成")){
+////            JSONArray jsonArray = selectForm.selectSourceCheckQty(checkListform.getFid());
+////            if(jsonArray.size() > 0)
+////            {
+////                jsonArray
+////            }
+//
+//            JSONObject joPurReceive = new JSONObject();
+//            JSONObject isSuccess = new JSONObject();
+//            isSuccess.put("IsSuccess", true);
+//            JSONObject responseStatus = new JSONObject();
+//            responseStatus.put("ResponseStatus", isSuccess);
+//            joPurReceive.put("Result", responseStatus);
+//
+//            return joPurReceive;
+//        }
+//        else {
+            CheckListArray[] checkListArrays = checkListform.getCheckListArray();
+
+            BigDecimal allMeter = new BigDecimal(0);
+
+            BigDecimal maxJH = new BigDecimal(0);
+            for (CheckListArray checkListArray: checkListArrays) {
+                BigDecimal JH = new BigDecimal(checkListArray.getSeq());
+                if(JH.compareTo(maxJH) > 0)
+                {
+                    maxJH = JH;
+                }
+                allMeter = allMeter.add(new BigDecimal(checkListArray.getMeter()));
+            }
+
+            JSONArray ja = selectForm.selectCheckJoinQty(checkListform.getReceiveFEntryId());
+            JSONObject joPurReceive = new JSONObject();
+            if(ja.size() > 0)
+            {
+                JSONArray ja0 = (JSONArray) ja.get(0);
+                BigDecimal checkJoinQty = ja0.getBigDecimal(0);
+                BigDecimal qty6 = ja0.getBigDecimal(1);
+                if(maxJH.compareTo(qty6) > 0)
+                {
+                    JSONObject isSuccess = new JSONObject();
+                    isSuccess.put("IsSuccess", false);
+                    JSONArray errors = new JSONArray();
+                    JSONObject message = new JSONObject();
+                    message.put("Message", "卷号超出交货辅助数量！");
+                    errors.add(message);
+                    isSuccess.put("Errors", errors);
+                    JSONObject responseStatus = new JSONObject();
+                    responseStatus.put("ResponseStatus", isSuccess);
+                    joPurReceive.put("Result", responseStatus);
+
+                    return joPurReceive;
+                }
+                BigDecimal actReceiveQty = ja0.getBigDecimal(2);
+                BigDecimal qty = ja0.getBigDecimal(3);
+                BigDecimal qty1 = ja0.getBigDecimal(4);
+                BigDecimal qty2 = ja0.getBigDecimal(5);
+                Form purReceiveForm=  purReceiveUpdateQty(Integer.parseInt(checkListform.getReceiveFid()),
+                        Integer.parseInt(checkListform.getReceiveFEntryId()),checkJoinQty.add(allMeter),qty,qty1,qty2);
+                joPurReceive = kingdeeFormSaveSoso.purReceiveSSA(purReceiveForm);
+            }
+//            JSONObject isSuccess = new JSONObject();
+//            isSuccess.put("IsSuccess", true);
+//            JSONObject responseStatus = new JSONObject();
+//            responseStatus.put("ResponseStatus", isSuccess);
+//            joPurReceive.put("Result", responseStatus);
+            return joPurReceive;
+//        }
+    }
+
+    public Form purReceiveUpdateQty(int fid, int fEntryId, BigDecimal checkJoinQty, BigDecimal qty, BigDecimal qty1, BigDecimal qty2){
         Form form=new Form();
         DataEntity  dataEntity=new DataEntity();
         PurReceiveUpdateModel purReceiveUpdateModel=new PurReceiveUpdateModel();
@@ -705,7 +777,10 @@ try {
 
         PurReceiveUpdateEntity purReceiveUpdateEntity = new PurReceiveUpdateEntity();
         purReceiveUpdateEntity.setFEntryID(fEntryId);
-        purReceiveUpdateEntity.setFActReceiveQty(qty);
+        purReceiveUpdateEntity.setFActReceiveQty(checkJoinQty);
+        purReceiveUpdateEntity.setF_SUWI_Qty(qty);
+        purReceiveUpdateEntity.setF_SUWI_Qty1(qty1);
+        purReceiveUpdateEntity.setF_SUWI_Qty2(qty2);
 
         purReceiveUpdateEntities.add(purReceiveUpdateEntity);
 

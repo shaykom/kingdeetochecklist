@@ -39,7 +39,7 @@ public class BarCodeModel {
      * fAuxPropId
      */
     @JSONField(name = "FAuxPropId",ordinal = 5)
-    private HashMap fAuxPropId;
+    private int fAuxPropId;
     /**
      * fLot
      */
@@ -66,8 +66,18 @@ public class BarCodeModel {
     @JSONField(name = "FBaseQty",ordinal = 10)
     private BigDecimal fBaseQty;
     /**
+     * fQty
+     */
+    @JSONField(name = "FQty",ordinal = 11)
+    private BigDecimal fQty;
+    /**
      * fSupplierId
      */
-    @JSONField(name = "FSupplierId",ordinal = 11)
+    @JSONField(name = "FSupplierId",ordinal = 12)
     private HashMap fSupplierId;
+    /**
+     * F_JH
+     */
+    @JSONField(name = "F_JH",ordinal = 13)
+    private String F_JH;
 }

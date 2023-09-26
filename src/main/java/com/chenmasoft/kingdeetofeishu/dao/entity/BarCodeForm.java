@@ -12,6 +12,7 @@ public class BarCodeForm {
     private String baseUnit;
     private String baseQty;
     private String supplierNumber;
+    private String JH;
 
 
     public String getMaterialNumber() {
@@ -100,6 +101,14 @@ public class BarCodeForm {
 
     public void setBarCode(String barCode) {
         this.barCode = barCode;
+    }
+
+    public String getJH() {
+        return JH;
+    }
+
+    public void setJH(String JH) {
+        this.JH = JH;
     }
 }
 

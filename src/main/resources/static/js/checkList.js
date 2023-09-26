@@ -66,8 +66,18 @@ function selectBarCode(){
         });
     }
 }
-
+var isClick = true;
 function saveCheckList(){
+    if(isClick) {
+    //定时器
+        isClick = false;
+        setTimeout(function() {
+            isClick = true;
+        }, 3000);//3秒内不能重复点击
+    }else{
+        alert("请不要短时间内重复点击按钮")
+        return;
+    }
     var barCode = document.getElementById("barCode");
     var checkListArray = [];
 
@@ -120,9 +130,15 @@ function saveCheckList(){
             url: "check/checkList",
             data: JSON.stringify(checkList),
             contentType: "application/json",
-            success: function () {
-                /*这个方法里是ajax发送请求成功之后执行的代码*/
-                alert("上传成功！");
+            success: function (data) {
+                if (data["Result"]["ResponseStatus"]["IsSuccess"] === true) {
+                    $("#checkNumber").val(data["Result"]["ResponseStatus"]["SuccessEntitys"][0]["Id"]);
+                    /*这个方法里是ajax发送请求成功之后执行的代码*/
+                    alert("上传成功！" + data["Result"]["ResponseStatus"]["SuccessEntitys"][0]["Number"]);
+                } else {
+                    var errors = data["Result"]["ResponseStatus"]["Errors"][0]["Message"]
+                    alert(errors);
+                }
             },
             error: function (msg) {
                 alert("ajax连接异常：" + msg);
@@ -726,14 +742,6 @@ function openHistoryPopup() {
                     //     }
                     //     this.classList.add('clicked'); // 单击时添加深蓝色
                     // });
-
-                    var cell = popupDocument.createElement("td");
-                    cell.textContent = eveData[0];
-                    cell.style.cursor = "pointer";
-                    cell.addEventListener("dblclick", function () {
-                        fillCurrentTable(eveData);
-                        popup.close();
-                    });
                     var documentStatus = "";
                     switch (eveData[1]) {
                         case "Z":
@@ -752,26 +760,61 @@ function openHistoryPopup() {
                             documentStatus = "重新审核";
                             break;
                     }
+                    var cell = popupDocument.createElement("td");
+                    cell.textContent = eveData[0];
+                    cell.style.cursor = "pointer";
+                    cell.addEventListener("dblclick", function () {
+                        var deepBlueRows = popupDocument.querySelectorAll(".clicked"); // 获取具有深蓝色类的所有行
+                        if(deepBlueRows[1].textContent === "审核中" || deepBlueRows[1].textContent === "已审核") {
+                            popup.alert(deepBlueRows[1].textContent + "的单据不允许修改！");
+                        }
+                        else
+                        {
+                            fillCurrentTable(eveData);
+                            popup.close();
+                        }
+                    });
                     var cell2 = popupDocument.createElement("td");
                     cell2.textContent = documentStatus;
                     cell2.style.cursor = "pointer";
                     cell2.addEventListener("dblclick", function () {
-                        fillCurrentTable(eveData);
-                        popup.close();
+                        var deepBlueRows = popupDocument.querySelectorAll(".clicked"); // 获取具有深蓝色类的所有行
+                        if(deepBlueRows[1].textContent === "审核中" || deepBlueRows[1].textContent === "已审核") {
+                            popup.alert(deepBlueRows[1].textContent + "的单据不允许修改！");
+                        }
+                        else
+                        {
+                            fillCurrentTable(eveData);
+                            popup.close();
+                        }
                     });
                     var cell3 = popupDocument.createElement("td");
                     cell3.textContent = eveData[2];
                     cell3.style.cursor = "pointer";
                     cell3.addEventListener("dblclick", function () {
-                        fillCurrentTable(eveData);
-                        popup.close();
+                        var deepBlueRows = popupDocument.querySelectorAll(".clicked"); // 获取具有深蓝色类的所有行
+                        if(deepBlueRows[1].textContent === "审核中" || deepBlueRows[1].textContent === "已审核") {
+                            popup.alert(deepBlueRows[1].textContent + "的单据不允许修改！");
+                        }
+                        else
+                        {
+                            fillCurrentTable(eveData);
+                            popup.close();
+                        }
                     });
                     var cell4 = popupDocument.createElement("td");
                     cell4.textContent = eveData[3];
                     cell4.style.cursor = "pointer";
                     cell4.addEventListener("dblclick", function () {
-                        fillCurrentTable(eveData);
-                        popup.close();
+                        var deepBlueRows = popupDocument.querySelectorAll(".clicked"); // 获取具有深蓝色类的所有行
+                        if(deepBlueRows[1].textContent === "审核中" || deepBlueRows[1].textContent === "已审核") {
+                            popup.alert(deepBlueRows[1].textContent + "的单据不允许修改！");
+                        }
+                        else
+                        {
+                            fillCurrentTable(eveData);
+                            popup.close();
+                        }
                     });
 
                     cell.addEventListener("click", function () {
@@ -872,7 +915,7 @@ function fillCurrentTable(details) {
     // extAuxUnitNumber = details[6];
     // qty6 = details[6];
     // baseUnitNumber = details[6];
-    // actReceiveQty = details[6];
+    actReceiveQty = "0";
 
     $.ajax({
         type: "get",
