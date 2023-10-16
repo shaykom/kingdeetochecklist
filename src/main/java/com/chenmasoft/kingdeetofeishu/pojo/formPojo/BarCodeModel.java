@@ -1,6 +1,8 @@
 package com.chenmasoft.kingdeetofeishu.pojo.formPojo;
 
 import com.alibaba.fastjson.annotation.JSONField;
+import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -39,7 +41,7 @@ public class BarCodeModel {
      * fAuxPropId
      */
     @JSONField(name = "FAuxPropId",ordinal = 5)
-    private int fAuxPropId;
+    private Integer fAuxPropId;
     /**
      * fLot
      */

@@ -50,7 +50,7 @@ public class SelectForm {
     public JSONArray selectCheckJoinQty(String fEntryId) {
         ExecuteBillQuery executeBillQuery=new ExecuteBillQuery();
         executeBillQuery.setFormId("PUR_ReceiveBill");
-        executeBillQuery.setFieldKeys("FCheckBaseQty,F_SUWI_JHFZSL,FActReceiveQty,F_SUWI_Qty,F_SUWI_Qty1,F_SUWI_Qty2");
+        executeBillQuery.setFieldKeys("FCheckBaseQty,F_SUWI_JHFZSL,FActReceiveQty,FReceiveQty,FRefuseQty,FCsnReceiveQty,FCheckJoinBaseQty");
         executeBillQuery.setFilterString("FDetailEntity_FEntryId = " + fEntryId);
         executeBillQuery.setOrderString("");
         executeBillQuery.setTopRowCount(0);
@@ -123,6 +123,24 @@ public class SelectForm {
                 "FEntity_Link_FSBillId,FEntity_Link_FSId");
         executeBillQuery.setFilterString("F_BPJY = 1 and FSEQ = 1");
         executeBillQuery.setOrderString("FBillNo desc");
+        executeBillQuery.setTopRowCount(0);
+        executeBillQuery.setStartRow(0);
+        executeBillQuery.setLimit(1000);
+        Form form =new Form();
+        form.setFormid("QM_InspectBill");
+        form.setData(executeBillQuery);
+        String barCodeJson = kingdeeApi.kingdeeExecuteBillQuery(form);
+        JSONArray jaData = JSON.parseArray(barCodeJson);
+        return jaData;
+    }
+
+    public JSONArray selectSourceCheck_List(String code) {
+        ExecuteBillQuery executeBillQuery=new ExecuteBillQuery();
+        executeBillQuery.setFormId("QM_InspectBill");
+        executeBillQuery.setFieldKeys("FMaterialId.FNumber as materialNumber,FMaterialId.FName as materialName,FMaterialModel as materialModel," +
+                "FUsePolicy as usePolicy,FPolicyQty as policyQty,FPolicyDetail_FDetailID as seq");
+        executeBillQuery.setFilterString("FSrcBillNo0 = '" + code + "'");
+        executeBillQuery.setOrderString("FUsePolicy");
         executeBillQuery.setTopRowCount(0);
         executeBillQuery.setStartRow(0);
         executeBillQuery.setLimit(1000);

@@ -96,8 +96,8 @@
 
                 <label class="margin5 containerRight">检验类型</label>
                 <select class="width174 align">
+                    <option>印花</option>
                     <option>染色</option>
-                    <option>数码印花</option>
                 </select>
 
                 <label class="margin5 containerRight">检验员</label>
@@ -111,8 +111,10 @@
                 </select>
 
                 <label class="margin5 containerRight">缸号</label>
-                <textarea class="textarea" type="text" onclick="" id="gangNumber"></textarea>
+                <textarea class="textarea" type="text" onclick="" id="gangNumber" disabled></textarea>
 
+                <label class="margin5 containerRight">销售订单号</label>
+                <textarea class="textarea" type="text" onclick="" id="salOrderBillNo" disabled></textarea>
             </div>
 <!--            <div class="container block">-->
 <!--                <label class="margin"><i class="iconfont">问题描述</i></label>-->
@@ -132,29 +134,29 @@
         <div class="operation5  mb5">
             <div class="container block">
                 <label class="margin5 containerRight">实测值</label>
-                <textarea class="textarea" type="text" onclick="" id="actualValue"></textarea>
+                <textarea class="textarea" type="text" onclick="" id="actualValue" onfocus="setNumberInput(this)"></textarea>
 
-                <label class="margin5 containerRight">标称值</label>
-                <textarea class="textarea" type="text" onclick="" id="normalValue"></textarea>
+                <label class="margin5 containerRight">份数</label>
+                <textarea class="textarea" type="text" onclick="" id="pcsNum" onfocus="setNumberInput(this)"></textarea>
 
-                <label class="margin5 containerRight">高度</label>
-                <textarea class="textarea" type="text" onclick="" id="height"></textarea>
-
-                <label class="margin5 containerRight">纬弓/纬斜数值</label>
-                <textarea class="textarea" type="text" onclick="" id="textValue"></textarea>
+                <label class="margin5 containerRight">纬弓/纬斜高度</label>
+                <textarea class="textarea" type="text" onclick="" id="textValue" onfocus="setNumberInput(this)"></textarea>
             </div>
             <div class="container block">
-                <label class="margin5 containerRight">门幅 全/有效</label>
-                <textarea class="textarea" type="text" onclick="" id="doorWidthAll"></textarea>
+                <label class="margin5 containerRight">全门幅1</label>
+                <textarea class="textarea" type="text" onclick="" id="doorWidthAll1" onfocus="setNumberInput(this)"></textarea>
+                <label class="margin5 containerRight">全门幅2</label>
+                <textarea class="textarea" type="text" onclick="" id="doorWidthAll2" onfocus="setNumberInput(this)"></textarea>
+                <label class="margin5 containerRight">全门幅3</label>
+                <textarea class="textarea" type="text" onclick="" id="doorWidthAll3" onfocus="setNumberInput(this)"></textarea>
+                <label class="margin5 containerRight">有效门幅1</label>
+                <textarea class="textarea" type="text" onclick="" id="doorWidthAvailable1" onfocus="setNumberInput(this)"></textarea>
+                <label class="margin5 containerRight">有效门幅2</label>
+                <textarea class="textarea" type="text" onclick="" id="doorWidthAvailable2" onfocus="setNumberInput(this)"></textarea>
+                <label class="margin5 containerRight">有效门幅3</label>
+                <textarea class="textarea" type="text" onclick="" id="doorWidthAvailable3" onfocus="setNumberInput(this)"></textarea>
 
-                <label class="margin5 containerRight">姆米数 克重（整卷/刻量）</label>
-                <textarea class="textarea" type="text" onclick="" id="MMS"></textarea>
 
-                <label class="margin5 containerRight">标称值</label>
-                <textarea class="textarea" type="text" onclick="" id="normalValue2"></textarea>
-
-                <label class="margin5 containerRight">实测值</label>
-                <textarea class="textarea" type="text" onclick="" id="actualValue2"></textarea>
             </div>
         </div>
 
@@ -204,10 +206,8 @@
                 </select>
 
                 <label class="margin5 width64 containerRight">备注</label>
-                <textarea class="textarea" type="text" onclick="" id="remark"></textarea>
+                <textarea class="textarea" type="text" onclick="" id="remark" onfocus="setNumberInput(this)"></textarea>
 
-                <label class="margin5 width64 containerRight">折让</label>
-                <textarea class="textarea" type="text" onclick="" id="discus"></textarea>
             </div>
 
         </div>
@@ -251,7 +251,6 @@
             </table>
         </div>
 
-
         <button class="btn button_btn btn-green margin" type="button" onclick="" id="addRow"><i class="iconfont">新增卷</i>&nbsp; </button>
         <button class="btn button_btn btn-danger margin" type="button" onclick="" id="deleteRow"><i class="iconfont">删除卷</i>&nbsp; </button>
     </div>
@@ -289,3 +288,4 @@
 </html>
 
 <script src="/js/checkList_CPJY.js"></script>
+

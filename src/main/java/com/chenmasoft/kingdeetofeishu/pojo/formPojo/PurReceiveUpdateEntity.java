@@ -21,18 +21,18 @@ public class PurReceiveUpdateEntity {
     @JSONField(name = "FActReceiveQty",ordinal = 1)
     private BigDecimal fActReceiveQty;
     /**
-     * F_SUWI_Qty
+     * FReceiveQty
      */
-    @JSONField(name = "F_SUWI_Qty",ordinal = 2)
-    private BigDecimal F_SUWI_Qty;
+    @JSONField(name = "FReceiveQty",ordinal = 2)
+    private BigDecimal FReceiveQty;
     /**
-     * F_SUWI_Qty1
+     * FRefuseQty
      */
-    @JSONField(name = "F_SUWI_Qty1",ordinal = 3)
-    private BigDecimal F_SUWI_Qty1;
+    @JSONField(name = "FRefuseQty",ordinal = 3)
+    private BigDecimal FRefuseQty;
     /**
-     * F_SUWI_Qty2
+     * FCsnReceiveQty
      */
-    @JSONField(name = "F_SUWI_Qty2",ordinal = 4)
-    private BigDecimal F_SUWI_Qty2;
+    @JSONField(name = "FCsnReceiveQty",ordinal = 4)
+    private BigDecimal FCsnReceiveQty;
 }

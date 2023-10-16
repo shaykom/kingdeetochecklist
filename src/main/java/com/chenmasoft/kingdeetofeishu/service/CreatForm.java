@@ -476,12 +476,14 @@ try {
         barCodeModel.setFMaterialId(new HashMap<String, String>() {{
             put("FNumber", code.getMaterialNumber() == null ? "" : code.getMaterialNumber());
         }}); //物料编码
+
         barCodeModel.setFAuxPropId(
-                Integer.parseInt(code.getAuxProp())
+                Integer.parseInt(code.getAuxProp()) == 0 ? null : Integer.parseInt(code.getAuxProp())
 //                new HashMap<String, BigDecimal>() {{
 //                    put("FID", code.getAuxProp() == null ? BigDecimal.valueOf(0) : new BigDecimal(code.getAuxProp()));
 //                }}
         );
+
         barCodeModel.setFLot(new HashMap<String, String>() {{
             put("FNumber", code.getLot() == null ? "" : code.getLot());
         }});
@@ -586,6 +588,9 @@ try {
             checkListEntity.setFUnitID(new HashMap<String, String>() {{
                 put("Fnumber", checkListform.getUnitNumber());//
             }});//单位
+            checkListEntity.setFBaseUnitId(new HashMap<String, String>() {{
+                put("Fnumber", checkListform.getUnitNumber());//
+            }});//基本单位
             checkListEntity.setF_MS2(checkListArray.getMeter());
             //allMeter = allMeter.add(new BigDecimal(checkListArray.getMeter()));
             checkListEntity.setF_JH(checkListArray.getSeq());
@@ -717,6 +722,7 @@ try {
                 JSONArray ja0 = (JSONArray) ja.get(0);
                 BigDecimal checkJoinQty = ja0.getBigDecimal(0);
                 BigDecimal qty6 = ja0.getBigDecimal(1);
+                BigDecimal FCheckJoinBaseQty = ja0.getBigDecimal(6);
                 if(maxJH.compareTo(qty6) > 0)
                 {
                     JSONObject isSuccess = new JSONObject();
@@ -732,13 +738,24 @@ try {
 
                     return joPurReceive;
                 }
-                BigDecimal actReceiveQty = ja0.getBigDecimal(2);
-                BigDecimal qty = ja0.getBigDecimal(3);
-                BigDecimal qty1 = ja0.getBigDecimal(4);
-                BigDecimal qty2 = ja0.getBigDecimal(5);
-                Form purReceiveForm=  purReceiveUpdateQty(Integer.parseInt(checkListform.getReceiveFid()),
-                        Integer.parseInt(checkListform.getReceiveFEntryId()),checkJoinQty.add(allMeter),qty,qty1,qty2);
-                joPurReceive = kingdeeFormSaveSoso.purReceiveSSA(purReceiveForm);
+
+                if(FCheckJoinBaseQty.compareTo(checkJoinQty.add(allMeter)) > 0)
+                {
+                    JSONObject isSuccess = new JSONObject();
+                    isSuccess.put("IsSuccess", true);
+                    JSONObject responseStatus = new JSONObject();
+                    responseStatus.put("ResponseStatus", isSuccess);
+                    joPurReceive.put("Result", responseStatus);
+                }
+                else {
+                    BigDecimal actReceiveQty = ja0.getBigDecimal(2);
+                    BigDecimal qty = ja0.getBigDecimal(3);
+                    BigDecimal qty1 = ja0.getBigDecimal(4);
+                    BigDecimal qty2 = ja0.getBigDecimal(5);
+                    Form purReceiveForm = purReceiveUpdateQty(Integer.parseInt(checkListform.getReceiveFid()),
+                            Integer.parseInt(checkListform.getReceiveFEntryId()), checkJoinQty.add(allMeter), qty, qty1, qty2);
+                    joPurReceive = kingdeeFormSaveSoso.purReceiveSSA(purReceiveForm);
+                }
             }
 //            JSONObject isSuccess = new JSONObject();
 //            isSuccess.put("IsSuccess", true);
@@ -778,9 +795,9 @@ try {
         PurReceiveUpdateEntity purReceiveUpdateEntity = new PurReceiveUpdateEntity();
         purReceiveUpdateEntity.setFEntryID(fEntryId);
         purReceiveUpdateEntity.setFActReceiveQty(checkJoinQty);
-        purReceiveUpdateEntity.setF_SUWI_Qty(qty);
-        purReceiveUpdateEntity.setF_SUWI_Qty1(qty1);
-        purReceiveUpdateEntity.setF_SUWI_Qty2(qty2);
+        purReceiveUpdateEntity.setFReceiveQty(qty);
+        purReceiveUpdateEntity.setFRefuseQty(qty1);
+        purReceiveUpdateEntity.setFCsnReceiveQty(qty2);
 
         purReceiveUpdateEntities.add(purReceiveUpdateEntity);
 

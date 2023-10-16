@@ -54,13 +54,19 @@
 
         </div>
         <div class="align">
-            <button class="btn button_btn btn-blue margin" type="button" onclick="saveCheckList()"  id=""><i class="iconfont">提交检验</i>&nbsp; </button><br>
+            <button class="btn button_btn btn-blue margin" type="button" onclick="saveCheckList()"  id=""><i class="iconfont">提交检验</i></button><br>
         </div>
         <div class="align">
-            <button class="btn button_btn btn-green margin" type="button" onclick=""  id="openHistoryButton"><i class="iconfont">金蝶检验单</i>&nbsp; </button><br>
+            <button class="btn button_btn btn-green margin" type="button" onclick=""  id="openHistoryButton"><i class="iconfont">金蝶检验单</i></button><br>
+        </div>
+<!--        <div class="containerDown">-->
+<!--            <button class="btn button_btn btn-gray margin" type="button" onclick="printTemplate()"  id="printButton"><i class="iconfont">明细打印</i></button><br>-->
+<!--        </div>-->
+        <div class="containerDown">
+            <button class="btn button_btn btn-gray margin" type="button" onclick="printAll()"  id="printButtonAll"><i class="iconfont">码单打印</i></button><br>
         </div>
         <div class="containerDown">
-            <button class="btn button_btn btn-gray margin" type="button" onclick=""  id="printButton"><i class="iconfont">打印</i>&nbsp; </button><br>
+            <button class="btn button_btn btn-gray margin" type="button" onclick="printAllSource()"  id="printButtonAllSource"><i class="iconfont">源单打印</i></button><br>
         </div>
     </div>
     <!--右侧内容-->
@@ -68,8 +74,11 @@
         <!--编辑内容-->
         <div class="operation  mb15">
             <div class="container block">
+                <label class="margin tab-content"><i class="iconfont">检验单id</i></label>
+                <textarea class="textarea tab-content" type="text" onclick="" id="checkNumber" disabled></textarea>
+
                 <label class="margin"><i class="iconfont">检验单号</i></label>
-                <textarea class="textarea" type="text" onclick="" id="checkNumber" disabled></textarea>
+                <textarea class="textarea" type="text" onclick="" id="checkBillNumber" disabled></textarea>
 
                 <label class="margin"><i class="iconfont">物料编号</i></label>
                 <textarea class="textarea" type="text" onclick="" id="materialNumber" disabled></textarea>

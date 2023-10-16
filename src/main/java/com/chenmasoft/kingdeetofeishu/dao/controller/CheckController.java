@@ -67,6 +67,12 @@ public class CheckController extends ApiController {
         return jaData;
     }
 
+    @GetMapping("selectSourceCheckList")
+    public JSONArray selectSourceCheckList(@RequestParam String param) {
+        JSONArray jaData = selectForm.selectSourceCheck_List(param);
+        return jaData;
+    }
+
     @GetMapping("selectBPCheckListDetails")
     public JSONArray selectBPCheckListDetails(@RequestParam String param) {
         JSONArray jaData = selectForm.selectBPCheck_ListDetails(param);

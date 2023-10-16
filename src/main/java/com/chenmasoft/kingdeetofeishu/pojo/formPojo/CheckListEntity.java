@@ -21,6 +21,11 @@ public class CheckListEntity {
     @JSONField(name = "FUnitID",ordinal = 5)
     private HashMap fUnitID;
     /**
+     * fBaseUnitId
+     */
+    @JSONField(name = "FBaseUnitId",ordinal = 6)
+    private HashMap fBaseUnitId;
+    /**
      * fInspectQty
      */
     @JSONField(name = "FInspectQty",ordinal = 10)

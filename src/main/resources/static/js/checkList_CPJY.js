@@ -168,6 +168,7 @@ function saveCheckList(){
 
 function showData(data) {
     $("#checkNumber").val("自动生成");
+    $("#checkBillNumber").val("自动生成");
     $("#sourceBillNo").val(data[0][0]);
     $("#supplier").val(data[0][1]);
     $("#materialNumber").val(data[0][2]);
@@ -245,6 +246,7 @@ function clearData() {
     $("#barCode").val("");
     $("#isPass").val("合格");
     $("#checkNumber").val("");
+    $("#checkBillNumber").val("");
     $("#materialNumber").val("");
     $("#materialName").val("");
     $("#doorWidth").val("");
@@ -276,6 +278,13 @@ function createRows(seq, barCode) {
     var newRow = document.createElement("tr");
     newRow.className = "height30";
 
+    newRow.addEventListener("mouseenter", function () {
+        this.style.backgroundColor = 'lightblue'; // 鼠标悬停时的颜色
+    });
+    newRow.addEventListener("mouseleave", function () {
+        this.style.backgroundColor = 'initial'; // 恢复默认颜色
+    });
+
     // 创建新单元格并设置内容
     var cell1 = document.createElement("td");
     // cell1.className = "editable";
@@ -306,6 +315,47 @@ function createRows(seq, barCode) {
         checkEnter(event, barCode);
     }
     newRow.appendChild(cell4);
+
+    cell1.addEventListener("focus", function () {
+        setNumberInput(this);
+    });
+    cell4.addEventListener("focus", function () {
+        setNumberInput(this);
+    });
+
+    cell1.addEventListener("click", function () {
+        resetTableColors();
+        addClickedClass(cell1,cell2,cell3,cell4);
+    });
+    cell2.addEventListener("click", function () {
+        resetTableColors();
+        addClickedClass(cell1,cell2,cell3,cell4);
+    });
+    cell3.addEventListener("click", function () {
+        resetTableColors();
+        addClickedClass(cell1,cell2,cell3,cell4);
+    });
+    cell4.addEventListener("click", function () {
+        resetTableColors();
+        addClickedClass(cell1,cell2,cell3,cell4);
+    });
+
+    function resetTableColors() {
+        var body = document.getElementById("mainTable");
+        var rows = body.getElementsByTagName('tr');
+        for (var j = 0; j < rows.length; j++) {
+            var cells = rows[j].getElementsByTagName('td');
+            for (var i = 0; i < cells.length; i++) {
+                cells[i].classList.remove('clicked'); // 取消其他行的深蓝色
+            }
+        }
+    }
+
+    function addClickedClass() {
+        for (var i = 0; i < arguments.length; i++) {
+            arguments[i].classList.add('clicked'); // 单击时添加深蓝色
+        }
+    }
 
     // 将新行添加到tbody中
     tbody.appendChild(newRow);
@@ -401,11 +451,11 @@ deleteRow.addEventListener("click", function() {
 //     }
 // });
 
-var printButton = document.getElementById("printButton");
-
-printButton.addEventListener("click", function() {
-    window.print(); // 调用浏览器的打印功能
-});
+// var printButton = document.getElementById("printButton");
+//
+// printButton.addEventListener("click", function() {
+//     window.print(); // 调用浏览器的打印功能
+// });
 
 
 // function makeEditable(tableId, config) {
@@ -909,6 +959,7 @@ function fillCurrentTable(details) {
     // checkNumber.textContent = details[0];
     // checkNumber.value = details[10];
     $("#checkNumber").val(details[10]);
+    $("#checkBillNumber").val(details[0]);
     $("#materialNumber").val(details[2]);
     $("#materialName").val(details[3]);
     $("#bagNumber").val(details[4]);
@@ -934,7 +985,7 @@ function fillCurrentTable(details) {
     // extAuxUnitNumber = details[6];
     // qty6 = details[6];
     // baseUnitNumber = details[6];
-    // actReceiveQty = details[6];
+    actReceiveQty = "0";
 
     $.ajax({
         type: "get",
@@ -948,6 +999,13 @@ function fillCurrentTable(details) {
                 data.forEach(function (eveData) {
                     var newRow = tbody.insertRow();
 
+                    newRow.addEventListener("mouseenter", function () {
+                        this.style.backgroundColor = 'lightblue'; // 鼠标悬停时的颜色
+                    });
+                    newRow.addEventListener("mouseleave", function () {
+                        this.style.backgroundColor = 'initial'; // 恢复默认颜色
+                    });
+
                     var newCell = newRow.insertCell();
                     newCell.textContent = eveData[0];
                     newCell.contentEditable = "true";
@@ -958,6 +1016,47 @@ function fillCurrentTable(details) {
                     var newCell4 = newRow.insertCell();
                     newCell4.textContent = eveData[3];
                     newCell4.contentEditable = "true";
+
+                    newCell.addEventListener("focus", function () {
+                        setNumberInput(this);
+                    });
+                    newCell4.addEventListener("focus", function () {
+                        setNumberInput(this);
+                    });
+
+                    newCell.addEventListener("click", function () {
+                        resetTableColors();
+                        addClickedClass(newCell,newCell2,newCell3,newCell4);
+                    });
+                    newCell2.addEventListener("click", function () {
+                        resetTableColors();
+                        addClickedClass(newCell,newCell2,newCell3,newCell4);
+                    });
+                    newCell3.addEventListener("click", function () {
+                        resetTableColors();
+                        addClickedClass(newCell,newCell2,newCell3,newCell4);
+                    });
+                    newCell4.addEventListener("click", function () {
+                        resetTableColors();
+                        addClickedClass(newCell,newCell2,newCell3,newCell4);
+                    });
+
+                    function resetTableColors() {
+                        var body = document.getElementById("table-body");
+                        var rows = body.getElementsByTagName('tr');
+                        for (var j = 0; j < rows.length; j++) {
+                            var cells = rows[j].getElementsByTagName('td');
+                            for (var i = 0; i < cells.length; i++) {
+                                cells[i].classList.remove('clicked'); // 取消其他行的深蓝色
+                            }
+                        }
+                    }
+
+                    function addClickedClass() {
+                        for (var i = 0; i < arguments.length; i++) {
+                            arguments[i].classList.add('clicked'); // 单击时添加深蓝色
+                        }
+                    }
                 });
                 code = data[0][2].substring(0,data[0][2].indexOf("-"));
             } else {
@@ -1034,8 +1133,13 @@ recordCD.addEventListener("click", function() {
 
 var recordCDPopup = null; // 用于存储当前弹出窗口的引用
 
-// 打开金蝶检验单弹出框
+// 打开疵点明细
 function openRecordCD() {
+    var deepBlueRows = document.querySelectorAll(".clicked"); // 获取具有深蓝色类的所有行
+    if(deepBlueRows.length <= 0) {
+        alert("未选择行！");
+        return;
+    }
     if (recordCDPopup !== null && !recordCDPopup.closed) {
         recordCDPopup.close();
         recordCDPopup = null; // 将窗口引用置为空
@@ -1305,6 +1409,76 @@ function openRecordCD() {
     buttonDiv.appendChild(buttonHDZS);
     popupDocument.body.appendChild(buttonDiv);
 }
+
+let numberInput = document.getElementById('actualValue');
+//let numberInput = null;
+
+function setNumberInput(input) {
+    numberInput = input;
+    toggleNumberKeyboardAdd();
+    numberInput.addEventListener('blur', toggleNumberKeyboardDelete);
+}
+const numberKeyboard = document.createElement('div');
+numberKeyboard.id = 'numberKeyboard';
+numberKeyboard.className = 'containerRight';
+document.body.appendChild(numberKeyboard);
+numberKeyboard.addEventListener('mousedown', () => preventAll(event));
+
+function toggleNumberKeyboard() {
+    numberKeyboard.classList.toggle('visible');
+}
+
+function toggleNumberKeyboardAdd() {
+    numberKeyboard.classList.add('visible');
+}
+
+function toggleNumberKeyboardDelete() {
+    numberKeyboard.classList.remove('visible');
+}
+
+function appendNumber(num, event) {
+    event.preventDefault(); // 阻止默认行为
+    //event.stopPropagation(); // 阻止事件冒泡，保持文本框焦点
+    numberInput.textContent += num;
+}
+
+function clearInput(event) {
+    event.preventDefault(); // 阻止默认行为
+    //event.stopPropagation(); // 阻止事件冒泡，保持文本框焦点
+    numberInput.textContent = '';
+}
+
+function preventAll(event) {
+    event.preventDefault(); // 阻止默认行为
+    //event.stopPropagation(); // 阻止事件冒泡，保持文本框焦点
+}
+
+numberInput.addEventListener('focus', toggleNumberKeyboardAdd);
+numberInput.addEventListener('blur', toggleNumberKeyboardDelete);
+
+// Dynamically create number buttons and add click event listeners
+for (let i = 1; i <= 9; i++) {
+    const button = document.createElement('button');
+    button.textContent = i;
+    button.addEventListener('mousedown', () => appendNumber(i, event));
+    numberKeyboard.appendChild(button);
+}
+
+const zeroButton = document.createElement('button');
+zeroButton.textContent = '0';
+zeroButton.addEventListener('mousedown', () => appendNumber(0, event));
+numberKeyboard.appendChild(zeroButton);
+
+const dotButton = document.createElement('button');
+dotButton.textContent = ".";
+dotButton.addEventListener('mousedown', () => appendNumber(".", event));
+numberKeyboard.appendChild(dotButton);
+
+const clearButton = document.createElement('button');
+clearButton.textContent = '清空';
+clearButton.addEventListener('mousedown', () => clearInput(event));
+numberKeyboard.appendChild(clearButton);
+
 
 $(function () {
     //内页框架结构编辑

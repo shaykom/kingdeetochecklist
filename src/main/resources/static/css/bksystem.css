@@ -96,6 +96,10 @@ body
     justify-content: center; /* 水平居中 */
     align-items: flex-end; /* 底部对齐 */
 }
+.containerFlex {
+    display: flex;
+    flex: 1; /* 占据剩余空间 */
+}
 .page_content{
 	border: 1px solid #dddddd;
 	overflow: auto;  /* hidden */
@@ -1095,3 +1099,31 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
 /*********************/
 .Promp_plate{border-radius: 3px; padding: 10px 15px; padding-right: 40px; position: relative;}
 .Promp_plate .PrompClose{position: absolute; right:10px;font-size: 13px;cursor: pointer;}
+
+
+/*********************/
+
+#numberKeyboard {
+    position: fixed;
+    bottom: -300px; /* 初始时隐藏在屏幕底部 */
+    left: 0;
+    right: 0;
+    background-color: #f0f0f0;
+    padding: 10px;
+    transition: bottom 0.3s ease-out; /* 添加过渡效果 */
+}
+
+#numberKeyboard.visible {
+    bottom: 0; /* 显示在屏幕底部 */
+}
+
+#numberKeyboard button {
+    padding: 10px;
+    margin: 5px;
+    font-size: 16px;
+}
+
+#numberInput {
+    padding: 10px;
+    font-size: 16px;
+}

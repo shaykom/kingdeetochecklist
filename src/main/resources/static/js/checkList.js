@@ -149,6 +149,7 @@ function saveCheckList(){
 
 function showData(data) {
     $("#checkNumber").val("自动生成");
+    $("#checkBillNumber").val("自动生成");
     $("#sourceBillNo").val(data[0][0]);
     $("#supplier").val(data[0][1]);
     $("#materialNumber").val(data[0][2]);
@@ -226,6 +227,7 @@ function clearData() {
     $("#barCode").val("");
     $("#isPass").val("合格");
     $("#checkNumber").val("");
+    $("#checkBillNumber").val("");
     $("#materialNumber").val("");
     $("#materialName").val("");
     $("#doorWidth").val("");
@@ -257,6 +259,13 @@ function createRows(seq, barCode) {
     var newRow = document.createElement("tr");
     newRow.className = "height30";
 
+    newRow.addEventListener("mouseenter", function () {
+        this.style.backgroundColor = 'lightblue'; // 鼠标悬停时的颜色
+    });
+    newRow.addEventListener("mouseleave", function () {
+        this.style.backgroundColor = 'initial'; // 恢复默认颜色
+    });
+
     // 创建新单元格并设置内容
     var cell1 = document.createElement("td");
     // cell1.className = "editable";
@@ -287,6 +296,40 @@ function createRows(seq, barCode) {
         checkEnter(event, barCode);
     }
     newRow.appendChild(cell4);
+
+    cell1.addEventListener("click", function () {
+        resetTableColors();
+        addClickedClass(cell1,cell2,cell3,cell4);
+    });
+    cell2.addEventListener("click", function () {
+        resetTableColors();
+        addClickedClass(cell1,cell2,cell3,cell4);
+    });
+    cell3.addEventListener("click", function () {
+        resetTableColors();
+        addClickedClass(cell1,cell2,cell3,cell4);
+    });
+    cell4.addEventListener("click", function () {
+        resetTableColors();
+        addClickedClass(cell1,cell2,cell3,cell4);
+    });
+
+    function resetTableColors() {
+        var body = document.getElementById("table-body");
+        var rows = body.getElementsByTagName('tr');
+        for (var j = 0; j < rows.length; j++) {
+            var cells = rows[j].getElementsByTagName('td');
+            for (var i = 0; i < cells.length; i++) {
+                cells[i].classList.remove('clicked'); // 取消其他行的深蓝色
+            }
+        }
+    }
+
+    function addClickedClass() {
+        for (var i = 0; i < arguments.length; i++) {
+            arguments[i].classList.add('clicked'); // 单击时添加深蓝色
+        }
+    }
 
     // 将新行添加到tbody中
     tbody.appendChild(newRow);
@@ -382,11 +425,11 @@ deleteRow.addEventListener("click", function() {
 //     }
 // });
 
-var printButton = document.getElementById("printButton");
-
-printButton.addEventListener("click", function() {
-    window.print(); // 调用浏览器的打印功能
-});
+// var printButton = document.getElementById("printButton");
+//
+// printButton.addEventListener("click", function() {
+//     window.print(); // 调用浏览器的打印功能
+// });
 
 
 // function makeEditable(tableId, config) {
@@ -890,6 +933,7 @@ function fillCurrentTable(details) {
     // checkNumber.textContent = details[0];
     // checkNumber.value = details[10];
     $("#checkNumber").val(details[10]);
+    $("#checkBillNumber").val(details[0]);
     $("#materialNumber").val(details[2]);
     $("#materialName").val(details[3]);
     $("#bagNumber").val(details[4]);
@@ -929,6 +973,13 @@ function fillCurrentTable(details) {
                 data.forEach(function (eveData) {
                     var newRow = tbody.insertRow();
 
+                    newRow.addEventListener("mouseenter", function () {
+                        this.style.backgroundColor = 'lightblue'; // 鼠标悬停时的颜色
+                    });
+                    newRow.addEventListener("mouseleave", function () {
+                        this.style.backgroundColor = 'initial'; // 恢复默认颜色
+                    });
+
                     var newCell = newRow.insertCell();
                     newCell.textContent = eveData[0];
                     newCell.contentEditable = "true";
@@ -939,6 +990,40 @@ function fillCurrentTable(details) {
                     var newCell4 = newRow.insertCell();
                     newCell4.textContent = eveData[3];
                     newCell4.contentEditable = "true";
+
+                    newCell.addEventListener("click", function () {
+                        resetTableColors();
+                        addClickedClass(newCell,newCell2,newCell3,newCell4);
+                    });
+                    newCell2.addEventListener("click", function () {
+                        resetTableColors();
+                        addClickedClass(newCell,newCell2,newCell3,newCell4);
+                    });
+                    newCell3.addEventListener("click", function () {
+                        resetTableColors();
+                        addClickedClass(newCell,newCell2,newCell3,newCell4);
+                    });
+                    newCell4.addEventListener("click", function () {
+                        resetTableColors();
+                        addClickedClass(newCell,newCell2,newCell3,newCell4);
+                    });
+
+                    function resetTableColors() {
+                        var body = document.getElementById("table-body");
+                        var rows = body.getElementsByTagName('tr');
+                        for (var j = 0; j < rows.length; j++) {
+                            var cells = rows[j].getElementsByTagName('td');
+                            for (var i = 0; i < cells.length; i++) {
+                                cells[i].classList.remove('clicked'); // 取消其他行的深蓝色
+                            }
+                        }
+                    }
+
+                    function addClickedClass() {
+                        for (var i = 0; i < arguments.length; i++) {
+                            arguments[i].classList.add('clicked'); // 单击时添加深蓝色
+                        }
+                    }
                 });
                 code = data[0][2].substring(0,data[0][2].indexOf("-"));
             } else {
@@ -1006,6 +1091,398 @@ $.ajax({
         alert("ajax连接异常：" + msg);
     }
 });
+
+var popupDetail = null; // 用于存储当前弹出窗口的引用
+var popupDetailCounter = 0;
+
+function printTemplate() {
+    var deepBlueRows = document.querySelectorAll(".clicked"); // 获取具有深蓝色类的所有行
+    if(deepBlueRows.length > 0) {
+        if (popupDetail !== null && !popupDetail.closed) {
+            popupDetail.close();
+            popupDetail = null; // 将窗口引用置为空
+        }
+
+        popupDetailCounter++;
+        // 创建一个新窗口
+        popupDetail = window.open('URL2', '明细打印' + popupDetailCounter, 'width=600,height=600');
+
+        // 将模板内容写入新窗口
+        popupDetail.document.write("<h1>" +
+            "<meta charset=\"UTF-8\">\n" +
+            "    <meta name=\"viewport\"\n" +
+            "          content=\"maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0\"/>\n" +
+            "    <meta name=\"format-detection\" content=\"telephone=no, email=no, date=no, address=no\">\n" +
+            "    <meta name=\"apple-mobile-web-app-capable\" content=\"yes\">\n" +
+            "    <meta name=\"apple-mobile-web-app-status-bar-style\" content=\"black\">\n" +
+            "    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"/>\n" +
+            "    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge,chrome=1\">\n" +
+            "    <meta name=\"format-detection\" content=\"telephone=no\"/>\n" +
+            "    <meta name=\"apple-mobile-web-app-capable\" content=\"yes\"/>\n" +
+            "    <meta content=\"black\" name=\"apple-mobile-web-app-status-bar-style\">\n" +
+            "    <link href=\"/css/bksystem.css\" rel=\"stylesheet\" type=\"text/css\"/>\n" +
+            "    <link href=\"/font/iconfont.css\" rel=\"stylesheet\" type=\"text/css\"/>\n" +
+            "    <link href=\"/css/module.css\" rel=\"stylesheet\" type=\"text/css\"/>\n" +
+            "    <link href=\"/css/pages.css\" rel=\"stylesheet\" type=\"text/css\"/>\n" +
+            "    <title>打印模板</title>\n" +
+            "    <script src=\"/js/jquery-1.9.1.min.js\" type=\"text/javascript\"></script>\n" +
+            "    <script src=\"/js/jquery.nicescroll.js\" type=\"text/javascript\"></script>\n" +
+            "    <script src=\"/js/HUpages.js\" type=\"text/javascript\"></script>\n" +
+            "    <script src=\"/js/common.js\" type=\"text/javascript\"></script>" +
+            "    <script src=\"https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js\"></script>" +
+            "</h1></body>");
+        popupDetail.document.write("<label class=\"margin\"><i class=\"iconfont\">物料号:" + $("#materialNumber").val() + "</i></label></br></br>" +
+            "<label class=\"margin\"><i class=\"iconfont\">品名:" + $("#materialName").val() + "</i></label></br></br>" +
+            "<label class=\"margin\"><i class=\"iconfont\">包号:" + $("#bagNumber").val() + "</i></label></br></br>" +
+            "<label class=\"margin\"><i class=\"iconfont\">卷号:" + deepBlueRows[1].textContent + "</i></label></br></br>" +
+            "<label class=\"margin\"><i class=\"iconfont\">米数:" + deepBlueRows[0].textContent + "</i></label></br></br>");
+        popupDetail.document.write("<div id=\"qrcode\"></div>\n" +
+            "    <script type=\"text/javascript\">\n" +
+            "        // 准备要转换的文本\n" +
+            "        var textToEncode = \"" + deepBlueRows[2].textContent + "\";\n" +
+            "        // 获取要显示二维码的 DOM 元素\n" +
+            "        var qrcodeDiv = document.getElementById(\"qrcode\");\n" +
+            "        // 使用 qrcode-generator 库生成二维码\n" +
+            "        var qrcode = new QRCode(qrcodeDiv, {\n" +
+            "            text: textToEncode,\n" +
+            "            width: 128,\n" +
+            "            height: 128\n" +
+            "        });\n" +
+            "    </script>")
+        popupDetail.document.write("</body></html>");
+
+        // 关闭写入，触发打印
+        popupDetail.document.close();
+
+        popupDetail.onload = function () {
+            popupDetail.print();
+        };
+    }
+    else
+    {
+        alert("未选择行！");
+    }
+}
+
+var popupAllDetail = null; // 用于存储当前弹出窗口的引用
+var popupAllDetailCounter = 0;
+
+function printAll() {
+    if (popupAllDetail !== null && !popupAllDetail.closed) {
+        popupAllDetail.close();
+        popupAllDetail = null; // 将窗口引用置为空
+    }
+
+    popupAllDetailCounter++;
+    // 创建一个新窗口
+    popupAllDetail = window.open('URL3', '明细码单' + popupAllDetailCounter, 'width=600,height=600');
+
+    // 将模板内容写入新窗口
+    popupAllDetail.document.write("<h1>" +
+        "<meta charset=\"UTF-8\">\n" +
+        "    <meta name=\"viewport\"\n" +
+        "          content=\"maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0\"/>\n" +
+        "    <meta name=\"format-detection\" content=\"telephone=no, email=no, date=no, address=no\">\n" +
+        "    <meta name=\"apple-mobile-web-app-capable\" content=\"yes\">\n" +
+        "    <meta name=\"apple-mobile-web-app-status-bar-style\" content=\"black\">\n" +
+        "    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"/>\n" +
+        "    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge,chrome=1\">\n" +
+        "    <meta name=\"format-detection\" content=\"telephone=no\"/>\n" +
+        "    <meta name=\"apple-mobile-web-app-capable\" content=\"yes\"/>\n" +
+        "    <meta content=\"black\" name=\"apple-mobile-web-app-status-bar-style\">\n" +
+        "    <link href=\"/css/bksystem.css\" rel=\"stylesheet\" type=\"text/css\"/>\n" +
+        "    <link href=\"/font/iconfont.css\" rel=\"stylesheet\" type=\"text/css\"/>\n" +
+        "    <link href=\"/css/module.css\" rel=\"stylesheet\" type=\"text/css\"/>\n" +
+        "    <link href=\"/css/pages.css\" rel=\"stylesheet\" type=\"text/css\"/>\n" +
+        "    <title>打印模板</title>\n" +
+        "    <script src=\"/js/jquery-1.9.1.min.js\" type=\"text/javascript\"></script>\n" +
+        "    <script src=\"/js/jquery.nicescroll.js\" type=\"text/javascript\"></script>\n" +
+        "    <script src=\"/js/HUpages.js\" type=\"text/javascript\"></script>\n" +
+        "    <script src=\"/js/common.js\" type=\"text/javascript\"></script>" +
+        "    <script src=\"https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js\"></script>" +
+        "</h1></body>");
+    popupAllDetail.document.write(
+        "<div class=\"align block\"> " +
+          "<br><label class=\"margin\"><i class=\"iconfontSmall\">杭州万事利丝绸数码印花有限公司</i></label><br>" +
+          "<label class=\"margin\"><i class=\"iconfontSmall\">白坯进仓码单</i></label>" +
+        "</div>" +
+        "<div class=\"block\">" +
+        "<label class=\"margin\"><i class=\"iconfontSmall\">日期：" + $("#checkDate").val() + "</i></label>" +
+        "<label class=\"margin\"><i class=\"iconfontSmall\">供应商：" + $("#supplier").val() + "</i></label>" +
+        "<label class=\"margin\"><i class=\"iconfontSmall\">收料通知单号：" + $("#sourceBillNo").val() + "</i></label>" +
+        "</div>"+
+        "<div class=\"block\">" +
+        "<label class=\"margin\"><i class=\"iconfontSmall\">品号：" + $("#materialNumber").val() + "</i></label>" +
+        "<label class=\"margin\"><i class=\"iconfontSmall\">品名：" + $("#materialName").val() + "</i></label>" +
+        "<label class=\"margin\"><i class=\"iconfontSmall\">门幅：" + $("#doorWidth").val() + "</i></label>" +
+        "</div>"+
+        "<div class=\"page_content clearfix mb15 table-module\" style=\"overflow:auto;\">" +//
+           "<table class=\"gallery table table_list table_striped table-bordered\">" +//
+           "<thead>" +
+              "<tr>" +
+              "<th class=\"iconfontSmall\">卷号</th>" +
+              "<th class=\"iconfontSmall\">数量</th>" +
+              "<th class=\"iconfontSmall\">单位</th>" +
+              "<th class=\"iconfontSmall\">条码</th>" +
+              "<th class=\"iconfontSmall\">备注</th>" +
+              "</tr>" +
+           "</thead>" +
+           "<tbody id=\"t-body\">" +
+           "</tbody>" +
+        "</table>" +
+        "</div>"+
+        "<label class=\"margin\"><i id=\"Meter\" class=\"iconfont\"></i></label>")
+
+
+
+    popupAllDetail.document.write(
+        "    <script type=\"text/javascript\">"+
+        "    var tbody = document.getElementById(\"t-body\");");
+
+    var allMeter = 0;
+    // 遍历每一行
+    $("#table-body tr").each(function() {
+        var meter = $(this).find("td:eq(0)").text();
+        allMeter = allMeter + Number(meter);
+        var seq = $(this).find("td:eq(1)").text();
+        var barCode = $(this).find("td:eq(2)").text();
+        var note = $(this).find("td:eq(3)").text();
+
+        popupAllDetail.document.write(
+            "// 创建新行\n" +
+            "var newRow"+seq+" = document.createElement(\"tr\");\n" +
+            "newRow"+seq+".className = \"height30\";\n" +
+            "// 创建新单元格并设置内容\n" +
+            "var cell1"+seq+" = document.createElement(\"td\");\n" +
+            "cell1"+seq+".textContent = \""+seq+"\";\n" +
+            "newRow"+seq+".appendChild(cell1"+seq+");\n" +
+            "var cell2"+seq+" = document.createElement(\"td\");\n" +
+            "cell2"+seq+".textContent = \""+meter+"\";\n" +
+            "newRow"+seq+".appendChild(cell2"+seq+");\n" +
+            "var cell3"+seq+" = document.createElement(\"td\");\n" +
+            "cell3"+seq+".textContent = \"米\";\n" +
+            "newRow"+seq+".appendChild(cell3"+seq+");\n" +
+            "var cell4"+seq+" = document.createElement(\"td\");\n" +
+            "cell4"+seq+".className = \"containerDown\"\n" +
+            "var qrcode"+seq+" = new QRCode(cell4"+seq+", {\n" +
+            "text: \""+barCode+"\",\n" +
+            "width: 64,\n" +
+            "height: 50\n" +
+            "});\n" +
+            "newRow"+seq+".appendChild(cell4"+seq+");\n" +
+            "var cell5"+seq+" = document.createElement(\"td\");\n" +
+            "cell5"+seq+".textContent = \""+note+"\";\n" +
+            "newRow"+seq+".appendChild(cell5"+seq+");\n" +
+            "// 将新行添加到tbody中\n" +
+            "tbody.appendChild(newRow"+seq+");");
+    });
+
+    popupAllDetail.document.write(
+        "    var meter = $(\"#Meter\");\n" +
+        "    meter.text(\"合计："+allMeter+"\");" +
+        "    </script>")
+    popupAllDetail.document.write("</body></html>");
+
+    // 关闭写入，触发打印
+    popupAllDetail.document.close();
+
+    popupAllDetail.onload = function () {
+        popupAllDetail.print();
+    };
+}
+
+
+var popupAllDetailSource = null; // 用于存储当前弹出窗口的引用
+var popupAllDetailSourceCounter = 0;
+function printAllSource() {
+    if (popupAllDetailSource !== null && !popupAllDetailSource.closed) {
+        popupAllDetailSource.close();
+        popupAllDetailSource = null; // 将窗口引用置为空
+    }
+
+    popupAllDetailSourceCounter++;
+    // 创建一个新窗口
+    popupAllDetailSource = window.open('URL4', '源单码单' + popupAllDetailSourceCounter, 'width=600,height=600');
+
+    // 将模板内容写入新窗口
+    popupAllDetailSource.document.write("<h1>" +
+        "<meta charset=\"UTF-8\">\n" +
+        "    <meta name=\"viewport\"\n" +
+        "          content=\"maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0\"/>\n" +
+        "    <meta name=\"format-detection\" content=\"telephone=no, email=no, date=no, address=no\">\n" +
+        "    <meta name=\"apple-mobile-web-app-capable\" content=\"yes\">\n" +
+        "    <meta name=\"apple-mobile-web-app-status-bar-style\" content=\"black\">\n" +
+        "    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"/>\n" +
+        "    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge,chrome=1\">\n" +
+        "    <meta name=\"format-detection\" content=\"telephone=no\"/>\n" +
+        "    <meta name=\"apple-mobile-web-app-capable\" content=\"yes\"/>\n" +
+        "    <meta content=\"black\" name=\"apple-mobile-web-app-status-bar-style\">\n" +
+        "    <link href=\"/css/bksystem.css\" rel=\"stylesheet\" type=\"text/css\"/>\n" +
+        "    <link href=\"/font/iconfont.css\" rel=\"stylesheet\" type=\"text/css\"/>\n" +
+        "    <link href=\"/css/module.css\" rel=\"stylesheet\" type=\"text/css\"/>\n" +
+        "    <link href=\"/css/pages.css\" rel=\"stylesheet\" type=\"text/css\"/>\n" +
+        "    <title>打印模板</title>\n" +
+        "    <script src=\"/js/jquery-1.9.1.min.js\" type=\"text/javascript\"></script>\n" +
+        "    <script src=\"/js/jquery.nicescroll.js\" type=\"text/javascript\"></script>\n" +
+        "    <script src=\"/js/HUpages.js\" type=\"text/javascript\"></script>\n" +
+        "    <script src=\"/js/common.js\" type=\"text/javascript\"></script>" +
+        "    <script src=\"https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js\"></script>" +
+        "</h1></body>");
+    var sourceBillNo = $("#sourceBillNo").val();
+    popupAllDetailSource.document.write(
+        "<div class=\"align\"> " +
+        "<br><label class=\"margin\"><i class=\"iconfontSmall\">杭州万事利丝绸数码印花有限公司</i></label><br>" +
+        "<label class=\"margin\"><i class=\"iconfontSmall\">白坯进仓汇总码单</i></label>" +
+        "<div class=\"containerFlex block\">" +
+        "<label class=\"margin\"><i class=\"iconfontSmall\">日期：" + $("#checkDate").val() + "</i></label>" +
+        "<label class=\"margin\"><i class=\"iconfontSmall\">供应商：" + $("#supplier").val() + "</i></label>" +
+        "<label class=\"margin\"><i class=\"iconfontSmall\">收料通知单号：" + sourceBillNo + "</i></label>" +
+        "</div>"+
+        "</div>"+
+        "<div class=\"page_content clearfix mb15 table-module \" style=\"overflow:auto;\">" +
+        "<table class=\"gallery table table_list table_striped table-bordered\">" +
+        "<thead>" +
+        "<tr>" +
+        "<th>物料编码</th>" +
+        "<th>品名</th>" +
+        "<th>门幅</th>" +
+        "<th>状态</th>" +
+        "<th>米数</th>" +
+        "<th>匹数</th>" +
+        "</tr>" +
+        "</thead>" +
+        "<tbody id=\"t-body\">" +
+        "</tbody>" +
+        "</table>" +
+        "<label class=\"margin\"><i id=\"Meter\" class=\"iconfont\"></i></label>" +
+        "</div>")
+
+    popupAllDetailSource.document.write(
+        "    <script type=\"text/javascript\">"+
+        "    var tbody = document.getElementById(\"t-body\");");
+
+    var allMeter = 0;
+
+    $.ajax({
+        type: "get",
+        url: "check/selectSourceCheckList",
+        data: {
+            param: sourceBillNo
+        },
+        success: function (data) {
+            if (data.length > 0) {
+                /*这个方法里是ajax发送请求成功之后执行的代码*/
+                const groupedData = data.reduce((acc, item) => {
+                    const key = item.slice(0, 4).join(',');
+                    if (!acc[key]) {
+                        acc[key] = [...item, 1];  // Copy the item and add a count of 1
+                    } else {
+                        acc[key][4] += item[4];  // Accumulate the fifth element
+                        acc[key][6] += 1;  // Increment the count
+                    }
+                    return acc;
+                }, {});
+
+                Object.values(groupedData).forEach(function (eveData) {
+                    var materialNumber = eveData[0];
+                    var materialName = eveData[1];
+                    var materialModel = eveData[2];
+                    var policyQty = eveData[4];
+                    allMeter = allMeter + Number(policyQty);
+                    var seq = eveData[5];
+                    var count = eveData[6];
+                    var usePolicy = "";
+                    switch (eveData[3]) {
+                        case "A":
+                            usePolicy = "接收";
+                            break;
+                        case "B":
+                            usePolicy = "让步接收";
+                            break;
+                        case "C":
+                            usePolicy = "返修";
+                            break;
+                        case "D":
+                            usePolicy = "报废";
+                            break;
+                        case "E":
+                            usePolicy = "挑选（全检）";
+                            break;
+                        case "F":
+                            usePolicy = "判退";
+                            break;
+                        case "G":
+                            usePolicy = "不良";
+                            break;
+                        case "H":
+                            usePolicy = "料废";
+                            break;
+                        case "I":
+                            usePolicy = "工废";
+                            break;
+                        case "J":
+                            usePolicy = "返工";
+                            break;
+                        case "M":
+                            usePolicy = "来料不良";
+                            break;
+                        case "N":
+                            usePolicy = "作业不良";
+                            break;
+                        default:
+                            usePolicy = "接收";
+                    }
+                    popupAllDetailSource.document.write(
+                        "// 创建新行\n" +
+                        "var newRow"+seq+" = document.createElement(\"tr\");\n" +
+                        "newRow"+seq+".className = \"height30\";\n" +
+                        "// 创建新单元格并设置内容\n" +
+                        "var cell1"+seq+" = document.createElement(\"td\");\n" +
+                        "cell1"+seq+".textContent = \""+materialNumber+"\";\n" +
+                        "newRow"+seq+".appendChild(cell1"+seq+");\n" +
+                        "var cell2"+seq+" = document.createElement(\"td\");\n" +
+                        "cell2"+seq+".textContent = \""+materialName+"\";\n" +
+                        "newRow"+seq+".appendChild(cell2"+seq+");\n" +
+                        "var cell3"+seq+" = document.createElement(\"td\");\n" +
+                        "cell3"+seq+".textContent = \""+materialModel+"\";\n" +
+                        "newRow"+seq+".appendChild(cell3"+seq+");\n" +
+                        "var cell4"+seq+" = document.createElement(\"td\");\n" +
+                        "cell4"+seq+".textContent = \""+usePolicy+"\";\n" +
+                        "newRow"+seq+".appendChild(cell4"+seq+");\n" +
+                        "var cell5"+seq+" = document.createElement(\"td\");\n" +
+                        "cell5"+seq+".textContent = \""+policyQty+"\";\n" +
+                        "newRow"+seq+".appendChild(cell5"+seq+");\n" +
+                        "var cell6"+seq+" = document.createElement(\"td\");\n" +
+                        "cell6"+seq+".textContent = \""+count+"\";\n" +
+                        "newRow"+seq+".appendChild(cell6"+seq+");\n" +
+                        "// 将新行添加到tbody中\n" +
+                        "tbody.appendChild(newRow"+seq+");");
+
+                });
+                popupAllDetailSource.document.write(
+                    "    var meter = $(\"#Meter\");\n" +
+                    "    meter.text(\"合计："+allMeter+"\");" +
+                    "    </script>")
+                popupAllDetailSource.document.write("</body></html>");
+
+                // 关闭写入，触发打印
+                popupAllDetailSource.document.close();
+
+                popupAllDetailSource.onload = function () {
+                    popupAllDetailSource.print();
+                };
+            } else {
+                popupAllDetailSource.alert("收料通知单不存在！");
+            }
+        },
+        error: function (msg) {
+            popupAllDetailSource.alert("ajax连接异常：" + msg);
+        }
+    });
+
+
+
+}
 
 $(function () {
     //内页框架结构编辑

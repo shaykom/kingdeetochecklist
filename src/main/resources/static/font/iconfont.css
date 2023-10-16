@@ -15,6 +15,14 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.iconfontSmall {
+  font-family:"iconfont" !important;
+  font-size:8px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 .icon-delete:before { content: "\e6b4"; }
 
 .icon-msnui-fullscreen:before { content: "\e653"; }
