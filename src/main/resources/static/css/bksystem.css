@@ -670,10 +670,15 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
     background:#d15b47!important;
 	border-color: #d15b47;
 }
-.btn-info, .btn-info:focus {
+.btn-info {
 	color: #fff;
     background-color: #6fb3e0!important;
     border-color: #6fb3e0;
+}
+.btn-info:focus {
+    color: #fff;
+    background-color: #72B63F !important;
+    border-color: #72B63F;
 }
 .btn-green, .btn-green:focus {
 	color: #fff;

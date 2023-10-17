@@ -527,7 +527,7 @@ try {
         dataEntity.setIsAutoAdjustField("false");
         dataEntity.setInterationFlags("");
         dataEntity.setIgnoreInterationFlag("");
-        dataEntity.setIsAutoSubmitAndAudit("true");
+//        dataEntity.setIsAutoSubmitAndAudit("true");
         dataEntity.setModel(checkListModel);
         if(!Objects.equals(checkListform.getFid(), "") && !Objects.equals(checkListform.getFid(), "自动生成")){
             checkListModel.setFid(Integer.parseInt(checkListform.getFid()));
@@ -617,7 +617,10 @@ try {
             checkListEntity.setFSupplierId(new HashMap<String, String>() {{
                 put("Fnumber", checkListform.getSupplierNumber());//
             }});
+            checkListEntity.setFSrcBillType0("PUR_ReceiveBill");
             checkListEntity.setFSrcBillNo0(checkListform.getSourceBillNo());
+            checkListEntity.setFSrcInterId0(Integer.parseInt(checkListform.getReceiveFid() == null ? "0" : checkListform.getReceiveFid()));
+            checkListEntity.setFSrcEntryId0(Integer.parseInt(checkListform.getReceiveFEntryId() == null ? "0" : checkListform.getReceiveFEntryId()));
 
             String isPass = checkListform.getIsPass();
             if(Objects.equals(isPass, "合格")) {
@@ -669,6 +672,14 @@ try {
                 )};
                 checkListEntity.setFPolicyDetail(policyDetails);
             }
+
+//            ReferDetail[] referDetails = {new ReferDetail(
+//                    "PUR_ReceiveBill",
+//                    Integer.parseInt(checkListform.getReceiveFid() == null ? "0" : checkListform.getReceiveFid()),
+//                    Integer.parseInt(checkListform.getReceiveFEntryId() == null ? "0" : checkListform.getReceiveFEntryId())
+//            )};
+//            checkListEntity.setFReferDetail(referDetails);
+
             LinkDetail[] linkDetails = {new LinkDetail(
                     "QM_PURReceive2Inspect","T_PUR_ReceiveEntry",
                     Integer.parseInt(checkListform.getReceiveFid() == null ? "0" : checkListform.getReceiveFid()),

@@ -6,19 +6,17 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.chenmasoft.kingdeetofeishu.apiRequst.KingdeeApi;
-import com.chenmasoft.kingdeetofeishu.dao.entity.BarCodeForm;
-import com.chenmasoft.kingdeetofeishu.dao.entity.CheckList;
-import com.chenmasoft.kingdeetofeishu.dao.entity.Event;
-import com.chenmasoft.kingdeetofeishu.dao.entity.Fishuform;
+import com.chenmasoft.kingdeetofeishu.dao.entity.*;
 import com.chenmasoft.kingdeetofeishu.dao.service.EventService;
 import com.chenmasoft.kingdeetofeishu.dao.service.FishuformService;
 import com.chenmasoft.kingdeetofeishu.dao.service.FishuformentryService;
-import com.chenmasoft.kingdeetofeishu.pojo.formPojo.Form;
+import com.chenmasoft.kingdeetofeishu.pojo.formPojo.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -242,7 +240,33 @@ public void  selectForm(){
             //检验单
             Form checkListForm=  creatForm.checkList(checkList);
             JSONObject joCheck = kingdeeFormSaveSoso.checkListSSA(checkListForm);
-            return joCheck;
+            if(joCheck.getJSONObject("Result").getJSONObject("ResponseStatus").getBoolean("IsSuccess"))
+            {
+                Submit submit = new Submit();
+                submit.setIds(joCheck.getJSONObject("Result").getJSONObject("ResponseStatus").getJSONArray("SuccessEntitys").getJSONObject(0).getInteger("Id").toString());
+                Form formSubmit=new Form();
+                formSubmit.setFormid("QM_InspectBill");
+                formSubmit.setData(submit);
+                JSONObject resultSubmitJson = kingdeeApi.kingdeeSubmitJO(formSubmit);
+                if(resultSubmitJson.getJSONObject("Result").getJSONObject("ResponseStatus").getBoolean("IsSuccess"))
+                {
+                    Audit audit = new Audit();
+                    audit.setIds(resultSubmitJson.getJSONObject("Result").getJSONObject("ResponseStatus").getJSONArray("SuccessEntitys").getJSONObject(0).getInteger("Id").toString());
+                    Form formAudit=new Form();
+                    formAudit.setFormid("QM_InspectBill");
+                    formAudit.setData(submit);
+                    JSONObject resultAuditJson = kingdeeApi.kingdeeAuditJO(formAudit);
+                    return  resultAuditJson;
+                }
+                else
+                {
+                    return resultSubmitJson;
+                }
+            }
+            else
+            {
+                return joCheck;
+            }
         } else {
             return joCheckListForm;
         }

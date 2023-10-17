@@ -71,18 +71,38 @@ public class CheckListEntity {
     @JSONField(name = "FSupplierId",ordinal = 45)
     private HashMap fSupplierId;
     /**
+     * FSrcBillType0
+     */
+    @JSONField(name = "FSrcBillType0",ordinal = 46)
+    private String FSrcBillType0;
+    /**
      * fSrcBillNo0
      */
-    @JSONField(name = "FSrcBillNo0",ordinal = 46)
+    @JSONField(name = "FSrcBillNo0",ordinal = 47)
     private String fSrcBillNo0;
+    /**
+     * FSrcInterId0
+     */
+    @JSONField(name = "FSrcInterId0",ordinal = 48)
+    private int FSrcInterId0;
+    /**
+     * FSrcEntryId0
+     */
+    @JSONField(name = "FSrcEntryId0",ordinal = 49)
+    private int FSrcEntryId0;
     /**
      * fPolicyDetail
      */
     @JSONField(name = "FPolicyDetail",ordinal = 50)
     private PolicyDetail[] fPolicyDetail;
+//    /**
+//     * FReferDetail
+//     */
+//    @JSONField(name = "FReferDetail",ordinal = 60)
+//    private ReferDetail[] FReferDetail;
     /**
      * FEntity_Link
      */
-    @JSONField(name = "FEntity_Link",ordinal = 60)
+    @JSONField(name = "FEntity_Link",ordinal = 70)
     private LinkDetail[] FEntity_Link;
 }

@@ -9,8 +9,8 @@ feishu:
   approval_code_payment:
 kingdee:
   acctId: 6426d47ba9ad91
-  username: 王典
-  password: 888888
+  username: Administrator
+  password: kingdee@123
   lcid: 2052
   serverurl: http://172.16.100.161//k3cloud/
 spring:

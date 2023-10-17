@@ -1193,7 +1193,6 @@ function openRecordCD() {
     buttonJB.type = "button";
     buttonJB.textContent = "浆斑";
 
-
     var buttonDM = popupDocument.createElement("button");
     buttonDM.className = "btn button_btn btn-info margin";
     buttonDM.type = "button";

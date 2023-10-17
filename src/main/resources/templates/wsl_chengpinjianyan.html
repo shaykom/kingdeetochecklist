@@ -36,22 +36,11 @@
             <button class="btn button_btn btn-info margin" type="button" onclick="selectBarCode()"><i class="iconfont">获取条码信息</i>&nbsp; </button><br>
             <label class="margin"><i class="iconfont">扫描条码</i></label><br>
             <textarea class="textarea block width100b container" type="text" id="barCode"></textarea><br>
-            <!--            <label class="margin"><i class="iconfont">检验类型</i></label><br>-->
-            <!--            <select class="textarea block width100b align" disabled>-->
-            <!--                <option>坯布</option>-->
-            <!--            </select><br>-->
-            <!--            <label class="margin"><i class="iconfont">难度</i></label><br>-->
-            <!--            <select class="textarea block width100b align">-->
-            <!--                <option>一级</option>-->
-            <!--                <option>二级</option>-->
-            <!--            </select><br>-->
-            <label class="margin"><i class="iconfont">卷合格判定</i></label><br>
-            <select class="textarea block width100b align" id="isPass">
-                <option>合格</option>
-                <option>让步接收</option>
-                <option>返修</option>
-                <option>报废</option>
-            </select><br>
+            <label class="margin"><i class="iconfont">检验类型</i></label><br>
+            <select class="textarea block width100b align">
+                <option>印花</option>
+                <option>染色</option>
+            </select>
 
         </div>
         <div class="align">
@@ -94,12 +83,6 @@
                 <label class="margin5 containerRight">花型描述</label>
                 <textarea class="textarea" type="text" onclick="" id="flNote" disabled></textarea>
 
-                <label class="margin5 containerRight">检验类型</label>
-                <select class="width174 align">
-                    <option>印花</option>
-                    <option>染色</option>
-                </select>
-
                 <label class="margin5 containerRight">检验员</label>
                 <select class="width174 align" id="checker">
                 </select>
@@ -141,6 +124,14 @@
 
                 <label class="margin5 containerRight">纬弓/纬斜高度</label>
                 <textarea class="textarea" type="text" onclick="" id="textValue" onfocus="setNumberInput(this)"></textarea>
+
+                <label class="margin5 containerRight">卷合格判定</label>
+                <select class="width174 align" id="isPass">
+                    <option>合格</option>
+                    <option>让步接收</option>
+                    <option>返修</option>
+                    <option>报废</option>
+                </select><br>
             </div>
             <div class="container block">
                 <label class="margin5 containerRight">全门幅1</label>

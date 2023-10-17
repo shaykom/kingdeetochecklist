@@ -191,3 +191,573 @@ com.microsoft.sqlserver.jdbc.SQLServerException: 用户 'sa' 登录失败。 Cli
 2023-10-16 09:45:53.873  INFO 7448 --- [SpringContextShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closing ...
 2023-10-16 09:45:53.874  INFO 7448 --- [SpringContextShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
 2023-10-16 09:45:53.874  INFO 7448 --- [SpringContextShutdownHook] c.b.d.d.DynamicRoutingDataSource         : dynamic-datasource all closed success,bye
+2023-10-16 09:47:21.123  INFO 8088 --- [restartedMain] c.c.k.KingdeetofeishuApplication         : Starting KingdeetofeishuApplication on DESKTOP-L4HHB2S with PID 8088 (E:\IDEAWorkSpace\kingdeetochecklist\target\classes started by Ray in E:\IDEAWorkSpace\kingdeetochecklist)
+2023-10-16 09:47:21.125  INFO 8088 --- [restartedMain] c.c.k.KingdeetofeishuApplication         : The following profiles are active: test
+2023-10-16 09:47:21.166  INFO 8088 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-10-16 09:47:21.166  INFO 8088 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-10-16 09:47:22.074  INFO 8088 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'spring.datasource.dynamic-com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceProperties' of type [com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-10-16 09:47:22.075  INFO 8088 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceAutoConfiguration' of type [com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceAutoConfiguration$$EnhancerBySpringCGLIB$$31e2559e] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-10-16 09:47:22.080  INFO 8088 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'dsProcessor' of type [com.baomidou.dynamic.datasource.processor.DsHeaderProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-10-16 09:47:22.082  INFO 8088 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'dynamicDatasourceAnnotationAdvisor' of type [com.baomidou.dynamic.datasource.aop.DynamicDataSourceAnnotationAdvisor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-10-16 09:47:22.298  INFO 8088 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8090 (http)
+2023-10-16 09:47:22.309  INFO 8088 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-10-16 09:47:22.309  INFO 8088 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.41]
+2023-10-16 09:47:22.396  INFO 8088 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-10-16 09:47:22.396  INFO 8088 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1229 ms
+2023-10-16 09:47:22.693  INFO 8088 --- [restartedMain] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1,master} inited
+2023-10-16 09:47:22.693  INFO 8088 --- [restartedMain] c.b.d.d.DynamicRoutingDataSource         : dynamic-datasource - load a datasource named [master] success
+2023-10-16 09:47:22.694  INFO 8088 --- [restartedMain] c.b.d.d.DynamicRoutingDataSource         : dynamic-datasource initial loaded [1] datasource,primary datasource named [master]
+2023-10-16 09:47:23.719  INFO 8088 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2023-10-16 09:47:23.775  INFO 8088 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2023-10-16 09:47:24.032  INFO 8088 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-10-16 09:47:24.036  INFO 8088 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 14 endpoint(s) beneath base path '/actuator'
+2023-10-16 09:47:24.080  INFO 8088 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8090 (http) with context path ''
+2023-10-16 09:47:24.091  INFO 8088 --- [restartedMain] c.c.k.KingdeetofeishuApplication         : Started KingdeetofeishuApplication in 3.325 seconds (JVM running for 4.183)
+2023-10-16 09:47:24.622  INFO 8088 --- [RMI TCP Connection(3)-172.16.51.133] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-10-16 09:47:24.622  INFO 8088 --- [RMI TCP Connection(3)-172.16.51.133] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-10-16 09:47:24.629  INFO 8088 --- [RMI TCP Connection(3)-172.16.51.133] o.s.web.servlet.DispatcherServlet        : Completed initialization in 7 ms
+2023-10-16 09:48:42.543  INFO 8088 --- [http-nio-8090-exec-2] c.c.k.apiRequst.KingdeeApi               : 金蝶登录接口返回得cookie[ASP.NET_SessionId=ateddjdgotmkquwkrp0ztefx, kdservice-sessionid=b100363a-d7c8-49f6-8f05-85ee3f4ce4ab]
+2023-10-16 09:48:42.543  INFO 8088 --- [http-nio-8090-exec-7] c.c.k.apiRequst.KingdeeApi               : 金蝶登录接口返回得cookie[ASP.NET_SessionId=tjvwm52d1kqizd32vnhmbun4, kdservice-sessionid=1e9a5335-b3c4-4f52-8ef7-e3384d6aaede]
+2023-10-16 09:48:42.543  INFO 8088 --- [http-nio-8090-exec-3] c.c.k.apiRequst.KingdeeApi               : 金蝶登录接口返回得cookie[ASP.NET_SessionId=dtgzzwnekmilxcmiuoulhnqw, kdservice-sessionid=6d610580-de88-4bd8-aa24-05d075a14c5e]
+2023-10-16 09:48:42.551  INFO 8088 --- [http-nio-8090-exec-7] c.c.k.apiRequst.KingdeeApi               : 登录成功
+2023-10-16 09:48:42.551  INFO 8088 --- [http-nio-8090-exec-2] c.c.k.apiRequst.KingdeeApi               : 登录成功
+2023-10-16 09:48:42.551  INFO 8088 --- [http-nio-8090-exec-3] c.c.k.apiRequst.KingdeeApi               : 登录成功
+2023-10-16 09:48:42.552  INFO 8088 --- [http-nio-8090-exec-2] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询接口开始工作。。。。。。。。
+2023-10-16 09:48:42.552  INFO 8088 --- [http-nio-8090-exec-7] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询接口开始工作。。。。。。。。
+2023-10-16 09:48:42.552  INFO 8088 --- [http-nio-8090-exec-3] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询接口开始工作。。。。。。。。
+2023-10-16 09:48:47.832  INFO 8088 --- [http-nio-8090-exec-3] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询的响应json: [["201801003","刘正明"],["201801004","董亮"],["201801005","李祖明"]]
+2023-10-16 09:48:47.836  INFO 8088 --- [http-nio-8090-exec-4] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询接口开始工作。。。。。。。。
+2023-10-16 09:48:47.840  INFO 8088 --- [http-nio-8090-exec-4] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询的响应json: [["201801003","刘正明"],["201801004","董亮"],["201801005","李祖明"]]
+2023-10-16 09:48:48.144  INFO 8088 --- [http-nio-8090-exec-7] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询的响应json: [["201801003","刘正明"],["201801004","董亮"],["201801005","李祖明"]]
+2023-10-16 09:49:08.064  INFO 8088 --- [http-nio-8090-exec-2] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询的响应json: []
+2023-10-16 09:49:08.067  INFO 8088 --- [http-nio-8090-exec-1] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询接口开始工作。。。。。。。。
+2023-10-16 09:49:08.072  INFO 8088 --- [http-nio-8090-exec-1] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询的响应json: []
+2023-10-16 09:59:45.743  INFO 8088 --- [http-nio-8090-exec-5] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询接口开始工作。。。。。。。。
+2023-10-16 09:59:45.756  INFO 8088 --- [http-nio-8090-exec-5] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询的响应json: [["201801003","刘正明"],["201801004","董亮"],["201801005","李祖明"]]
+2023-10-16 10:01:18.463  INFO 8088 --- [http-nio-8090-exec-1] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询接口开始工作。。。。。。。。
+2023-10-16 10:01:18.476  INFO 8088 --- [http-nio-8090-exec-1] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询的响应json: [["IQC000068","C","KP-SX-001","摄像头"," ",null,"2023-09-27T00:00:00","2000万 8倍焦距","雅安实业（美元）","CGSL000052",180057,"101.2","1","Pcs","VEN00002","110060","110093"],["IQC000067","C","KP-SX-001","摄像头"," ",null,"2023-09-27T00:00:00","2000万 8倍焦距","雅安实业（美元）","CGSL000052",180056,"101.2","1","Pcs","VEN00002","110060","110093"],["IQC000058","C","KP-SX-001","摄像头"," ",null,"2023-09-25T00:00:00","2000万 8倍焦距","雅安实业（美元）","CGSL000052",180046,"101.2","1","Pcs","VEN00002","110060","110093"],["IQC000056","D","KP-SX-001","摄像头"," ",null,"2023-09-21T00:00:00","2000万 8倍焦距","雅安实业（美元）","CGSL000052",170047,"101.2","1","Pcs","VEN00002","110060","110093"]]
+2023-10-16 10:05:05.498  INFO 8088 --- [http-nio-8090-exec-1] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询接口开始工作。。。。。。。。
+2023-10-16 10:05:05.508  INFO 8088 --- [http-nio-8090-exec-1] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询的响应json: [["IQC000068","C","KP-SX-001","摄像头"," ",null,"2023-09-27T00:00:00","2000万 8倍焦距","雅安实业（美元）","CGSL000052",180057,"101.2","1","Pcs","VEN00002","110060","110093"],["IQC000067","C","KP-SX-001","摄像头"," ",null,"2023-09-27T00:00:00","2000万 8倍焦距","雅安实业（美元）","CGSL000052",180056,"101.2","1","Pcs","VEN00002","110060","110093"],["IQC000058","C","KP-SX-001","摄像头"," ",null,"2023-09-25T00:00:00","2000万 8倍焦距","雅安实业（美元）","CGSL000052",180046,"101.2","1","Pcs","VEN00002","110060","110093"],["IQC000056","D","KP-SX-001","摄像头"," ",null,"2023-09-21T00:00:00","2000万 8倍焦距","雅安实业（美元）","CGSL000052",170047,"101.2","1","Pcs","VEN00002","110060","110093"]]
+2023-10-16 10:05:06.478  INFO 8088 --- [http-nio-8090-exec-10] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询接口开始工作。。。。。。。。
+2023-10-16 10:05:06.484  INFO 8088 --- [http-nio-8090-exec-10] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询的响应json: [[2.0000000000,"2","q-2"," "]]
+2023-10-16 10:31:04.872  INFO 8088 --- [http-nio-8090-exec-4] c.c.k.apiRequst.KingdeeApi               : 金蝶登录接口返回得cookie[ASP.NET_SessionId=dtgzzwnekmilxcmiuoulhnqw, kdservice-sessionid=6d610580-de88-4bd8-aa24-05d075a14c5e, kdservice-sessionid=343dc8bb-ef4e-4155-a96b-7bbb8dccb0b7]
+2023-10-16 10:31:04.872  INFO 8088 --- [http-nio-8090-exec-4] c.c.k.apiRequst.KingdeeApi               : 登录成功
+2023-10-16 10:31:04.872  INFO 8088 --- [http-nio-8090-exec-4] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询接口开始工作。。。。。。。。
+2023-10-16 10:31:06.034  INFO 8088 --- [http-nio-8090-exec-4] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询的响应json: [["6"]]
+2023-10-16 10:31:06.036  INFO 8088 --- [http-nio-8090-exec-3] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询接口开始工作。。。。。。。。
+2023-10-16 10:31:06.040  INFO 8088 --- [http-nio-8090-exec-3] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询的响应json: [["6"]]
+2023-10-16 10:31:06.042  INFO 8088 --- [http-nio-8090-exec-1] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询接口开始工作。。。。。。。。
+2023-10-16 10:31:06.046  INFO 8088 --- [http-nio-8090-exec-1] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询的响应json: [["6"]]
+2023-10-16 10:31:06.048  INFO 8088 --- [http-nio-8090-exec-10] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询接口开始工作。。。。。。。。
+2023-10-16 10:31:06.052  INFO 8088 --- [http-nio-8090-exec-10] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询的响应json: [["6"]]
+2023-10-16 10:31:06.054  INFO 8088 --- [http-nio-8090-exec-8] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询接口开始工作。。。。。。。。
+2023-10-16 10:31:06.058  INFO 8088 --- [http-nio-8090-exec-8] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询的响应json: [["6"]]
+2023-10-16 10:31:06.060  INFO 8088 --- [http-nio-8090-exec-5] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询接口开始工作。。。。。。。。
+2023-10-16 10:31:06.063  INFO 8088 --- [http-nio-8090-exec-5] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询的响应json: [["6"]]
+2023-10-16 10:31:06.065  INFO 8088 --- [http-nio-8090-exec-9] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询接口开始工作。。。。。。。。
+2023-10-16 10:31:06.069  INFO 8088 --- [http-nio-8090-exec-9] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询的响应json: [["6"]]
+2023-10-16 10:31:08.916  INFO 8088 --- [http-nio-8090-exec-7] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询接口开始工作。。。。。。。。
+2023-10-16 10:31:08.920  INFO 8088 --- [http-nio-8090-exec-7] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询的响应json: [["6"]]
+2023-10-16 10:31:10.880  INFO 8088 --- [http-nio-8090-exec-9] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询接口开始工作。。。。。。。。
+2023-10-16 10:31:10.899  INFO 8088 --- [http-nio-8090-exec-9] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询的响应json: [["IQC000068","C","KP-SX-001","摄像头"," ",null,"2023-09-27T00:00:00","2000万 8倍焦距","雅安实业（美元）","CGSL000052",180057,"101.2","1","Pcs","VEN00002","110060","110093"],["IQC000067","C","KP-SX-001","摄像头"," ",null,"2023-09-27T00:00:00","2000万 8倍焦距","雅安实业（美元）","CGSL000052",180056,"101.2","1","Pcs","VEN00002","110060","110093"],["IQC000058","C","KP-SX-001","摄像头"," ",null,"2023-09-25T00:00:00","2000万 8倍焦距","雅安实业（美元）","CGSL000052",180046,"101.2","1","Pcs","VEN00002","110060","110093"],["IQC000056","D","KP-SX-001","摄像头"," ",null,"2023-09-21T00:00:00","2000万 8倍焦距","雅安实业（美元）","CGSL000052",170047,"101.2","1","Pcs","VEN00002","110060","110093"]]
+2023-10-16 10:33:21.497  INFO 8088 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2023-10-16 10:33:21.498  INFO 8088 --- [SpringContextShutdownHook] c.b.d.d.DynamicRoutingDataSource         : dynamic-datasource start closing ....
+2023-10-16 10:33:21.499  INFO 8088 --- [SpringContextShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closing ...
+2023-10-16 10:33:21.500  INFO 8088 --- [SpringContextShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2023-10-16 10:33:21.500  INFO 8088 --- [SpringContextShutdownHook] c.b.d.d.DynamicRoutingDataSource         : dynamic-datasource all closed success,bye
+2023-10-16 10:33:24.588  INFO 7944 --- [restartedMain] c.c.k.KingdeetofeishuApplication         : Starting KingdeetofeishuApplication on DESKTOP-L4HHB2S with PID 7944 (E:\IDEAWorkSpace\kingdeetochecklist\target\classes started by Ray in E:\IDEAWorkSpace\kingdeetochecklist)
+2023-10-16 10:33:24.590  INFO 7944 --- [restartedMain] c.c.k.KingdeetofeishuApplication         : The following profiles are active: test
+2023-10-16 10:33:24.625  INFO 7944 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-10-16 10:33:24.626  INFO 7944 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-10-16 10:33:25.594  INFO 7944 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'spring.datasource.dynamic-com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceProperties' of type [com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-10-16 10:33:25.596  INFO 7944 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceAutoConfiguration' of type [com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceAutoConfiguration$$EnhancerBySpringCGLIB$$5c4cdf51] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-10-16 10:33:25.600  INFO 7944 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'dsProcessor' of type [com.baomidou.dynamic.datasource.processor.DsHeaderProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-10-16 10:33:25.602  INFO 7944 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'dynamicDatasourceAnnotationAdvisor' of type [com.baomidou.dynamic.datasource.aop.DynamicDataSourceAnnotationAdvisor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-10-16 10:33:25.813  INFO 7944 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8090 (http)
+2023-10-16 10:33:25.820  INFO 7944 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-10-16 10:33:25.821  INFO 7944 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.41]
+2023-10-16 10:33:25.901  INFO 7944 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-10-16 10:33:25.901  INFO 7944 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1266 ms
+2023-10-16 10:33:26.144  INFO 7944 --- [restartedMain] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1,master} inited
+2023-10-16 10:33:26.144  INFO 7944 --- [restartedMain] c.b.d.d.DynamicRoutingDataSource         : dynamic-datasource - load a datasource named [master] success
+2023-10-16 10:33:26.145  INFO 7944 --- [restartedMain] c.b.d.d.DynamicRoutingDataSource         : dynamic-datasource initial loaded [1] datasource,primary datasource named [master]
+2023-10-16 10:33:27.289  INFO 7944 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2023-10-16 10:33:27.354  INFO 7944 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2023-10-16 10:33:27.640  INFO 7944 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-10-16 10:33:27.646  INFO 7944 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 14 endpoint(s) beneath base path '/actuator'
+2023-10-16 10:33:27.695  INFO 7944 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8090 (http) with context path ''
+2023-10-16 10:33:27.707  INFO 7944 --- [restartedMain] c.c.k.KingdeetofeishuApplication         : Started KingdeetofeishuApplication in 3.426 seconds (JVM running for 4.245)
+2023-10-16 10:33:27.833  INFO 7944 --- [http-nio-8090-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-10-16 10:33:27.833  INFO 7944 --- [http-nio-8090-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-10-16 10:33:27.838  INFO 7944 --- [http-nio-8090-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+2023-10-16 10:33:28.706  INFO 7944 --- [http-nio-8090-exec-4] c.c.k.apiRequst.KingdeeApi               : 金蝶登录接口返回得cookie[ASP.NET_SessionId=eyrfeeefrimxwdr3edwedebu, kdservice-sessionid=0a1b3d28-c8cb-46cf-ad72-2011cf442cca]
+2023-10-16 10:33:28.715  INFO 7944 --- [http-nio-8090-exec-4] c.c.k.apiRequst.KingdeeApi               : 登录成功
+2023-10-16 10:33:28.715  INFO 7944 --- [http-nio-8090-exec-4] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询接口开始工作。。。。。。。。
+2023-10-16 10:33:28.822  INFO 7944 --- [http-nio-8090-exec-4] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询的响应json: [["201801003","刘正明"],["201801004","董亮"],["201801005","李祖明"]]
+2023-10-16 10:33:28.834  INFO 7944 --- [http-nio-8090-exec-2] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询接口开始工作。。。。。。。。
+2023-10-16 10:33:28.838  INFO 7944 --- [http-nio-8090-exec-2] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询的响应json: [["201801003","刘正明"],["201801004","董亮"],["201801005","李祖明"]]
+2023-10-16 10:35:26.151  INFO 7944 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2023-10-16 10:35:26.153  INFO 7944 --- [SpringContextShutdownHook] c.b.d.d.DynamicRoutingDataSource         : dynamic-datasource start closing ....
+2023-10-16 10:35:26.154  INFO 7944 --- [SpringContextShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closing ...
+2023-10-16 10:35:26.156  INFO 7944 --- [SpringContextShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2023-10-16 10:35:26.156  INFO 7944 --- [SpringContextShutdownHook] c.b.d.d.DynamicRoutingDataSource         : dynamic-datasource all closed success,bye
+2023-10-16 10:35:29.354  INFO 5424 --- [restartedMain] c.c.k.KingdeetofeishuApplication         : Starting KingdeetofeishuApplication on DESKTOP-L4HHB2S with PID 5424 (E:\IDEAWorkSpace\kingdeetochecklist\target\classes started by Ray in E:\IDEAWorkSpace\kingdeetochecklist)
+2023-10-16 10:35:29.356  INFO 5424 --- [restartedMain] c.c.k.KingdeetofeishuApplication         : The following profiles are active: test
+2023-10-16 10:35:29.398  INFO 5424 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-10-16 10:35:29.398  INFO 5424 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-10-16 10:35:30.254  INFO 5424 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'spring.datasource.dynamic-com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceProperties' of type [com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-10-16 10:35:30.256  INFO 5424 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceAutoConfiguration' of type [com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceAutoConfiguration$$EnhancerBySpringCGLIB$$866240b0] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-10-16 10:35:30.261  INFO 5424 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'dsProcessor' of type [com.baomidou.dynamic.datasource.processor.DsHeaderProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-10-16 10:35:30.263  INFO 5424 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'dynamicDatasourceAnnotationAdvisor' of type [com.baomidou.dynamic.datasource.aop.DynamicDataSourceAnnotationAdvisor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-10-16 10:35:30.470  INFO 5424 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8090 (http)
+2023-10-16 10:35:30.477  INFO 5424 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-10-16 10:35:30.478  INFO 5424 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.41]
+2023-10-16 10:35:30.560  INFO 5424 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-10-16 10:35:30.561  INFO 5424 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1163 ms
+2023-10-16 10:35:30.805  INFO 5424 --- [restartedMain] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1,master} inited
+2023-10-16 10:35:30.805  INFO 5424 --- [restartedMain] c.b.d.d.DynamicRoutingDataSource         : dynamic-datasource - load a datasource named [master] success
+2023-10-16 10:35:30.806  INFO 5424 --- [restartedMain] c.b.d.d.DynamicRoutingDataSource         : dynamic-datasource initial loaded [1] datasource,primary datasource named [master]
+2023-10-16 10:35:31.881  INFO 5424 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2023-10-16 10:35:31.944  INFO 5424 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2023-10-16 10:35:32.209  INFO 5424 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-10-16 10:35:32.214  INFO 5424 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 14 endpoint(s) beneath base path '/actuator'
+2023-10-16 10:35:32.261  INFO 5424 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8090 (http) with context path ''
+2023-10-16 10:35:32.272  INFO 5424 --- [restartedMain] c.c.k.KingdeetofeishuApplication         : Started KingdeetofeishuApplication in 3.228 seconds (JVM running for 4.044)
+2023-10-16 10:35:32.664  INFO 5424 --- [RMI TCP Connection(1)-172.16.51.133] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-10-16 10:35:32.664  INFO 5424 --- [RMI TCP Connection(1)-172.16.51.133] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-10-16 10:35:32.669  INFO 5424 --- [RMI TCP Connection(1)-172.16.51.133] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+2023-10-16 10:35:37.012  INFO 5424 --- [http-nio-8090-exec-9] c.c.k.apiRequst.KingdeeApi               : 金蝶登录接口返回得cookie[ASP.NET_SessionId=syaapenlrzdnbddj1fst1iw4, kdservice-sessionid=e2892237-9658-4310-9173-eb722920939f]
+2023-10-16 10:35:37.020  INFO 5424 --- [http-nio-8090-exec-9] c.c.k.apiRequst.KingdeeApi               : 登录成功
+2023-10-16 10:35:37.020  INFO 5424 --- [http-nio-8090-exec-9] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询接口开始工作。。。。。。。。
+2023-10-16 10:35:37.033  INFO 5424 --- [http-nio-8090-exec-9] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询的响应json: [["201801003","刘正明"],["201801004","董亮"],["201801005","李祖明"]]
+2023-10-16 10:35:37.044  INFO 5424 --- [http-nio-8090-exec-4] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询接口开始工作。。。。。。。。
+2023-10-16 10:35:37.048  INFO 5424 --- [http-nio-8090-exec-4] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询的响应json: [["201801003","刘正明"],["201801004","董亮"],["201801005","李祖明"]]
+2023-10-16 10:36:53.271  INFO 5424 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2023-10-16 10:36:53.273  INFO 5424 --- [SpringContextShutdownHook] c.b.d.d.DynamicRoutingDataSource         : dynamic-datasource start closing ....
+2023-10-16 10:36:53.274  INFO 5424 --- [SpringContextShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closing ...
+2023-10-16 10:36:53.275  INFO 5424 --- [SpringContextShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2023-10-16 10:36:53.276  INFO 5424 --- [SpringContextShutdownHook] c.b.d.d.DynamicRoutingDataSource         : dynamic-datasource all closed success,bye
+2023-10-16 10:36:56.395  INFO 7612 --- [restartedMain] c.c.k.KingdeetofeishuApplication         : Starting KingdeetofeishuApplication on DESKTOP-L4HHB2S with PID 7612 (E:\IDEAWorkSpace\kingdeetochecklist\target\classes started by Ray in E:\IDEAWorkSpace\kingdeetochecklist)
+2023-10-16 10:36:56.397  INFO 7612 --- [restartedMain] c.c.k.KingdeetofeishuApplication         : The following profiles are active: test
+2023-10-16 10:36:56.439  INFO 7612 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-10-16 10:36:56.439  INFO 7612 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-10-16 10:36:57.309  INFO 7612 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'spring.datasource.dynamic-com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceProperties' of type [com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-10-16 10:36:57.311  INFO 7612 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceAutoConfiguration' of type [com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceAutoConfiguration$$EnhancerBySpringCGLIB$$764fd86a] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-10-16 10:36:57.316  INFO 7612 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'dsProcessor' of type [com.baomidou.dynamic.datasource.processor.DsHeaderProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-10-16 10:36:57.317  INFO 7612 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'dynamicDatasourceAnnotationAdvisor' of type [com.baomidou.dynamic.datasource.aop.DynamicDataSourceAnnotationAdvisor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-10-16 10:36:57.526  INFO 7612 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8090 (http)
+2023-10-16 10:36:57.534  INFO 7612 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-10-16 10:36:57.535  INFO 7612 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.41]
+2023-10-16 10:36:57.617  INFO 7612 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-10-16 10:36:57.617  INFO 7612 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1178 ms
+2023-10-16 10:36:57.863  INFO 7612 --- [restartedMain] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1,master} inited
+2023-10-16 10:36:57.863  INFO 7612 --- [restartedMain] c.b.d.d.DynamicRoutingDataSource         : dynamic-datasource - load a datasource named [master] success
+2023-10-16 10:36:57.864  INFO 7612 --- [restartedMain] c.b.d.d.DynamicRoutingDataSource         : dynamic-datasource initial loaded [1] datasource,primary datasource named [master]
+2023-10-16 10:36:58.817  INFO 7612 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2023-10-16 10:36:58.872  INFO 7612 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2023-10-16 10:36:59.122  INFO 7612 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-10-16 10:36:59.127  INFO 7612 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 14 endpoint(s) beneath base path '/actuator'
+2023-10-16 10:36:59.174  INFO 7612 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8090 (http) with context path ''
+2023-10-16 10:36:59.185  INFO 7612 --- [restartedMain] c.c.k.KingdeetofeishuApplication         : Started KingdeetofeishuApplication in 3.103 seconds (JVM running for 3.948)
+2023-10-16 10:36:59.874  INFO 7612 --- [RMI TCP Connection(1)-172.16.51.133] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-10-16 10:36:59.874  INFO 7612 --- [RMI TCP Connection(1)-172.16.51.133] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-10-16 10:36:59.880  INFO 7612 --- [RMI TCP Connection(1)-172.16.51.133] o.s.web.servlet.DispatcherServlet        : Completed initialization in 6 ms
+2023-10-16 10:37:01.891  INFO 7612 --- [http-nio-8090-exec-2] c.c.k.apiRequst.KingdeeApi               : 金蝶登录接口返回得cookie[ASP.NET_SessionId=wgb2b1epeprsnxdgvf2swjip, kdservice-sessionid=0cd5eeae-2c4a-4b56-bc1a-2307ec13a610]
+2023-10-16 10:37:01.899  INFO 7612 --- [http-nio-8090-exec-2] c.c.k.apiRequst.KingdeeApi               : 登录成功
+2023-10-16 10:37:01.900  INFO 7612 --- [http-nio-8090-exec-2] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询接口开始工作。。。。。。。。
+2023-10-16 10:37:01.912  INFO 7612 --- [http-nio-8090-exec-2] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询的响应json: [["201801003","刘正明"],["201801004","董亮"],["201801005","李祖明"]]
+2023-10-16 10:37:01.922  INFO 7612 --- [http-nio-8090-exec-7] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询接口开始工作。。。。。。。。
+2023-10-16 10:37:01.926  INFO 7612 --- [http-nio-8090-exec-7] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询的响应json: [["201801003","刘正明"],["201801004","董亮"],["201801005","李祖明"]]
+2023-10-16 10:37:14.621  INFO 7612 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2023-10-16 10:37:14.623  INFO 7612 --- [SpringContextShutdownHook] c.b.d.d.DynamicRoutingDataSource         : dynamic-datasource start closing ....
+2023-10-16 10:37:14.624  INFO 7612 --- [SpringContextShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closing ...
+2023-10-16 10:37:14.625  INFO 7612 --- [SpringContextShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2023-10-16 10:37:14.625  INFO 7612 --- [SpringContextShutdownHook] c.b.d.d.DynamicRoutingDataSource         : dynamic-datasource all closed success,bye
+2023-10-16 10:37:17.684  INFO 18496 --- [restartedMain] c.c.k.KingdeetofeishuApplication         : Starting KingdeetofeishuApplication on DESKTOP-L4HHB2S with PID 18496 (E:\IDEAWorkSpace\kingdeetochecklist\target\classes started by Ray in E:\IDEAWorkSpace\kingdeetochecklist)
+2023-10-16 10:37:17.687  INFO 18496 --- [restartedMain] c.c.k.KingdeetofeishuApplication         : The following profiles are active: test
+2023-10-16 10:37:17.730  INFO 18496 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-10-16 10:37:17.730  INFO 18496 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-10-16 10:37:18.603  INFO 18496 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'spring.datasource.dynamic-com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceProperties' of type [com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-10-16 10:37:18.605  INFO 18496 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceAutoConfiguration' of type [com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceAutoConfiguration$$EnhancerBySpringCGLIB$$4f6ca142] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-10-16 10:37:18.610  INFO 18496 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'dsProcessor' of type [com.baomidou.dynamic.datasource.processor.DsHeaderProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-10-16 10:37:18.611  INFO 18496 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'dynamicDatasourceAnnotationAdvisor' of type [com.baomidou.dynamic.datasource.aop.DynamicDataSourceAnnotationAdvisor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-10-16 10:37:18.819  INFO 18496 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8090 (http)
+2023-10-16 10:37:18.827  INFO 18496 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-10-16 10:37:18.827  INFO 18496 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.41]
+2023-10-16 10:37:18.907  INFO 18496 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-10-16 10:37:18.908  INFO 18496 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1178 ms
+2023-10-16 10:37:19.154  INFO 18496 --- [restartedMain] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1,master} inited
+2023-10-16 10:37:19.154  INFO 18496 --- [restartedMain] c.b.d.d.DynamicRoutingDataSource         : dynamic-datasource - load a datasource named [master] success
+2023-10-16 10:37:19.155  INFO 18496 --- [restartedMain] c.b.d.d.DynamicRoutingDataSource         : dynamic-datasource initial loaded [1] datasource,primary datasource named [master]
+2023-10-16 10:37:20.108  INFO 18496 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2023-10-16 10:37:20.165  INFO 18496 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2023-10-16 10:37:20.415  INFO 18496 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-10-16 10:37:20.420  INFO 18496 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 14 endpoint(s) beneath base path '/actuator'
+2023-10-16 10:37:20.465  INFO 18496 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8090 (http) with context path ''
+2023-10-16 10:37:20.476  INFO 18496 --- [restartedMain] c.c.k.KingdeetofeishuApplication         : Started KingdeetofeishuApplication in 3.107 seconds (JVM running for 3.936)
+2023-10-16 10:37:21.351  INFO 18496 --- [RMI TCP Connection(3)-172.16.51.133] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-10-16 10:37:21.351  INFO 18496 --- [RMI TCP Connection(3)-172.16.51.133] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-10-16 10:37:21.355  INFO 18496 --- [RMI TCP Connection(3)-172.16.51.133] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
+2023-10-16 10:37:23.609  INFO 18496 --- [http-nio-8090-exec-10] c.c.k.apiRequst.KingdeeApi               : 金蝶登录接口返回得cookie[ASP.NET_SessionId=m53i012oaeyvzhysjbr1bxzl, kdservice-sessionid=fbfcbb7c-b305-488f-8dbe-93e8ab7a1ac7]
+2023-10-16 10:37:23.616  INFO 18496 --- [http-nio-8090-exec-10] c.c.k.apiRequst.KingdeeApi               : 登录成功
+2023-10-16 10:37:23.617  INFO 18496 --- [http-nio-8090-exec-10] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询接口开始工作。。。。。。。。
+2023-10-16 10:37:23.630  INFO 18496 --- [http-nio-8090-exec-10] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询的响应json: [["201801003","刘正明"],["201801004","董亮"],["201801005","李祖明"]]
+2023-10-16 10:37:23.641  INFO 18496 --- [http-nio-8090-exec-8] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询接口开始工作。。。。。。。。
+2023-10-16 10:37:23.644  INFO 18496 --- [http-nio-8090-exec-8] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询的响应json: [["201801003","刘正明"],["201801004","董亮"],["201801005","李祖明"]]
+2023-10-16 11:25:14.985  INFO 18496 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2023-10-16 11:25:14.987  INFO 18496 --- [SpringContextShutdownHook] c.b.d.d.DynamicRoutingDataSource         : dynamic-datasource start closing ....
+2023-10-16 11:25:14.988  INFO 18496 --- [SpringContextShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closing ...
+2023-10-16 11:25:14.988  INFO 18496 --- [SpringContextShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2023-10-16 11:25:14.988  INFO 18496 --- [SpringContextShutdownHook] c.b.d.d.DynamicRoutingDataSource         : dynamic-datasource all closed success,bye
+2023-10-16 11:25:18.816  INFO 7216 --- [restartedMain] c.c.k.KingdeetofeishuApplication         : Starting KingdeetofeishuApplication on DESKTOP-L4HHB2S with PID 7216 (E:\IDEAWorkSpace\kingdeetochecklist\target\classes started by Ray in E:\IDEAWorkSpace\kingdeetochecklist)
+2023-10-16 11:25:18.818  INFO 7216 --- [restartedMain] c.c.k.KingdeetofeishuApplication         : The following profiles are active: test
+2023-10-16 11:25:18.850  INFO 7216 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-10-16 11:25:18.850  INFO 7216 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-10-16 11:25:19.834  INFO 7216 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'spring.datasource.dynamic-com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceProperties' of type [com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-10-16 11:25:19.836  INFO 7216 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceAutoConfiguration' of type [com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceAutoConfiguration$$EnhancerBySpringCGLIB$$368bff2] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-10-16 11:25:19.840  INFO 7216 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'dsProcessor' of type [com.baomidou.dynamic.datasource.processor.DsHeaderProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-10-16 11:25:19.842  INFO 7216 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'dynamicDatasourceAnnotationAdvisor' of type [com.baomidou.dynamic.datasource.aop.DynamicDataSourceAnnotationAdvisor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-10-16 11:25:20.098  INFO 7216 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8090 (http)
+2023-10-16 11:25:20.107  INFO 7216 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-10-16 11:25:20.108  INFO 7216 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.41]
+2023-10-16 11:25:20.207  INFO 7216 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-10-16 11:25:20.208  INFO 7216 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1358 ms
+2023-10-16 11:25:20.490  INFO 7216 --- [restartedMain] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1,master} inited
+2023-10-16 11:25:20.490  INFO 7216 --- [restartedMain] c.b.d.d.DynamicRoutingDataSource         : dynamic-datasource - load a datasource named [master] success
+2023-10-16 11:25:20.491  INFO 7216 --- [restartedMain] c.b.d.d.DynamicRoutingDataSource         : dynamic-datasource initial loaded [1] datasource,primary datasource named [master]
+2023-10-16 11:25:21.647  INFO 7216 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2023-10-16 11:25:21.705  INFO 7216 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2023-10-16 11:25:21.984  INFO 7216 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-10-16 11:25:21.990  INFO 7216 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 14 endpoint(s) beneath base path '/actuator'
+2023-10-16 11:25:22.053  INFO 7216 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8090 (http) with context path ''
+2023-10-16 11:25:22.066  INFO 7216 --- [restartedMain] c.c.k.KingdeetofeishuApplication         : Started KingdeetofeishuApplication in 3.603 seconds (JVM running for 4.479)
+2023-10-16 11:25:22.742  INFO 7216 --- [RMI TCP Connection(3)-172.16.51.133] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-10-16 11:25:22.743  INFO 7216 --- [RMI TCP Connection(3)-172.16.51.133] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-10-16 11:25:22.752  INFO 7216 --- [RMI TCP Connection(3)-172.16.51.133] o.s.web.servlet.DispatcherServlet        : Completed initialization in 9 ms
+2023-10-16 11:25:32.237  INFO 7216 --- [http-nio-8090-exec-10] c.c.k.apiRequst.KingdeeApi               : 金蝶登录接口返回得cookie[ASP.NET_SessionId=xyc0jj2edhedmkkh2ejqyc4w, kdservice-sessionid=04d74a42-d065-4e55-acda-6c45faaeab58]
+2023-10-16 11:25:32.244  INFO 7216 --- [http-nio-8090-exec-10] c.c.k.apiRequst.KingdeeApi               : 登录成功
+2023-10-16 11:25:32.245  INFO 7216 --- [http-nio-8090-exec-10] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询接口开始工作。。。。。。。。
+2023-10-16 11:25:32.515  INFO 7216 --- [http-nio-8090-exec-10] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询的响应json: [["201801003","刘正明"],["201801004","董亮"],["201801005","李祖明"]]
+2023-10-16 11:25:32.525  INFO 7216 --- [http-nio-8090-exec-9] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询接口开始工作。。。。。。。。
+2023-10-16 11:25:32.529  INFO 7216 --- [http-nio-8090-exec-9] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询的响应json: [["201801003","刘正明"],["201801004","董亮"],["201801005","李祖明"]]
+2023-10-16 11:27:15.579  INFO 7216 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2023-10-16 11:27:15.580  INFO 7216 --- [SpringContextShutdownHook] c.b.d.d.DynamicRoutingDataSource         : dynamic-datasource start closing ....
+2023-10-16 11:27:15.582  INFO 7216 --- [SpringContextShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closing ...
+2023-10-16 11:27:15.583  INFO 7216 --- [SpringContextShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2023-10-16 11:27:15.583  INFO 7216 --- [SpringContextShutdownHook] c.b.d.d.DynamicRoutingDataSource         : dynamic-datasource all closed success,bye
+2023-10-16 11:27:19.405  INFO 7832 --- [restartedMain] c.c.k.KingdeetofeishuApplication         : Starting KingdeetofeishuApplication on DESKTOP-L4HHB2S with PID 7832 (E:\IDEAWorkSpace\kingdeetochecklist\target\classes started by Ray in E:\IDEAWorkSpace\kingdeetochecklist)
+2023-10-16 11:27:19.407  INFO 7832 --- [restartedMain] c.c.k.KingdeetofeishuApplication         : The following profiles are active: test
+2023-10-16 11:27:19.439  INFO 7832 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-10-16 11:27:19.439  INFO 7832 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-10-16 11:27:20.305  INFO 7832 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'spring.datasource.dynamic-com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceProperties' of type [com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-10-16 11:27:20.306  INFO 7832 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceAutoConfiguration' of type [com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceAutoConfiguration$$EnhancerBySpringCGLIB$$b960ba15] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-10-16 11:27:20.311  INFO 7832 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'dsProcessor' of type [com.baomidou.dynamic.datasource.processor.DsHeaderProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-10-16 11:27:20.312  INFO 7832 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'dynamicDatasourceAnnotationAdvisor' of type [com.baomidou.dynamic.datasource.aop.DynamicDataSourceAnnotationAdvisor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-10-16 11:27:20.514  INFO 7832 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8090 (http)
+2023-10-16 11:27:20.521  INFO 7832 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-10-16 11:27:20.521  INFO 7832 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.41]
+2023-10-16 11:27:20.600  INFO 7832 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-10-16 11:27:20.601  INFO 7832 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1161 ms
+2023-10-16 11:27:20.836  INFO 7832 --- [restartedMain] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1,master} inited
+2023-10-16 11:27:20.836  INFO 7832 --- [restartedMain] c.b.d.d.DynamicRoutingDataSource         : dynamic-datasource - load a datasource named [master] success
+2023-10-16 11:27:20.837  INFO 7832 --- [restartedMain] c.b.d.d.DynamicRoutingDataSource         : dynamic-datasource initial loaded [1] datasource,primary datasource named [master]
+2023-10-16 11:27:21.786  INFO 7832 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2023-10-16 11:27:21.842  INFO 7832 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2023-10-16 11:27:22.120  INFO 7832 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-10-16 11:27:22.125  INFO 7832 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 14 endpoint(s) beneath base path '/actuator'
+2023-10-16 11:27:22.170  INFO 7832 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8090 (http) with context path ''
+2023-10-16 11:27:22.182  INFO 7832 --- [restartedMain] c.c.k.KingdeetofeishuApplication         : Started KingdeetofeishuApplication in 3.079 seconds (JVM running for 3.855)
+2023-10-16 11:27:22.268  INFO 7832 --- [RMI TCP Connection(1)-172.16.51.133] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-10-16 11:27:22.268  INFO 7832 --- [RMI TCP Connection(1)-172.16.51.133] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-10-16 11:27:22.274  INFO 7832 --- [RMI TCP Connection(1)-172.16.51.133] o.s.web.servlet.DispatcherServlet        : Completed initialization in 6 ms
+2023-10-16 11:27:23.713  INFO 7832 --- [http-nio-8090-exec-3] c.c.k.apiRequst.KingdeeApi               : 金蝶登录接口返回得cookie[ASP.NET_SessionId=ofruhpz5oo2oc3rmgywyh2e3, kdservice-sessionid=ee965a29-0ca8-4845-97fe-ae2eccbcb67f]
+2023-10-16 11:27:23.721  INFO 7832 --- [http-nio-8090-exec-3] c.c.k.apiRequst.KingdeeApi               : 登录成功
+2023-10-16 11:27:23.721  INFO 7832 --- [http-nio-8090-exec-3] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询接口开始工作。。。。。。。。
+2023-10-16 11:27:23.734  INFO 7832 --- [http-nio-8090-exec-3] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询的响应json: [["201801003","刘正明"],["201801004","董亮"],["201801005","李祖明"]]
+2023-10-16 11:27:23.745  INFO 7832 --- [http-nio-8090-exec-1] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询接口开始工作。。。。。。。。
+2023-10-16 11:27:23.749  INFO 7832 --- [http-nio-8090-exec-1] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询的响应json: [["201801003","刘正明"],["201801004","董亮"],["201801005","李祖明"]]
+2023-10-16 11:29:59.626  INFO 7832 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2023-10-16 11:29:59.627  INFO 7832 --- [SpringContextShutdownHook] c.b.d.d.DynamicRoutingDataSource         : dynamic-datasource start closing ....
+2023-10-16 11:29:59.628  INFO 7832 --- [SpringContextShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closing ...
+2023-10-16 11:29:59.630  INFO 7832 --- [SpringContextShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2023-10-16 11:29:59.630  INFO 7832 --- [SpringContextShutdownHook] c.b.d.d.DynamicRoutingDataSource         : dynamic-datasource all closed success,bye
+2023-10-16 11:30:02.286  INFO 9968 --- [restartedMain] c.c.k.KingdeetofeishuApplication         : Starting KingdeetofeishuApplication on DESKTOP-L4HHB2S with PID 9968 (E:\IDEAWorkSpace\kingdeetochecklist\target\classes started by Ray in E:\IDEAWorkSpace\kingdeetochecklist)
+2023-10-16 11:30:02.288  INFO 9968 --- [restartedMain] c.c.k.KingdeetofeishuApplication         : The following profiles are active: test
+2023-10-16 11:30:02.322  INFO 9968 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-10-16 11:30:02.322  INFO 9968 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-10-16 11:30:03.184  INFO 9968 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'spring.datasource.dynamic-com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceProperties' of type [com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-10-16 11:30:03.185  INFO 9968 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceAutoConfiguration' of type [com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceAutoConfiguration$$EnhancerBySpringCGLIB$$9fee5883] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-10-16 11:30:03.189  INFO 9968 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'dsProcessor' of type [com.baomidou.dynamic.datasource.processor.DsHeaderProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-10-16 11:30:03.191  INFO 9968 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'dynamicDatasourceAnnotationAdvisor' of type [com.baomidou.dynamic.datasource.aop.DynamicDataSourceAnnotationAdvisor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-10-16 11:30:03.392  INFO 9968 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8090 (http)
+2023-10-16 11:30:03.400  INFO 9968 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-10-16 11:30:03.400  INFO 9968 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.41]
+2023-10-16 11:30:03.481  INFO 9968 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-10-16 11:30:03.481  INFO 9968 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1159 ms
+2023-10-16 11:30:03.713  INFO 9968 --- [restartedMain] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1,master} inited
+2023-10-16 11:30:03.713  INFO 9968 --- [restartedMain] c.b.d.d.DynamicRoutingDataSource         : dynamic-datasource - load a datasource named [master] success
+2023-10-16 11:30:03.714  INFO 9968 --- [restartedMain] c.b.d.d.DynamicRoutingDataSource         : dynamic-datasource initial loaded [1] datasource,primary datasource named [master]
+2023-10-16 11:30:04.658  INFO 9968 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2023-10-16 11:30:04.712  INFO 9968 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2023-10-16 11:30:04.964  INFO 9968 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-10-16 11:30:04.968  INFO 9968 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 14 endpoint(s) beneath base path '/actuator'
+2023-10-16 11:30:05.010  INFO 9968 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8090 (http) with context path ''
+2023-10-16 11:30:05.021  INFO 9968 --- [restartedMain] c.c.k.KingdeetofeishuApplication         : Started KingdeetofeishuApplication in 3.039 seconds (JVM running for 3.793)
+2023-10-16 11:30:05.605  INFO 9968 --- [RMI TCP Connection(2)-172.16.51.133] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-10-16 11:30:05.606  INFO 9968 --- [RMI TCP Connection(2)-172.16.51.133] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-10-16 11:30:05.610  INFO 9968 --- [RMI TCP Connection(2)-172.16.51.133] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
+2023-10-16 11:30:08.412  INFO 9968 --- [http-nio-8090-exec-2] c.c.k.apiRequst.KingdeeApi               : 金蝶登录接口返回得cookie[ASP.NET_SessionId=lq5ivobcy3n0xbc5fi1mfxoq, kdservice-sessionid=6df86221-83bb-4d7d-81b6-32ef2143e2f6]
+2023-10-16 11:30:08.420  INFO 9968 --- [http-nio-8090-exec-2] c.c.k.apiRequst.KingdeeApi               : 登录成功
+2023-10-16 11:30:08.420  INFO 9968 --- [http-nio-8090-exec-2] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询接口开始工作。。。。。。。。
+2023-10-16 11:30:08.432  INFO 9968 --- [http-nio-8090-exec-2] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询的响应json: [["201801003","刘正明"],["201801004","董亮"],["201801005","李祖明"]]
+2023-10-16 11:30:08.443  INFO 9968 --- [http-nio-8090-exec-3] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询接口开始工作。。。。。。。。
+2023-10-16 11:30:08.446  INFO 9968 --- [http-nio-8090-exec-3] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询的响应json: [["201801003","刘正明"],["201801004","董亮"],["201801005","李祖明"]]
+2023-10-16 11:31:10.553  INFO 9968 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2023-10-16 11:31:10.554  INFO 9968 --- [SpringContextShutdownHook] c.b.d.d.DynamicRoutingDataSource         : dynamic-datasource start closing ....
+2023-10-16 11:31:10.556  INFO 9968 --- [SpringContextShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closing ...
+2023-10-16 11:31:10.557  INFO 9968 --- [SpringContextShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2023-10-16 11:31:10.557  INFO 9968 --- [SpringContextShutdownHook] c.b.d.d.DynamicRoutingDataSource         : dynamic-datasource all closed success,bye
+2023-10-16 11:31:13.330  INFO 2272 --- [restartedMain] c.c.k.KingdeetofeishuApplication         : Starting KingdeetofeishuApplication on DESKTOP-L4HHB2S with PID 2272 (E:\IDEAWorkSpace\kingdeetochecklist\target\classes started by Ray in E:\IDEAWorkSpace\kingdeetochecklist)
+2023-10-16 11:31:13.332  INFO 2272 --- [restartedMain] c.c.k.KingdeetofeishuApplication         : The following profiles are active: test
+2023-10-16 11:31:13.366  INFO 2272 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-10-16 11:31:13.366  INFO 2272 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-10-16 11:31:14.416  INFO 2272 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'spring.datasource.dynamic-com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceProperties' of type [com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-10-16 11:31:14.417  INFO 2272 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceAutoConfiguration' of type [com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceAutoConfiguration$$EnhancerBySpringCGLIB$$8775a520] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-10-16 11:31:14.422  INFO 2272 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'dsProcessor' of type [com.baomidou.dynamic.datasource.processor.DsHeaderProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-10-16 11:31:14.424  INFO 2272 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'dynamicDatasourceAnnotationAdvisor' of type [com.baomidou.dynamic.datasource.aop.DynamicDataSourceAnnotationAdvisor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-10-16 11:31:14.636  INFO 2272 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8090 (http)
+2023-10-16 11:31:14.644  INFO 2272 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-10-16 11:31:14.644  INFO 2272 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.41]
+2023-10-16 11:31:14.727  INFO 2272 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-10-16 11:31:14.727  INFO 2272 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1360 ms
+2023-10-16 11:31:14.978  INFO 2272 --- [restartedMain] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1,master} inited
+2023-10-16 11:31:14.978  INFO 2272 --- [restartedMain] c.b.d.d.DynamicRoutingDataSource         : dynamic-datasource - load a datasource named [master] success
+2023-10-16 11:31:14.979  INFO 2272 --- [restartedMain] c.b.d.d.DynamicRoutingDataSource         : dynamic-datasource initial loaded [1] datasource,primary datasource named [master]
+2023-10-16 11:31:15.932  INFO 2272 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2023-10-16 11:31:15.992  INFO 2272 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2023-10-16 11:31:16.279  INFO 2272 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-10-16 11:31:16.284  INFO 2272 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 14 endpoint(s) beneath base path '/actuator'
+2023-10-16 11:31:16.332  INFO 2272 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8090 (http) with context path ''
+2023-10-16 11:31:16.343  INFO 2272 --- [restartedMain] c.c.k.KingdeetofeishuApplication         : Started KingdeetofeishuApplication in 3.321 seconds (JVM running for 4.08)
+2023-10-16 11:31:16.468  INFO 2272 --- [http-nio-8090-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-10-16 11:31:16.468  INFO 2272 --- [http-nio-8090-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-10-16 11:31:16.473  INFO 2272 --- [http-nio-8090-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+2023-10-16 11:31:17.083  INFO 2272 --- [http-nio-8090-exec-7] c.c.k.apiRequst.KingdeeApi               : 金蝶登录接口返回得cookie[ASP.NET_SessionId=kpeomrs5g5gvapravvbwobtc, kdservice-sessionid=e41ccea9-2924-4660-bd00-29f4273aeda8]
+2023-10-16 11:31:17.091  INFO 2272 --- [http-nio-8090-exec-7] c.c.k.apiRequst.KingdeeApi               : 登录成功
+2023-10-16 11:31:17.091  INFO 2272 --- [http-nio-8090-exec-7] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询接口开始工作。。。。。。。。
+2023-10-16 11:31:17.104  INFO 2272 --- [http-nio-8090-exec-7] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询的响应json: [["201801003","刘正明"],["201801004","董亮"],["201801005","李祖明"]]
+2023-10-16 11:31:17.115  INFO 2272 --- [http-nio-8090-exec-8] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询接口开始工作。。。。。。。。
+2023-10-16 11:31:17.119  INFO 2272 --- [http-nio-8090-exec-8] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询的响应json: [["201801003","刘正明"],["201801004","董亮"],["201801005","李祖明"]]
+2023-10-16 11:34:47.289  INFO 2272 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2023-10-16 11:34:47.291  INFO 2272 --- [SpringContextShutdownHook] c.b.d.d.DynamicRoutingDataSource         : dynamic-datasource start closing ....
+2023-10-16 11:34:47.292  INFO 2272 --- [SpringContextShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closing ...
+2023-10-16 11:34:47.293  INFO 2272 --- [SpringContextShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2023-10-16 11:34:47.294  INFO 2272 --- [SpringContextShutdownHook] c.b.d.d.DynamicRoutingDataSource         : dynamic-datasource all closed success,bye
+2023-10-16 11:34:50.545  INFO 3028 --- [restartedMain] c.c.k.KingdeetofeishuApplication         : Starting KingdeetofeishuApplication on DESKTOP-L4HHB2S with PID 3028 (E:\IDEAWorkSpace\kingdeetochecklist\target\classes started by Ray in E:\IDEAWorkSpace\kingdeetochecklist)
+2023-10-16 11:34:50.547  INFO 3028 --- [restartedMain] c.c.k.KingdeetofeishuApplication         : The following profiles are active: test
+2023-10-16 11:34:50.592  INFO 3028 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-10-16 11:34:50.593  INFO 3028 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-10-16 11:34:52.513  INFO 3028 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'spring.datasource.dynamic-com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceProperties' of type [com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-10-16 11:34:52.516  INFO 3028 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceAutoConfiguration' of type [com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceAutoConfiguration$$EnhancerBySpringCGLIB$$75ff9eab] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-10-16 11:34:52.523  INFO 3028 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'dsProcessor' of type [com.baomidou.dynamic.datasource.processor.DsHeaderProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-10-16 11:34:52.526  INFO 3028 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'dynamicDatasourceAnnotationAdvisor' of type [com.baomidou.dynamic.datasource.aop.DynamicDataSourceAnnotationAdvisor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-10-16 11:34:52.831  INFO 3028 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8090 (http)
+2023-10-16 11:34:52.843  INFO 3028 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-10-16 11:34:52.844  INFO 3028 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.41]
+2023-10-16 11:34:52.965  INFO 3028 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-10-16 11:34:52.965  INFO 3028 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2372 ms
+2023-10-16 11:34:53.320  INFO 3028 --- [restartedMain] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1,master} inited
+2023-10-16 11:34:53.320  INFO 3028 --- [restartedMain] c.b.d.d.DynamicRoutingDataSource         : dynamic-datasource - load a datasource named [master] success
+2023-10-16 11:34:53.322  INFO 3028 --- [restartedMain] c.b.d.d.DynamicRoutingDataSource         : dynamic-datasource initial loaded [1] datasource,primary datasource named [master]
+2023-10-16 11:34:54.465  INFO 3028 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2023-10-16 11:34:54.525  INFO 3028 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2023-10-16 11:34:54.895  INFO 3028 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-10-16 11:34:54.903  INFO 3028 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 14 endpoint(s) beneath base path '/actuator'
+2023-10-16 11:34:54.967  INFO 3028 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8090 (http) with context path ''
+2023-10-16 11:34:54.980  INFO 3028 --- [restartedMain] c.c.k.KingdeetofeishuApplication         : Started KingdeetofeishuApplication in 5.211 seconds (JVM running for 6.004)
+2023-10-16 11:34:55.674  INFO 3028 --- [RMI TCP Connection(5)-172.16.51.133] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-10-16 11:34:55.674  INFO 3028 --- [RMI TCP Connection(5)-172.16.51.133] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-10-16 11:34:55.679  INFO 3028 --- [RMI TCP Connection(5)-172.16.51.133] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+2023-10-16 11:35:16.842  INFO 3028 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2023-10-16 11:35:16.844  INFO 3028 --- [SpringContextShutdownHook] c.b.d.d.DynamicRoutingDataSource         : dynamic-datasource start closing ....
+2023-10-16 11:35:16.845  INFO 3028 --- [SpringContextShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closing ...
+2023-10-16 11:35:16.847  INFO 3028 --- [SpringContextShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2023-10-16 11:35:16.847  INFO 3028 --- [SpringContextShutdownHook] c.b.d.d.DynamicRoutingDataSource         : dynamic-datasource all closed success,bye
+2023-10-16 11:35:20.273  INFO 8344 --- [restartedMain] c.c.k.KingdeetofeishuApplication         : Starting KingdeetofeishuApplication on DESKTOP-L4HHB2S with PID 8344 (E:\IDEAWorkSpace\kingdeetochecklist\target\classes started by Ray in E:\IDEAWorkSpace\kingdeetochecklist)
+2023-10-16 11:35:20.276  INFO 8344 --- [restartedMain] c.c.k.KingdeetofeishuApplication         : The following profiles are active: test
+2023-10-16 11:35:20.309  INFO 8344 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-10-16 11:35:20.309  INFO 8344 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-10-16 11:35:21.171  INFO 8344 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'spring.datasource.dynamic-com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceProperties' of type [com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-10-16 11:35:21.172  INFO 8344 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceAutoConfiguration' of type [com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceAutoConfiguration$$EnhancerBySpringCGLIB$$5f0c66d9] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-10-16 11:35:21.176  INFO 8344 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'dsProcessor' of type [com.baomidou.dynamic.datasource.processor.DsHeaderProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-10-16 11:35:21.178  INFO 8344 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'dynamicDatasourceAnnotationAdvisor' of type [com.baomidou.dynamic.datasource.aop.DynamicDataSourceAnnotationAdvisor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-10-16 11:35:21.381  INFO 8344 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8090 (http)
+2023-10-16 11:35:21.389  INFO 8344 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-10-16 11:35:21.389  INFO 8344 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.41]
+2023-10-16 11:35:21.466  INFO 8344 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-10-16 11:35:21.467  INFO 8344 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1157 ms
+2023-10-16 11:35:21.696  INFO 8344 --- [restartedMain] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1,master} inited
+2023-10-16 11:35:21.696  INFO 8344 --- [restartedMain] c.b.d.d.DynamicRoutingDataSource         : dynamic-datasource - load a datasource named [master] success
+2023-10-16 11:35:21.697  INFO 8344 --- [restartedMain] c.b.d.d.DynamicRoutingDataSource         : dynamic-datasource initial loaded [1] datasource,primary datasource named [master]
+2023-10-16 11:35:22.640  INFO 8344 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2023-10-16 11:35:22.694  INFO 8344 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2023-10-16 11:35:22.945  INFO 8344 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-10-16 11:35:22.949  INFO 8344 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 14 endpoint(s) beneath base path '/actuator'
+2023-10-16 11:35:22.992  INFO 8344 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8090 (http) with context path ''
+2023-10-16 11:35:23.002  INFO 8344 --- [restartedMain] c.c.k.KingdeetofeishuApplication         : Started KingdeetofeishuApplication in 3.052 seconds (JVM running for 4.002)
+2023-10-16 11:35:23.593  INFO 8344 --- [RMI TCP Connection(3)-172.16.51.133] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-10-16 11:35:23.593  INFO 8344 --- [RMI TCP Connection(3)-172.16.51.133] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-10-16 11:35:23.597  INFO 8344 --- [RMI TCP Connection(3)-172.16.51.133] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
+2023-10-16 11:35:27.323  INFO 8344 --- [http-nio-8090-exec-9] c.c.k.apiRequst.KingdeeApi               : 金蝶登录接口返回得cookie[ASP.NET_SessionId=l2gfkeyrtohubo231jpwqogi, kdservice-sessionid=82c52768-7a22-49b1-8b6d-a0c758534010]
+2023-10-16 11:35:27.330  INFO 8344 --- [http-nio-8090-exec-9] c.c.k.apiRequst.KingdeeApi               : 登录成功
+2023-10-16 11:35:27.331  INFO 8344 --- [http-nio-8090-exec-9] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询接口开始工作。。。。。。。。
+2023-10-16 11:35:27.343  INFO 8344 --- [http-nio-8090-exec-9] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询的响应json: [["201801003","刘正明"],["201801004","董亮"],["201801005","李祖明"]]
+2023-10-16 11:35:27.353  INFO 8344 --- [http-nio-8090-exec-5] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询接口开始工作。。。。。。。。
+2023-10-16 11:35:27.357  INFO 8344 --- [http-nio-8090-exec-5] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询的响应json: [["201801003","刘正明"],["201801004","董亮"],["201801005","李祖明"]]
+2023-10-16 11:36:06.685  INFO 8344 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2023-10-16 11:36:06.686  INFO 8344 --- [SpringContextShutdownHook] c.b.d.d.DynamicRoutingDataSource         : dynamic-datasource start closing ....
+2023-10-16 11:36:06.687  INFO 8344 --- [SpringContextShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closing ...
+2023-10-16 11:36:06.689  INFO 8344 --- [SpringContextShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2023-10-16 11:36:06.689  INFO 8344 --- [SpringContextShutdownHook] c.b.d.d.DynamicRoutingDataSource         : dynamic-datasource all closed success,bye
+2023-10-16 11:36:10.252  INFO 11960 --- [restartedMain] c.c.k.KingdeetofeishuApplication         : Starting KingdeetofeishuApplication on DESKTOP-L4HHB2S with PID 11960 (E:\IDEAWorkSpace\kingdeetochecklist\target\classes started by Ray in E:\IDEAWorkSpace\kingdeetochecklist)
+2023-10-16 11:36:10.254  INFO 11960 --- [restartedMain] c.c.k.KingdeetofeishuApplication         : The following profiles are active: test
+2023-10-16 11:36:10.285  INFO 11960 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-10-16 11:36:10.286  INFO 11960 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-10-16 11:36:11.147  INFO 11960 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'spring.datasource.dynamic-com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceProperties' of type [com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-10-16 11:36:11.148  INFO 11960 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceAutoConfiguration' of type [com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceAutoConfiguration$$EnhancerBySpringCGLIB$$9970a1cf] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-10-16 11:36:11.152  INFO 11960 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'dsProcessor' of type [com.baomidou.dynamic.datasource.processor.DsHeaderProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-10-16 11:36:11.154  INFO 11960 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'dynamicDatasourceAnnotationAdvisor' of type [com.baomidou.dynamic.datasource.aop.DynamicDataSourceAnnotationAdvisor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-10-16 11:36:11.354  INFO 11960 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8090 (http)
+2023-10-16 11:36:11.362  INFO 11960 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-10-16 11:36:11.362  INFO 11960 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.41]
+2023-10-16 11:36:11.440  INFO 11960 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-10-16 11:36:11.440  INFO 11960 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1154 ms
+2023-10-16 11:36:11.672  INFO 11960 --- [restartedMain] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1,master} inited
+2023-10-16 11:36:11.672  INFO 11960 --- [restartedMain] c.b.d.d.DynamicRoutingDataSource         : dynamic-datasource - load a datasource named [master] success
+2023-10-16 11:36:11.673  INFO 11960 --- [restartedMain] c.b.d.d.DynamicRoutingDataSource         : dynamic-datasource initial loaded [1] datasource,primary datasource named [master]
+2023-10-16 11:36:12.638  INFO 11960 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2023-10-16 11:36:12.695  INFO 11960 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2023-10-16 11:36:12.942  INFO 11960 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-10-16 11:36:12.946  INFO 11960 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 14 endpoint(s) beneath base path '/actuator'
+2023-10-16 11:36:12.988  INFO 11960 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8090 (http) with context path ''
+2023-10-16 11:36:12.999  INFO 11960 --- [restartedMain] c.c.k.KingdeetofeishuApplication         : Started KingdeetofeishuApplication in 3.056 seconds (JVM running for 3.99)
+2023-10-16 11:36:13.585  INFO 11960 --- [RMI TCP Connection(3)-172.16.51.133] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-10-16 11:36:13.585  INFO 11960 --- [RMI TCP Connection(3)-172.16.51.133] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-10-16 11:36:13.590  INFO 11960 --- [RMI TCP Connection(3)-172.16.51.133] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+2023-10-16 11:36:18.740  INFO 11960 --- [http-nio-8090-exec-8] c.c.k.apiRequst.KingdeeApi               : 金蝶登录接口返回得cookie[ASP.NET_SessionId=rc3qhg5tnqccim1ruciwhuk1, kdservice-sessionid=25c6ebbc-00c6-4b22-86fb-5ccb7b452c76]
+2023-10-16 11:36:18.747  INFO 11960 --- [http-nio-8090-exec-8] c.c.k.apiRequst.KingdeeApi               : 登录成功
+2023-10-16 11:36:18.748  INFO 11960 --- [http-nio-8090-exec-8] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询接口开始工作。。。。。。。。
+2023-10-16 11:36:18.761  INFO 11960 --- [http-nio-8090-exec-8] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询的响应json: [["201801003","刘正明"],["201801004","董亮"],["201801005","李祖明"]]
+2023-10-16 11:36:18.772  INFO 11960 --- [http-nio-8090-exec-2] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询接口开始工作。。。。。。。。
+2023-10-16 11:36:18.775  INFO 11960 --- [http-nio-8090-exec-2] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询的响应json: [["201801003","刘正明"],["201801004","董亮"],["201801005","李祖明"]]
+2023-10-16 11:37:59.641  INFO 11960 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2023-10-16 11:37:59.642  INFO 11960 --- [SpringContextShutdownHook] c.b.d.d.DynamicRoutingDataSource         : dynamic-datasource start closing ....
+2023-10-16 11:37:59.643  INFO 11960 --- [SpringContextShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closing ...
+2023-10-16 11:37:59.645  INFO 11960 --- [SpringContextShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2023-10-16 11:37:59.645  INFO 11960 --- [SpringContextShutdownHook] c.b.d.d.DynamicRoutingDataSource         : dynamic-datasource all closed success,bye
+2023-10-16 11:38:02.368  INFO 19664 --- [restartedMain] c.c.k.KingdeetofeishuApplication         : Starting KingdeetofeishuApplication on DESKTOP-L4HHB2S with PID 19664 (E:\IDEAWorkSpace\kingdeetochecklist\target\classes started by Ray in E:\IDEAWorkSpace\kingdeetochecklist)
+2023-10-16 11:38:02.370  INFO 19664 --- [restartedMain] c.c.k.KingdeetofeishuApplication         : The following profiles are active: test
+2023-10-16 11:38:02.403  INFO 19664 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-10-16 11:38:02.403  INFO 19664 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-10-16 11:38:03.265  INFO 19664 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'spring.datasource.dynamic-com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceProperties' of type [com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-10-16 11:38:03.266  INFO 19664 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceAutoConfiguration' of type [com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceAutoConfiguration$$EnhancerBySpringCGLIB$$c833fb14] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-10-16 11:38:03.271  INFO 19664 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'dsProcessor' of type [com.baomidou.dynamic.datasource.processor.DsHeaderProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-10-16 11:38:03.272  INFO 19664 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'dynamicDatasourceAnnotationAdvisor' of type [com.baomidou.dynamic.datasource.aop.DynamicDataSourceAnnotationAdvisor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-10-16 11:38:03.477  INFO 19664 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8090 (http)
+2023-10-16 11:38:03.485  INFO 19664 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-10-16 11:38:03.485  INFO 19664 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.41]
+2023-10-16 11:38:03.563  INFO 19664 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-10-16 11:38:03.563  INFO 19664 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1160 ms
+2023-10-16 11:38:03.797  INFO 19664 --- [restartedMain] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1,master} inited
+2023-10-16 11:38:03.797  INFO 19664 --- [restartedMain] c.b.d.d.DynamicRoutingDataSource         : dynamic-datasource - load a datasource named [master] success
+2023-10-16 11:38:03.798  INFO 19664 --- [restartedMain] c.b.d.d.DynamicRoutingDataSource         : dynamic-datasource initial loaded [1] datasource,primary datasource named [master]
+2023-10-16 11:38:04.730  INFO 19664 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2023-10-16 11:38:04.784  INFO 19664 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2023-10-16 11:38:05.031  INFO 19664 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-10-16 11:38:05.036  INFO 19664 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 14 endpoint(s) beneath base path '/actuator'
+2023-10-16 11:38:05.079  INFO 19664 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8090 (http) with context path ''
+2023-10-16 11:38:05.090  INFO 19664 --- [restartedMain] c.c.k.KingdeetofeishuApplication         : Started KingdeetofeishuApplication in 3.031 seconds (JVM running for 3.783)
+2023-10-16 11:38:05.689  INFO 19664 --- [RMI TCP Connection(2)-172.16.51.133] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-10-16 11:38:05.689  INFO 19664 --- [RMI TCP Connection(2)-172.16.51.133] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-10-16 11:38:05.693  INFO 19664 --- [RMI TCP Connection(2)-172.16.51.133] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
+2023-10-16 11:38:08.567  INFO 19664 --- [http-nio-8090-exec-8] c.c.k.apiRequst.KingdeeApi               : 金蝶登录接口返回得cookie[ASP.NET_SessionId=nxqs5b2rzglckm4hg4scddg5, kdservice-sessionid=e66c8e9d-f6ea-4e73-9626-a52a07e1dcf1]
+2023-10-16 11:38:08.575  INFO 19664 --- [http-nio-8090-exec-8] c.c.k.apiRequst.KingdeeApi               : 登录成功
+2023-10-16 11:38:08.575  INFO 19664 --- [http-nio-8090-exec-8] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询接口开始工作。。。。。。。。
+2023-10-16 11:38:08.587  INFO 19664 --- [http-nio-8090-exec-8] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询的响应json: [["201801003","刘正明"],["201801004","董亮"],["201801005","李祖明"]]
+2023-10-16 11:38:08.598  INFO 19664 --- [http-nio-8090-exec-2] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询接口开始工作。。。。。。。。
+2023-10-16 11:38:08.602  INFO 19664 --- [http-nio-8090-exec-2] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询的响应json: [["201801003","刘正明"],["201801004","董亮"],["201801005","李祖明"]]
+2023-10-16 11:38:30.076  INFO 19664 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2023-10-16 11:38:30.078  INFO 19664 --- [SpringContextShutdownHook] c.b.d.d.DynamicRoutingDataSource         : dynamic-datasource start closing ....
+2023-10-16 11:38:30.079  INFO 19664 --- [SpringContextShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closing ...
+2023-10-16 11:38:30.080  INFO 19664 --- [SpringContextShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2023-10-16 11:38:30.080  INFO 19664 --- [SpringContextShutdownHook] c.b.d.d.DynamicRoutingDataSource         : dynamic-datasource all closed success,bye
+2023-10-16 11:38:32.797  INFO 596 --- [restartedMain] c.c.k.KingdeetofeishuApplication         : Starting KingdeetofeishuApplication on DESKTOP-L4HHB2S with PID 596 (E:\IDEAWorkSpace\kingdeetochecklist\target\classes started by Ray in E:\IDEAWorkSpace\kingdeetochecklist)
+2023-10-16 11:38:32.799  INFO 596 --- [restartedMain] c.c.k.KingdeetofeishuApplication         : The following profiles are active: test
+2023-10-16 11:38:32.830  INFO 596 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-10-16 11:38:32.831  INFO 596 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-10-16 11:38:33.701  INFO 596 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'spring.datasource.dynamic-com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceProperties' of type [com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-10-16 11:38:33.702  INFO 596 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceAutoConfiguration' of type [com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceAutoConfiguration$$EnhancerBySpringCGLIB$$5f0c66d9] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-10-16 11:38:33.707  INFO 596 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'dsProcessor' of type [com.baomidou.dynamic.datasource.processor.DsHeaderProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-10-16 11:38:33.709  INFO 596 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'dynamicDatasourceAnnotationAdvisor' of type [com.baomidou.dynamic.datasource.aop.DynamicDataSourceAnnotationAdvisor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-10-16 11:38:33.911  INFO 596 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8090 (http)
+2023-10-16 11:38:33.918  INFO 596 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-10-16 11:38:33.918  INFO 596 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.41]
+2023-10-16 11:38:33.998  INFO 596 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-10-16 11:38:33.998  INFO 596 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1167 ms
+2023-10-16 11:38:34.236  INFO 596 --- [restartedMain] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1,master} inited
+2023-10-16 11:38:34.236  INFO 596 --- [restartedMain] c.b.d.d.DynamicRoutingDataSource         : dynamic-datasource - load a datasource named [master] success
+2023-10-16 11:38:34.237  INFO 596 --- [restartedMain] c.b.d.d.DynamicRoutingDataSource         : dynamic-datasource initial loaded [1] datasource,primary datasource named [master]
+2023-10-16 11:38:35.196  INFO 596 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2023-10-16 11:38:35.252  INFO 596 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2023-10-16 11:38:35.524  INFO 596 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-10-16 11:38:35.528  INFO 596 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 14 endpoint(s) beneath base path '/actuator'
+2023-10-16 11:38:35.574  INFO 596 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8090 (http) with context path ''
+2023-10-16 11:38:35.588  INFO 596 --- [restartedMain] c.c.k.KingdeetofeishuApplication         : Started KingdeetofeishuApplication in 3.099 seconds (JVM running for 3.85)
+2023-10-16 11:38:36.337  INFO 596 --- [RMI TCP Connection(4)-172.16.51.133] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-10-16 11:38:36.337  INFO 596 --- [RMI TCP Connection(4)-172.16.51.133] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-10-16 11:38:36.343  INFO 596 --- [RMI TCP Connection(4)-172.16.51.133] o.s.web.servlet.DispatcherServlet        : Completed initialization in 6 ms
+2023-10-16 11:38:37.024  INFO 596 --- [http-nio-8090-exec-9] c.c.k.apiRequst.KingdeeApi               : 金蝶登录接口返回得cookie[ASP.NET_SessionId=xluheyvag2pgasdd0kw0pto0, kdservice-sessionid=e56d5344-7370-4973-b22d-37b078a339ee]
+2023-10-16 11:38:37.032  INFO 596 --- [http-nio-8090-exec-9] c.c.k.apiRequst.KingdeeApi               : 登录成功
+2023-10-16 11:38:37.032  INFO 596 --- [http-nio-8090-exec-9] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询接口开始工作。。。。。。。。
+2023-10-16 11:38:37.044  INFO 596 --- [http-nio-8090-exec-9] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询的响应json: [["201801003","刘正明"],["201801004","董亮"],["201801005","李祖明"]]
+2023-10-16 11:38:37.055  INFO 596 --- [http-nio-8090-exec-10] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询接口开始工作。。。。。。。。
+2023-10-16 11:38:37.059  INFO 596 --- [http-nio-8090-exec-10] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询的响应json: [["201801003","刘正明"],["201801004","董亮"],["201801005","李祖明"]]
+2023-10-16 12:01:42.631  INFO 596 --- [http-nio-8090-exec-6] c.c.k.apiRequst.KingdeeApi               : 金蝶登录接口返回得cookie[ASP.NET_SessionId=1qwnugjky3y04na24ldcuam3, kdservice-sessionid=d5998563-f59c-426c-a292-da8975764b45]
+2023-10-16 12:01:42.631  INFO 596 --- [http-nio-8090-exec-6] c.c.k.apiRequst.KingdeeApi               : 登录成功
+2023-10-16 12:01:42.631  INFO 596 --- [http-nio-8090-exec-6] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询接口开始工作。。。。。。。。
+2023-10-16 12:01:42.639  INFO 596 --- [http-nio-8090-exec-8] c.c.k.apiRequst.KingdeeApi               : 金蝶登录接口返回得cookie[ASP.NET_SessionId=2a0hdnequobfjfw4mqa5csx2, kdservice-sessionid=9ea68081-1200-4d8a-a800-f384c146efef]
+2023-10-16 12:01:42.640  INFO 596 --- [http-nio-8090-exec-8] c.c.k.apiRequst.KingdeeApi               : 登录成功
+2023-10-16 12:01:42.640  INFO 596 --- [http-nio-8090-exec-8] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询接口开始工作。。。。。。。。
+2023-10-16 12:01:42.892  INFO 596 --- [http-nio-8090-exec-8] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询的响应json: [["201801003","刘正明"],["201801004","董亮"],["201801005","李祖明"]]
+2023-10-16 12:01:43.555  INFO 596 --- [http-nio-8090-exec-6] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询的响应json: [["IQC000068","C","KP-SX-001","摄像头"," ",null,"2023-09-27T00:00:00","2000万 8倍焦距","雅安实业（美元）","CGSL000052",180057,"101.2","1","Pcs","VEN00002","110060","110093"],["IQC000067","C","KP-SX-001","摄像头"," ",null,"2023-09-27T00:00:00","2000万 8倍焦距","雅安实业（美元）","CGSL000052",180056,"101.2","1","Pcs","VEN00002","110060","110093"],["IQC000058","C","KP-SX-001","摄像头"," ",null,"2023-09-25T00:00:00","2000万 8倍焦距","雅安实业（美元）","CGSL000052",180046,"101.2","1","Pcs","VEN00002","110060","110093"],["IQC000056","D","KP-SX-001","摄像头"," ",null,"2023-09-21T00:00:00","2000万 8倍焦距","雅安实业（美元）","CGSL000052",170047,"101.2","1","Pcs","VEN00002","110060","110093"]]
+2023-10-16 14:05:11.719  INFO 596 --- [http-nio-8090-exec-2] c.c.k.apiRequst.KingdeeApi               : 金蝶登录接口返回得cookie[ASP.NET_SessionId=f2shmcizu031mktwvwnrfjfl, kdservice-sessionid=3d048803-b13a-47f6-9d86-7febc91b2170]
+2023-10-16 14:05:11.720  INFO 596 --- [http-nio-8090-exec-2] c.c.k.apiRequst.KingdeeApi               : 登录成功
+2023-10-16 14:05:11.720  INFO 596 --- [http-nio-8090-exec-2] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询接口开始工作。。。。。。。。
+2023-10-16 14:05:11.768  INFO 596 --- [http-nio-8090-exec-2] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询的响应json: [["201801003","刘正明"],["201801004","董亮"],["201801005","李祖明"]]
+2023-10-16 14:05:35.752  INFO 596 --- [http-nio-8090-exec-3] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询接口开始工作。。。。。。。。
+2023-10-16 14:05:35.756  INFO 596 --- [http-nio-8090-exec-3] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询的响应json: [["201801003","刘正明"],["201801004","董亮"],["201801005","李祖明"]]
+2023-10-16 14:05:36.727  INFO 596 --- [http-nio-8090-exec-5] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询接口开始工作。。。。。。。。
+2023-10-16 14:05:36.731  INFO 596 --- [http-nio-8090-exec-5] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询的响应json: [["201801003","刘正明"],["201801004","董亮"],["201801005","李祖明"]]
+2023-10-16 14:05:46.995  INFO 596 --- [http-nio-8090-exec-6] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询接口开始工作。。。。。。。。
+2023-10-16 14:05:47.000  INFO 596 --- [http-nio-8090-exec-6] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询的响应json: [["201801003","刘正明"],["201801004","董亮"],["201801005","李祖明"]]
+2023-10-16 14:05:48.691  INFO 596 --- [http-nio-8090-exec-9] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询接口开始工作。。。。。。。。
+2023-10-16 14:05:48.695  INFO 596 --- [http-nio-8090-exec-9] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询的响应json: [["201801003","刘正明"],["201801004","董亮"],["201801005","李祖明"]]
+2023-10-16 14:06:31.630  INFO 596 --- [http-nio-8090-exec-10] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询接口开始工作。。。。。。。。
+2023-10-16 14:06:31.635  INFO 596 --- [http-nio-8090-exec-10] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询的响应json: [["201801003","刘正明"],["201801004","董亮"],["201801005","李祖明"]]
+2023-10-16 14:06:32.178  INFO 596 --- [http-nio-8090-exec-1] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询接口开始工作。。。。。。。。
+2023-10-16 14:06:32.182  INFO 596 --- [http-nio-8090-exec-1] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询的响应json: [["201801003","刘正明"],["201801004","董亮"],["201801005","李祖明"]]
+2023-10-16 14:21:33.649  INFO 596 --- [http-nio-8090-exec-6] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询接口开始工作。。。。。。。。
+2023-10-16 14:21:33.660  INFO 596 --- [http-nio-8090-exec-6] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询的响应json: [["201801003","刘正明"],["201801004","董亮"],["201801005","李祖明"]]
+2023-10-16 14:21:40.539  INFO 596 --- [http-nio-8090-exec-4] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询接口开始工作。。。。。。。。
+2023-10-16 14:21:40.544  INFO 596 --- [http-nio-8090-exec-4] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询的响应json: [["201801003","刘正明"],["201801004","董亮"],["201801005","李祖明"]]
+2023-10-16 15:36:57.257  INFO 596 --- [http-nio-8090-exec-5] c.c.k.apiRequst.KingdeeApi               : 金蝶登录接口返回得cookie[ASP.NET_SessionId=f2shmcizu031mktwvwnrfjfl, kdservice-sessionid=3d048803-b13a-47f6-9d86-7febc91b2170, kdservice-sessionid=e5af0abd-0d2d-4da2-8f00-5936fee49312]
+2023-10-16 15:36:57.257  INFO 596 --- [http-nio-8090-exec-5] c.c.k.apiRequst.KingdeeApi               : 登录成功
+2023-10-16 15:36:57.257  INFO 596 --- [http-nio-8090-exec-5] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询接口开始工作。。。。。。。。
+2023-10-16 15:36:57.795  INFO 596 --- [http-nio-8090-exec-5] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询的响应json: [["IQC000068","C","KP-SX-001","摄像头"," ",null,"2023-09-27T00:00:00","2000万 8倍焦距","雅安实业（美元）","CGSL000052",180057,"101.2","1","Pcs","VEN00002","110060","110093"],["IQC000067","C","KP-SX-001","摄像头"," ",null,"2023-09-27T00:00:00","2000万 8倍焦距","雅安实业（美元）","CGSL000052",180056,"101.2","1","Pcs","VEN00002","110060","110093"],["IQC000058","C","KP-SX-001","摄像头"," ",null,"2023-09-25T00:00:00","2000万 8倍焦距","雅安实业（美元）","CGSL000052",180046,"101.2","1","Pcs","VEN00002","110060","110093"],["IQC000056","D","KP-SX-001","摄像头"," ",null,"2023-09-21T00:00:00","2000万 8倍焦距","雅安实业（美元）","CGSL000052",170047,"101.2","1","Pcs","VEN00002","110060","110093"]]
+2023-10-16 15:36:58.825  INFO 596 --- [http-nio-8090-exec-4] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询接口开始工作。。。。。。。。
+2023-10-16 15:36:58.830  INFO 596 --- [http-nio-8090-exec-4] c.c.k.apiRequst.KingdeeApi               : 金蝶单据查询的响应json: [[2.0000000000,"2","q-2"," "]]
+2023-10-16 17:32:24.460  INFO 596 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2023-10-16 17:32:24.461  INFO 596 --- [SpringContextShutdownHook] c.b.d.d.DynamicRoutingDataSource         : dynamic-datasource start closing ....
+2023-10-16 17:32:24.464  INFO 596 --- [SpringContextShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closing ...
+2023-10-16 17:32:24.464  INFO 596 --- [SpringContextShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2023-10-16 17:32:24.464  INFO 596 --- [SpringContextShutdownHook] c.b.d.d.DynamicRoutingDataSource         : dynamic-datasource all closed success,bye
