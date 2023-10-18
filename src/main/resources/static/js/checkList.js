@@ -73,7 +73,7 @@ function saveCheckList(){
         isClick = false;
         setTimeout(function() {
             isClick = true;
-        }, 3000);//3秒内不能重复点击
+        }, 1000);//1秒内不能重复点击
     }else{
         alert("请不要短时间内重复点击按钮")
         return;
@@ -124,7 +124,7 @@ function saveCheckList(){
         checkListArray: checkListArray
     };
 
-    if(barCode.value !== "" || checkNumber !== "") {
+    if((barCode.value !== "" || checkNumber !== "") && checkNumber !== "上传中") {
         $.ajax({
             type: "post",
             url: "check/checkList",
@@ -137,6 +137,8 @@ function saveCheckList(){
                     alert("上传成功！" + data["Result"]["ResponseStatus"]["SuccessEntitys"][0]["Number"]);
                 } else {
                     var errors = data["Result"]["ResponseStatus"]["Errors"][0]["Message"]
+                    $("#checkNumber").val("自动生成");
+                    $("#checkBillNumber").val("自动生成");
                     alert(errors);
                 }
             },
@@ -144,6 +146,8 @@ function saveCheckList(){
                 alert("ajax连接异常：" + msg);
             }
         });
+        $("#checkNumber").val("上传中");
+        $("#checkBillNumber").val("上传中");
     }
 }
 
@@ -733,13 +737,16 @@ function openHistoryPopup() {
         }
     });
 
+    var sectionDiv = popupDocument.createElement("div");
+    sectionDiv.className = "bk-con-message message-section";
+    sectionDiv.style.overflow = "auto";
+
     var pageDiv = popupDocument.createElement("div");
     pageDiv.className = "pages-style";
 
     var tableDiv = popupDocument.createElement("div");
     tableDiv.className = "page_content clearfix mb15 table-module";
     tableDiv.id = "iframe_box";
-    tableDiv.style.overflow = "auto";
 
     var table = popupDocument.createElement("table");
     table.className = "gallery table table_list table_striped table-bordered";
@@ -762,7 +769,7 @@ function openHistoryPopup() {
         type: "get",
         url: "check/selectBPCheckList",
         data: {
-            param: ""
+            param: "F_BPJY"
         },
         success: function (data) {
             if (data.length > 0) {
@@ -923,7 +930,8 @@ function openHistoryPopup() {
     table.appendChild(tableBody);
     tableDiv.appendChild(table);
     pageDiv.appendChild(tableDiv);
-    popupDocument.body.appendChild(pageDiv);
+    sectionDiv.appendChild(pageDiv);
+    popupDocument.body.appendChild(sectionDiv);
 }
 
 // 填充当前表格内容

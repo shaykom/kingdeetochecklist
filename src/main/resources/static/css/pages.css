@@ -67,6 +67,12 @@
     vertical-align: top;
     resize: inherit;
 }
+.textareaNum {
+	overflow: auto;
+	vertical-align: top;
+	resize: inherit;
+	width: 60px;
+}
 /**************************图片放大样式***************************/
 #zoom {
 	z-index: 99990;

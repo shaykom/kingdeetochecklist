@@ -84,7 +84,7 @@
                 <textarea class="textarea" type="text" onclick="" id="flNote" disabled></textarea>
 
                 <label class="margin5 containerRight">检验员</label>
-                <select class="width174 align" id="checker">
+                <select class="width174 align" id="checker" multiple="multiple">
                 </select>
 
                 <label class="margin5 containerRight">难度</label>
@@ -117,16 +117,16 @@
         <div class="operation5  mb5">
             <div class="container block">
                 <label class="margin5 containerRight">实测值</label>
-                <textarea class="textarea" type="text" onclick="" id="actualValue" onfocus="setNumberInput(this)"></textarea>
+                <textarea class="textarea" type="text" onclick="" id="actualValue" onfocus="setNumberInput(this)" onblur="setThValue('actualValue_th','actualValue',this)"></textarea>
 
                 <label class="margin5 containerRight">份数</label>
-                <textarea class="textarea" type="text" onclick="" id="pcsNum" onfocus="setNumberInput(this)"></textarea>
+                <textarea class="textarea" type="text" onclick="" id="pcsNum" onfocus="setNumberInput(this)" onblur="setThValue('pcsNum_th','pcsNum',this)"></textarea>
 
                 <label class="margin5 containerRight">纬弓/纬斜高度</label>
-                <textarea class="textarea" type="text" onclick="" id="textValue" onfocus="setNumberInput(this)"></textarea>
+                <textarea class="textarea" type="text" onclick="" id="textValue" onfocus="setNumberInput(this)" onblur="setThValue('textValue_th','textValue',this)"></textarea>
 
                 <label class="margin5 containerRight">卷合格判定</label>
-                <select class="width174 align" id="isPass">
+                <select class="width174 align" id="isPass" onclick="setThValue('isPass_th','isPass',this)">
                     <option>合格</option>
                     <option>让步接收</option>
                     <option>返修</option>
@@ -135,17 +135,17 @@
             </div>
             <div class="container block">
                 <label class="margin5 containerRight">全门幅1</label>
-                <textarea class="textarea" type="text" onclick="" id="doorWidthAll1" onfocus="setNumberInput(this)"></textarea>
+                <textarea class="textarea" type="text" onclick="" id="doorWidthAll1" onfocus="setNumberInput(this)" onblur="setThValue('doorWidthAll1_th','doorWidthAll1',this)"></textarea>
                 <label class="margin5 containerRight">全门幅2</label>
-                <textarea class="textarea" type="text" onclick="" id="doorWidthAll2" onfocus="setNumberInput(this)"></textarea>
+                <textarea class="textarea" type="text" onclick="" id="doorWidthAll2" onfocus="setNumberInput(this)" onblur="setThValue('doorWidthAll2_th','doorWidthAll2',this)"></textarea>
                 <label class="margin5 containerRight">全门幅3</label>
-                <textarea class="textarea" type="text" onclick="" id="doorWidthAll3" onfocus="setNumberInput(this)"></textarea>
+                <textarea class="textarea" type="text" onclick="" id="doorWidthAll3" onfocus="setNumberInput(this)" onblur="setThValue('doorWidthAll3_th','doorWidthAll3',this)"></textarea>
                 <label class="margin5 containerRight">有效门幅1</label>
-                <textarea class="textarea" type="text" onclick="" id="doorWidthAvailable1" onfocus="setNumberInput(this)"></textarea>
+                <textarea class="textarea" type="text" onclick="" id="doorWidthAvailable1" onfocus="setNumberInput(this)" onblur="setThValue('doorWidthAvailable1_th','doorWidthAvailable1',this)"></textarea>
                 <label class="margin5 containerRight">有效门幅2</label>
-                <textarea class="textarea" type="text" onclick="" id="doorWidthAvailable2" onfocus="setNumberInput(this)"></textarea>
+                <textarea class="textarea" type="text" onclick="" id="doorWidthAvailable2" onfocus="setNumberInput(this)" onblur="setThValue('doorWidthAvailable2_th','doorWidthAvailable2',this)"></textarea>
                 <label class="margin5 containerRight">有效门幅3</label>
-                <textarea class="textarea" type="text" onclick="" id="doorWidthAvailable3" onfocus="setNumberInput(this)"></textarea>
+                <textarea class="textarea" type="text" onclick="" id="doorWidthAvailable3" onfocus="setNumberInput(this)" onblur="setThValue('doorWidthAvailable3_th','doorWidthAvailable3',this)"></textarea>
 
 
             </div>
@@ -154,8 +154,8 @@
         <div class="operation5  mb5">
             <div class="container block">
                 <label class="margin5 containerRight">与参考样</label>
-                <input type="checkbox" name="andExample" id="isAndExample"><label for="isAndExample">符合</label>
-                <select id="andExample">
+                <input type="checkbox" name="andExample" id="isAndExample" onclick="setThValue('isAndExample_th','isAndExample',this)"><label for="isAndExample">符合</label>
+                <select id="andExample" onclick="setThValue('andExample_th','andExample',this)">
                     <option></option>
                     <option>1</option>
                     <option>1-2</option>
@@ -168,8 +168,8 @@
                     <option>5</option>
                 </select>
                 <label class="margin5 containerRight">卷内边中差</label>
-                <input type="checkbox" name="andExample" id="isJNBZC"><label for="isJNBZC">符合</label>
-                <select id="JNBZC">
+                <input type="checkbox" name="andExample" id="isJNBZC" onclick="setThValue('isJNBZC_th','isJNBZC',this)"><label for="isJNBZC">符合</label>
+                <select id="JNBZC" onclick="setThValue('JNBZC_th','JNBZC',this)">
                     <option></option>
                     <option>1</option>
                     <option>1-2</option>
@@ -182,8 +182,8 @@
                     <option>5</option>
                 </select>
                 <label class="margin5 containerRight">卷内头尾差</label>
-                <input type="checkbox" name="andExample" id="isJNTWC"><label for="isJNTWC">符合</label>
-                <select id="JNTWC">
+                <input type="checkbox" name="andExample" id="isJNTWC" onclick="setThValue('isJNTWC_th','isJNTWC',this)"><label for="isJNTWC">符合</label>
+                <select id="JNTWC" onclick="setThValue('JNTWC_th','JNTWC',this)">
                     <option></option>
                     <option>1</option>
                     <option>1-2</option>
@@ -197,7 +197,7 @@
                 </select>
 
                 <label class="margin5 width64 containerRight">备注</label>
-                <textarea class="textarea" type="text" onclick="" id="remark" onfocus="setNumberInput(this)"></textarea>
+                <textarea class="textarea" type="text" onclick="" id="remark" onfocus="setNumberInput(this)" onblur="setThValue('remark_th','remark',this)"></textarea>
 
             </div>
 
@@ -209,7 +209,7 @@
         </ul>
 
         <!--        列表内容-->
-        <div class="page_content clearfix mb15 table-module " style="overflow:auto;">
+        <div class="page_content clearfix mb15 table-module" ><!--style="overflow:auto;"-->
             <table class="gallery table table_list table_striped table-bordered" id="mainTable">
                 <thead>
                 <tr>
@@ -217,6 +217,23 @@
                     <th>卷号</th>
                     <th>条码</th>
                     <th>面料问题描述</th>
+                    <th class="tab-content">实测值</th>
+                    <th class="tab-content">份数</th>
+                    <th class="tab-content">纬弓/纬斜高度</th>
+                    <th class="tab-content">全门幅1</th>
+                    <th class="tab-content">全门幅2</th>
+                    <th class="tab-content">全门幅3</th>
+                    <th class="tab-content">有效门幅1</th>
+                    <th class="tab-content">有效门幅2</th>
+                    <th class="tab-content">有效门幅3</th>
+                    <th class="tab-content">备注</th>
+                    <th class="tab-content">卷合格判定</th>
+                    <th class="tab-content">与参考样</th>
+                    <th class="tab-content">与参考样值</th>
+                    <th class="tab-content">卷内边中差</th>
+                    <th class="tab-content">卷内边中差值</th>
+                    <th class="tab-content">卷内头尾差</th>
+                    <th class="tab-content">卷内头尾差值</th>
                 </tr>
                 </thead>
                 <tbody id="table-body">

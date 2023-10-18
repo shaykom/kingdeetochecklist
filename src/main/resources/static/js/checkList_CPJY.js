@@ -3,6 +3,7 @@
 // var virtualKeyboard = document.getElementById("virtualKeyboard");
 // var editableTable = document.getElementById("editable-table");
 var tbody = document.getElementById("table-body");
+var subTbody = document.getElementById("sub-table-body");
 var addRow = document.getElementById("addRow");
 var deleteRow = document.getElementById("deleteRow");
 var code = "";
@@ -93,7 +94,7 @@ function saveCheckList(){
         isClick = false;
         setTimeout(function() {
             isClick = true;
-        }, 3000);//3秒内不能重复点击
+        }, 5000);//5秒内不能重复点击
     }else{
         alert("请不要短时间内重复点击按钮")
         return;
@@ -316,6 +317,108 @@ function createRows(seq, barCode) {
     }
     newRow.appendChild(cell4);
 
+    var cell5 = document.createElement("td");
+    cell5.textContent = "";
+    cell5.id = "actualValue_th"
+    cell5.className = "tab-content"
+    newRow.appendChild(cell5);
+
+    var cell6 = document.createElement("td");
+    cell6.textContent = "";
+    cell6.id = "pcsNum_th"
+    cell6.className = "tab-content"
+    newRow.appendChild(cell6);
+
+    var cell7 = document.createElement("td");
+    cell7.textContent = "";
+    cell7.id = "textValue_th"
+    cell7.className = "tab-content"
+    newRow.appendChild(cell7);
+
+    var cell8 = document.createElement("td");
+    cell8.textContent = "";
+    cell8.id = "doorWidthAll1_th"
+    cell8.className = "tab-content"
+    newRow.appendChild(cell8);
+
+    var cell9 = document.createElement("td");
+    cell9.textContent = "";
+    cell9.id = "doorWidthAll2_th"
+    cell9.className = "tab-content"
+    newRow.appendChild(cell9);
+
+    var cell10 = document.createElement("td");
+    cell10.textContent = "";
+    cell10.id = "doorWidthAll3_th"
+    cell10.className = "tab-content"
+    newRow.appendChild(cell10);
+
+    var cell11 = document.createElement("td");
+    cell11.textContent = "";
+    cell11.id = "doorWidthAvailable1_th"
+    cell11.className = "tab-content"
+    newRow.appendChild(cell11);
+
+    var cell12 = document.createElement("td");
+    cell12.textContent = "";
+    cell12.id = "doorWidthAvailable2_th"
+    cell12.className = "tab-content"
+    newRow.appendChild(cell12);
+
+    var cell13 = document.createElement("td");
+    cell13.textContent = "";
+    cell13.id = "doorWidthAvailable3_th"
+    cell13.className = "tab-content"
+    newRow.appendChild(cell13);
+
+    var cell14 = document.createElement("td");
+    cell14.textContent = "";
+    cell14.id = "remark_th"
+    cell14.className = "tab-content"
+    newRow.appendChild(cell14);
+
+    var cell15 = document.createElement("td");
+    cell15.textContent = "";
+    cell15.id = "isPass_th"
+    cell15.className = "tab-content"
+    newRow.appendChild(cell15);
+
+    var cell16 = document.createElement("td");
+    cell16.textContent = "";
+    cell16.id = "isAndExample_th"
+    cell16.className = "tab-content"
+    newRow.appendChild(cell16);
+
+    var cell17 = document.createElement("td");
+    cell17.textContent = "";
+    cell17.id = "andExample_th"
+    cell17.className = "tab-content"
+    newRow.appendChild(cell17);
+
+    var cell18 = document.createElement("td");
+    cell18.textContent = "";
+    cell18.id = "isJNBZC_th"
+    cell18.className = "tab-content"
+    newRow.appendChild(cell18);
+
+    var cell19 = document.createElement("td");
+    cell19.textContent = "";
+    cell19.id = "JNBZC_th"
+    cell19.className = "tab-content"
+    newRow.appendChild(cell19);
+
+    var cell20 = document.createElement("td");
+    cell20.textContent = "";
+    cell20.id = "isJNTWC_th"
+    cell20.className = "tab-content"
+    newRow.appendChild(cell20);
+
+    var cell21 = document.createElement("td");
+    cell21.textContent = "";
+    cell21.id = "JNTWC_th"
+    cell21.className = "tab-content"
+    newRow.appendChild(cell21);
+
     cell1.addEventListener("focus", function () {
         setNumberInput(this);
     });
@@ -323,22 +426,16 @@ function createRows(seq, barCode) {
         setNumberInput(this);
     });
 
-    cell1.addEventListener("click", function () {
+    cell1.addEventListener("click", cellsClick);
+    cell2.addEventListener("click", cellsClick);
+    cell3.addEventListener("click", cellsClick);
+    cell4.addEventListener("click", cellsClick);
+
+    function cellsClick(){
         resetTableColors();
-        addClickedClass(cell1,cell2,cell3,cell4);
-    });
-    cell2.addEventListener("click", function () {
-        resetTableColors();
-        addClickedClass(cell1,cell2,cell3,cell4);
-    });
-    cell3.addEventListener("click", function () {
-        resetTableColors();
-        addClickedClass(cell1,cell2,cell3,cell4);
-    });
-    cell4.addEventListener("click", function () {
-        resetTableColors();
-        addClickedClass(cell1,cell2,cell3,cell4);
-    });
+        addClickedClass(cell1,cell2,cell3,cell4,cell5,cell6,cell7,cell8,cell9,cell10,cell11,cell12,cell13,cell14,cell15,cell16,cell17,cell18,cell19,cell20,cell21);
+        getValueTh(cell5,cell6,cell7,cell8,cell9,cell10,cell11,cell12,cell13,cell14,cell15,cell16,cell17,cell18,cell19,cell20,cell21);
+    }
 
     function resetTableColors() {
         var body = document.getElementById("mainTable");
@@ -355,6 +452,40 @@ function createRows(seq, barCode) {
         for (var i = 0; i < arguments.length; i++) {
             arguments[i].classList.add('clicked'); // 单击时添加深蓝色
         }
+    }
+
+    function getValueTh() {
+        // $("#actualValue").val(arguments[0].textContent);
+        var actualValue = document.getElementById('actualValue');
+        actualValue.innerHTML = arguments[0].textContent;
+        var pcsNum = document.getElementById('pcsNum');
+        pcsNum.innerHTML = arguments[1].textContent;
+        var textValue = document.getElementById('textValue');
+        textValue.innerHTML = arguments[2].textContent;
+        var doorWidthAll1 = document.getElementById('doorWidthAll1');
+        doorWidthAll1.innerHTML = arguments[3].textContent;
+        var doorWidthAll2 = document.getElementById('doorWidthAll2');
+        doorWidthAll2.innerHTML = arguments[4].textContent;
+        var doorWidthAll3 = document.getElementById('doorWidthAll3');
+        doorWidthAll3.innerHTML = arguments[5].textContent;
+        var doorWidthAvailable1 = document.getElementById('doorWidthAvailable1');
+        doorWidthAvailable1.innerHTML = arguments[6].textContent;
+        var doorWidthAvailable2 = document.getElementById('doorWidthAvailable2');
+        doorWidthAvailable2.innerHTML = arguments[7].textContent;
+        var doorWidthAvailable3 = document.getElementById('doorWidthAvailable3');
+        doorWidthAvailable3.innerHTML = arguments[8].textContent;
+        var remark = document.getElementById('remark');
+        remark.innerHTML = arguments[9].textContent;
+        $("#isPass").val(arguments[10].textContent);
+        var isAndExample = document.getElementById('isAndExample');
+        isAndExample.checked = arguments[11].textContent;
+        $("#andExample").val(arguments[12].textContent);
+        var isJNBZC = document.getElementById('isJNBZC');
+        isJNBZC.checked = arguments[13].textContent;
+        $("#JNBZC").val(arguments[14].textContent);
+        var isJNTWC = document.getElementById('isJNTWC');
+        isJNTWC.checked = arguments[15].textContent;
+        $("#JNTWC").val(arguments[16].textContent);
     }
 
     // 将新行添加到tbody中
@@ -585,7 +716,7 @@ function openHistoryPopup() {
         "    <link href=\"/font/iconfont.css\" rel=\"stylesheet\" type=\"text/css\"/>\n" +
         "    <link href=\"/css/module.css\" rel=\"stylesheet\" type=\"text/css\"/>\n" +
         "    <link href=\"/css/pages.css\" rel=\"stylesheet\" type=\"text/css\"/>\n" +
-        "    <title>白坯检验</title>\n" +
+        "    <title>成品检验</title>\n" +
         "    <script src=\"/js/jquery-1.9.1.min.js\" type=\"text/javascript\"></script>\n" +
         "    <script src=\"/js/jquery.nicescroll.js\" type=\"text/javascript\"></script>\n" +
         "    <script src=\"/js/HUpages.js\" type=\"text/javascript\"></script>\n" +
@@ -759,13 +890,16 @@ function openHistoryPopup() {
         }
     });
 
+    var sectionDiv = popupDocument.createElement("div");
+    sectionDiv.className = "bk-con-message message-section";
+    sectionDiv.style.overflow = "auto";
+
     var pageDiv = popupDocument.createElement("div");
     pageDiv.className = "pages-style";
 
     var tableDiv = popupDocument.createElement("div");
     tableDiv.className = "page_content clearfix mb15 table-module";
     tableDiv.id = "iframe_box";
-    tableDiv.style.overflow = "auto";
 
     var table = popupDocument.createElement("table");
     table.className = "gallery table table_list table_striped table-bordered";
@@ -788,7 +922,7 @@ function openHistoryPopup() {
         type: "get",
         url: "check/selectBPCheckList",
         data: {
-            param: ""
+            param: "F_CPJY"
         },
         success: function (data) {
             if (data.length > 0) {
@@ -927,11 +1061,11 @@ function openHistoryPopup() {
                     tableBody.appendChild(historyEntry);
                 });
             } else {
-                alert("白坯检验单不存在！");
+                popup.alert("成品检验单不存在！");
             }
         },
         error: function (msg) {
-            alert("ajax连接异常：" + msg);
+            popup.alert("ajax连接异常：" + msg);
         }
     });
 
@@ -949,7 +1083,8 @@ function openHistoryPopup() {
     table.appendChild(tableBody);
     tableDiv.appendChild(table);
     pageDiv.appendChild(tableDiv);
-    popupDocument.body.appendChild(pageDiv);
+    sectionDiv.appendChild(pageDiv);
+    popupDocument.body.appendChild(sectionDiv);
 }
 
 // 填充当前表格内容
@@ -1145,6 +1280,9 @@ function openRecordCD() {
         recordCDPopup = null; // 将窗口引用置为空
     }
 
+    mainTable.classList.add("tab-content");
+    subTable.classList.remove("tab-content");
+
     popupCounter++;
     var left = (window.innerWidth - 800) / 2; // 800是新窗口的宽度
     var top = (window.innerHeight - 600) / 2; // 600是新窗口的高度
@@ -1182,191 +1320,305 @@ function openRecordCD() {
     buttonSBF.className = "btn button_btn btn-info margin";
     buttonSBF.type = "button";
     buttonSBF.textContent = "色不符";
+    buttonSBF.addEventListener("click",function () {
+        setNumberInput(buttonSBF);
+    });
 
     var buttonXTY = popupDocument.createElement("button");
     buttonXTY.className = "btn button_btn btn-info margin";
     buttonXTY.type = "button";
     buttonXTY.textContent = "线头印";
+    buttonXTY.addEventListener("click",function () {
+        setNumberInput(buttonXTY);
+    });
 
     var buttonJB = popupDocument.createElement("button");
     buttonJB.className = "btn button_btn btn-info margin";
     buttonJB.type = "button";
     buttonJB.textContent = "浆斑";
+    buttonJB.addEventListener("click",function () {
+        setNumberInput(buttonJB);
+    });
 
     var buttonDM = popupDocument.createElement("button");
     buttonDM.className = "btn button_btn btn-info margin";
     buttonDM.type = "button";
     buttonDM.textContent = "滴墨";
+    buttonDM.addEventListener("click",function () {
+        setNumberInput(buttonDM);
+    });
 
     var buttonPYSZ = popupDocument.createElement("button");
     buttonPYSZ.className = "btn button_btn btn-info margin";
     buttonPYSZ.type = "button";
     buttonPYSZ.textContent = "喷印水渍";
+    buttonPYSZ.addEventListener("click",function () {
+        setNumberInput(buttonPYSZ);
+    });
 
     var buttonWZ = popupDocument.createElement("button");
     buttonWZ.className = "btn button_btn btn-info margin";
     buttonWZ.type = "button";
     buttonWZ.textContent = "污渍";
+    buttonWZ.addEventListener("click",function () {
+        setNumberInput(buttonWZ);
+    });
 
     var buttonCS = popupDocument.createElement("button");
     buttonCS.className = "btn button_btn btn-info margin";
     buttonCS.type = "button";
     buttonCS.textContent = "抽丝";
+    buttonCS.addEventListener("click",function () {
+        setNumberInput(buttonCS);
+    });
 
     var buttonBZY = popupDocument.createElement("button");
     buttonBZY.className = "btn button_btn btn-info margin";
     buttonBZY.type = "button";
     buttonBZY.textContent = "白绉印";
+    buttonBZY.addEventListener("click",function () {
+        setNumberInput(buttonBZY);
+    });
 
     var buttonDT = popupDocument.createElement("button");
     buttonDT.className = "btn button_btn btn-info margin";
     buttonDT.type = "button";
     buttonDT.textContent = "堵头";
+    buttonDT.addEventListener("click",function () {
+        setNumberInput(buttonDT);
+    });
 
     var buttonPASSBJ = popupDocument.createElement("button");
     buttonPASSBJ.className = "btn button_btn btn-info margin";
     buttonPASSBJ.type = "button";
     buttonPASSBJ.textContent = "PASS/步进";
+    buttonPASSBJ.addEventListener("click",function () {
+        setNumberInput(buttonPASSBJ);
+    });
 
     var buttonPB = popupDocument.createElement("button");
     buttonPB.className = "btn button_btn btn-info margin";
     buttonPB.type = "button";
     buttonPB.textContent = "破边";
+    buttonPB.addEventListener("click",function () {
+        setNumberInput(buttonPB);
+    });
 
     var buttonTCD = popupDocument.createElement("button");
     buttonTCD.className = "btn button_btn btn-info margin";
     buttonTCD.type = "button";
     buttonTCD.textContent = "停车档";
+    buttonTCD.addEventListener("click",function () {
+        setNumberInput(buttonTCD);
+    });
 
     var buttonCW = popupDocument.createElement("button");
     buttonCW.className = "btn button_btn btn-info margin";
     buttonCW.type = "button";
     buttonCW.textContent = "错位";
+    buttonCW.addEventListener("click",function () {
+        setNumberInput(buttonCW);
+    });
 
     var buttonHDSZ = popupDocument.createElement("button");
     buttonHDSZ.className = "btn button_btn btn-info margin";
     buttonHDSZ.type = "button";
     buttonHDSZ.textContent = "后道水渍";
+    buttonHDSZ.addEventListener("click",function () {
+        setNumberInput(buttonHDSZ);
+    });
 
     var buttonCSHS = popupDocument.createElement("button");
     buttonCSHS.className = "btn button_btn btn-info margin";
     buttonCSHS.type = "button";
     buttonCSHS.textContent = "擦伤/灰伤";
+    buttonCSHS.addEventListener("click",function () {
+        setNumberInput(buttonCSHS);
+    });
 
     var buttonPD = popupDocument.createElement("button");
     buttonPD.className = "btn button_btn btn-info margin";
     buttonPD.type = "button";
     buttonPD.textContent = "破洞";
+    buttonPD.addEventListener("click",function () {
+        setNumberInput(buttonPD);
+    });
 
     var buttonPL = popupDocument.createElement("button");
     buttonPL.className = "btn button_btn btn-info margin";
     buttonPL.type = "button";
     buttonPL.textContent = "纰裂";
+    buttonPL.addEventListener("click",function () {
+        setNumberInput(buttonPL);
+    });
 
     var buttonSBJ = popupDocument.createElement("button");
     buttonSBJ.className = "btn button_btn btn-info margin";
     buttonSBJ.type = "button";
     buttonSBJ.textContent = "色不均";
+    buttonSBJ.addEventListener("click",function () {
+        setNumberInput(buttonSBJ);
+    });
 
     var buttonTZ = popupDocument.createElement("button");
     buttonTZ.className = "btn button_btn btn-info margin";
     buttonTZ.type = "button";
     buttonTZ.textContent = "脱针";
+    buttonTZ.addEventListener("click",function () {
+        setNumberInput(buttonTZ);
+    });
 
     var buttonZJ = popupDocument.createElement("button");
     buttonZJ.className = "btn button_btn btn-info margin";
     buttonZJ.type = "button";
     buttonZJ.textContent = "针进";
+    buttonZJ.addEventListener("click",function () {
+        setNumberInput(buttonZJ);
+    });
 
     var buttonFKY = popupDocument.createElement("button");
     buttonFKY.className = "btn button_btn btn-info margin";
     buttonFKY.type = "button";
     buttonFKY.textContent = "风孔印";
+    buttonFKY.addEventListener("click",function () {
+        setNumberInput(buttonFKY);
+    });
 
     var buttonDJDW = popupDocument.createElement("button");
     buttonDJDW.className = "btn button_btn btn-info margin";
     buttonDJDW.type = "button";
     buttonDJDW.textContent = "断经/断纬";
+    buttonDJDW.addEventListener("click",function () {
+        setNumberInput(buttonDJDW);
+    });
 
     var buttonCJCW = popupDocument.createElement("button");
     buttonCJCW.className = "btn button_btn btn-info margin";
     buttonCJCW.type = "button";
     buttonCJCW.textContent = "粗经/粗纬";
+    buttonCJCW.addEventListener("click",function () {
+        setNumberInput(buttonCJCW);
+    });
 
     var buttonKJJ = popupDocument.createElement("button");
     buttonKJJ.className = "btn button_btn btn-info margin";
     buttonKJJ.type = "button";
     buttonKJJ.textContent = "宽急经";
+    buttonKJJ.addEventListener("click",function () {
+        setNumberInput(buttonKJJ);
+    });
 
     var buttonLS = popupDocument.createElement("button");
     buttonLS.className = "btn button_btn btn-info margin";
     buttonLS.type = "button";
     buttonLS.textContent = "亮丝";
+    buttonLS.addEventListener("click",function () {
+        setNumberInput(buttonLS);
+    });
 
     var buttonJZ = popupDocument.createElement("button");
     buttonJZ.className = "btn button_btn btn-info margin";
     buttonJZ.type = "button";
     buttonJZ.textContent = "结子";
+    buttonJZ.addEventListener("click",function () {
+        setNumberInput(buttonJZ);
+    });
 
     var buttonHD = popupDocument.createElement("button");
     buttonHD.className = "btn button_btn btn-info margin";
     buttonHD.type = "button";
     buttonHD.textContent = "横档";
+    buttonHD.addEventListener("click",function () {
+        setNumberInput(buttonHD);
+    });
 
     var buttonSC = popupDocument.createElement("button");
     buttonSC.className = "btn button_btn btn-info margin";
     buttonSC.type = "button";
     buttonSC.textContent = "碎糙";
+    buttonSC.addEventListener("click",function () {
+        setNumberInput(buttonSC);
+    });
 
     var buttonJBY = popupDocument.createElement("button");
     buttonJBY.className = "btn button_btn btn-info margin";
     buttonJBY.type = "button";
     buttonJBY.textContent = "接版印";
+    buttonJBY.addEventListener("click",function () {
+        setNumberInput(buttonJBY);
+    });
 
     var buttonCXJ = popupDocument.createElement("button");
     buttonCXJ.className = "btn button_btn btn-info margin";
     buttonCXJ.type = "button";
     buttonCXJ.textContent = "粗细茎";
+    buttonCXJ.addEventListener("click",function () {
+        setNumberInput(buttonCXJ);
+    });
 
     var buttonSQB = popupDocument.createElement("button");
     buttonSQB.className = "btn button_btn btn-info margin";
     buttonSQB.type = "button";
     buttonSQB.textContent = "深浅版";
+    buttonSQB.addEventListener("click",function () {
+        setNumberInput(buttonSQB);
+    });
 
     var buttonDDY = popupDocument.createElement("button");
     buttonDDY.className = "btn button_btn btn-info margin";
     buttonDDY.type = "button";
     buttonDDY.textContent = "导带印";
+    buttonDDY.addEventListener("click",function () {
+        setNumberInput(buttonDDY);
+    });
 
     var buttonSL = popupDocument.createElement("button");
     buttonSL.className = "btn button_btn btn-info margin";
     buttonSL.type = "button";
     buttonSL.textContent = "塞牢";
+    buttonSL.addEventListener("click",function () {
+        setNumberInput(buttonSL);
+    });
 
     var buttonBD = popupDocument.createElement("button");
     buttonBD.className = "btn button_btn btn-info margin";
     buttonBD.type = "button";
     buttonBD.textContent = "白点";
+    buttonBD.addEventListener("click",function () {
+        setNumberInput(buttonBD);
+    });
 
     var buttonSJZY = popupDocument.createElement("button");
     buttonSJZY.className = "btn button_btn btn-info margin";
     buttonSJZY.type = "button";
     buttonSJZY.textContent = "上浆皱印";
+    buttonSJZY.addEventListener("click",function () {
+        setNumberInput(buttonSJZY);
+    });
 
     var buttonHDZY = popupDocument.createElement("button");
     buttonHDZY.className = "btn button_btn btn-info margin";
     buttonHDZY.type = "button";
     buttonHDZY.textContent = "后道皱印";
+    buttonHDZY.addEventListener("click",function () {
+        setNumberInput(buttonHDZY);
+    });
 
     var buttonPYZS = popupDocument.createElement("button");
     buttonPYZS.className = "btn button_btn btn-info margin";
     buttonPYZS.type = "button";
     buttonPYZS.textContent = "喷印沾色";
+    buttonPYZS.addEventListener("click",function () {
+        setNumberInput(buttonPYZS);
+    });
 
     var buttonHDZS = popupDocument.createElement("button");
     buttonHDZS.className = "btn button_btn btn-info margin";
     buttonHDZS.type = "button";
     buttonHDZS.textContent = "后道沾色";
+    buttonHDZS.addEventListener("click",function () {
+        setNumberInput(buttonHDZS);
+    });
 
     buttonDiv.appendChild(buttonSBF);
     buttonDiv.appendChild(buttonXTY);
@@ -1406,7 +1658,117 @@ function openRecordCD() {
     buttonDiv.appendChild(buttonHDZY);
     buttonDiv.appendChild(buttonPYZS);
     buttonDiv.appendChild(buttonHDZS);
+    var textDiv = popupDocument.createElement("div");
+    textDiv.className = "operation mb15 container block topStation";
+    textDiv.style.overflow = "auto";
+    var position = popupDocument.createElement("label");
+    position.textContent = "位置";
+    position.className = "margin5 containerRight topStation";
+    // position.addEventListener('mousedown', () => preventAll(event));
+    var positionText = popupDocument.createElement("textarea");
+    positionText.textContent = "";
+    positionText.id = "positionText";
+    positionText.className = "textareaNum topStation";
+    // positionText.addEventListener('mousedown', () => preventAll(event));
+    var score = popupDocument.createElement("label");
+    score.textContent = "个数";
+    score.className = "margin5 containerRight topStation";
+    // score.addEventListener('mousedown', () => preventAll(event));
+    var scoreText = popupDocument.createElement("textarea");
+    scoreText.textContent = "";
+    scoreText.id = "scoreText";
+    scoreText.className = "textareaNum topStation";
+    // scoreText.addEventListener('mousedown', () => preventAll(event));
+    var meter = popupDocument.createElement("label");
+    meter.textContent = "米数";
+    meter.className = "margin5 containerRight topStation";
+    // meter.addEventListener('mousedown', () => preventAll(event));
+    var meterText = popupDocument.createElement("textarea");
+    meterText.textContent = "";
+    meterText.id = "meterText";
+    meterText.className = "textareaNum topStation";
+    // meterText.addEventListener('mousedown', () => preventAll(event));
+    textDiv.appendChild(position);
+    textDiv.appendChild(positionText);
+    textDiv.appendChild(score);
+    textDiv.appendChild(scoreText);
+    textDiv.appendChild(meter);
+    textDiv.appendChild(meterText);
     popupDocument.body.appendChild(buttonDiv);
+    popupDocument.body.appendChild(textDiv);
+
+    function setNumberInput(button) {
+        toggleNumberKeyboardAdd();
+        button.addEventListener('blur', toggleNumberKeyboardDelete);
+    }
+    const numberKeyboard = popupDocument.createElement('div');
+    numberKeyboard.id = 'numberKeyboard';
+    numberKeyboard.className = 'containerRight';
+    popupDocument.body.appendChild(numberKeyboard);
+    numberKeyboard.addEventListener('mousedown', () => preventAll(event));
+
+    function toggleNumberKeyboardAdd() {
+        numberKeyboard.classList.add('visible');
+    }
+
+    function toggleNumberKeyboardDelete() {
+        numberKeyboard.classList.remove('visible');
+    }
+
+    function preventAll(event) {
+        event.preventDefault(); // 阻止默认行为
+    }
+
+    for (let i = 1; i <= 4; i++) {
+        const button = popupDocument.createElement('button');
+        button.textContent = i;
+        button.className = "btn-green"
+        button.addEventListener('mousedown', () => preventAll(i, event));
+        button.addEventListener('click', function () {
+            const focusedButton = popupDocument.activeElement;
+            createMistakeRows(focusedButton,button);
+        });
+
+        numberKeyboard.appendChild(button);
+    }
+
+    function createMistakeRows(focusedButton,button) {
+        // 创建新行
+        var newRow = document.createElement("tr");
+        newRow.className = "height30";
+
+        // 创建新单元格并设置内容
+        var cell1 = document.createElement("td");
+        cell1.textContent = focusedButton.textContent;
+        newRow.appendChild(cell1);
+
+        var cell2 = document.createElement("td");
+        cell2.textContent = scoreText.value;
+        newRow.appendChild(cell2);
+
+        var cell3 = document.createElement("td");
+        cell3.textContent = (Number(scoreText.value) * Number(meterText.value)).toString();
+        newRow.appendChild(cell3);
+
+        var cell4 = document.createElement("td");
+        cell4.textContent = meterText.value;
+        newRow.appendChild(cell4);
+
+        var cell5 = document.createElement("td");
+        cell5.textContent = "";
+        newRow.appendChild(cell5);
+
+        var cell6 = document.createElement("td");
+        cell6.textContent = positionText.value;
+        newRow.appendChild(cell6);
+
+        var cell7 = document.createElement("td");
+        cell7.textContent = button.textContent;
+        newRow.appendChild(cell7);
+
+        // 将新行添加到subTbody中
+        subTbody.appendChild(newRow);
+    }
 }
 
 let numberInput = document.getElementById('actualValue');
@@ -1478,6 +1840,22 @@ clearButton.textContent = '清空';
 clearButton.addEventListener('mousedown', () => clearInput(event));
 numberKeyboard.appendChild(clearButton);
 
+function setThValue(thName,headId,element) {
+    var clickedCells = document.getElementsByClassName("clicked");
+    for (var i = 0; i < clickedCells.length; i++) {
+        if (clickedCells[i].id === thName) {
+            var targetElement = clickedCells[i];
+            if(element.type === 'checkbox')
+            {
+                targetElement.innerHTML = element.checked;
+            }
+            else
+            {
+                targetElement.innerHTML = $("#"+ headId).val();
+            }
+        }
+    }
+}
 
 $(function () {
     //内页框架结构编辑

@@ -121,7 +121,7 @@ public class SelectForm {
         executeBillQuery.setFieldKeys("FBillNo,FDocumentStatus,FMaterialId.FNumber,FMaterialId.FName,F_BH2,FDescription,FDate," +
                 "FMaterialModel,FSupplierId.FName,FSrcBillNo0,FID,FInspectOrgId.FNumber,FBusinessType,FUnitID.FNumber,fSupplierId.FNumber," +
                 "FEntity_Link_FSBillId,FEntity_Link_FSId");
-        executeBillQuery.setFilterString("F_BPJY = 1 and FSEQ = 1");
+        executeBillQuery.setFilterString(code + " = 1 and FSEQ = 1");
         executeBillQuery.setOrderString("FBillNo desc");
         executeBillQuery.setTopRowCount(0);
         executeBillQuery.setStartRow(0);

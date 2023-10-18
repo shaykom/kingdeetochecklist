@@ -19,7 +19,7 @@ $.ajax({
     type: "get",
     url: "check/selectBPCheckList",
     data: {
-        param: ""
+        param: "F_BPJY"
     },
     success: function (data) {
         if (data.length > 0) {
