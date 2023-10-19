@@ -41,6 +41,15 @@ tab1.addEventListener("click", function() {
 tab2.addEventListener("click", function() {
     mainTable.classList.add("tab-content");
     subTable.classList.remove("tab-content");
+    // var deepBlueRows = document.querySelectorAll(".clicked"); // 获取具有深蓝色类的所有行
+    // var rows = subTable.getElementsByTagName("tr");
+    // for (var i = 0; i < rows.length; i++) {
+    //     var cells = rows[i].getElementsByTagName("td");
+    //     var cell = cells[7];
+    //     if (cell.textContent !== deepBlueRows[2].textContent) {
+    //         rows[i].style.display = "none"; // 隐藏符合条件的行
+    //     }
+    // }
 });
 
 barCode.addEventListener("keydown", function(event) {
@@ -1774,6 +1783,11 @@ function openRecordCD() {
         var cell7 = document.createElement("td");
         cell7.textContent = button.textContent;
         newRow.appendChild(cell7);
+
+        var cell8 = document.createElement("td");
+        cell8.textContent = deepBlueRows[2].textContent;
+        cell8.className = "tab-content";
+        newRow.appendChild(cell8);
 
         // 将新行添加到subTbody中
         subTbody.appendChild(newRow);
