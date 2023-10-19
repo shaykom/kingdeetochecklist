@@ -455,27 +455,36 @@ function createRows(seq, barCode) {
     }
 
     function getValueTh() {
-        // $("#actualValue").val(arguments[0].textContent);
-        var actualValue = document.getElementById('actualValue');
-        actualValue.innerHTML = arguments[0].textContent;
-        var pcsNum = document.getElementById('pcsNum');
-        pcsNum.innerHTML = arguments[1].textContent;
-        var textValue = document.getElementById('textValue');
-        textValue.innerHTML = arguments[2].textContent;
-        var doorWidthAll1 = document.getElementById('doorWidthAll1');
-        doorWidthAll1.innerHTML = arguments[3].textContent;
-        var doorWidthAll2 = document.getElementById('doorWidthAll2');
-        doorWidthAll2.innerHTML = arguments[4].textContent;
-        var doorWidthAll3 = document.getElementById('doorWidthAll3');
-        doorWidthAll3.innerHTML = arguments[5].textContent;
-        var doorWidthAvailable1 = document.getElementById('doorWidthAvailable1');
-        doorWidthAvailable1.innerHTML = arguments[6].textContent;
-        var doorWidthAvailable2 = document.getElementById('doorWidthAvailable2');
-        doorWidthAvailable2.innerHTML = arguments[7].textContent;
-        var doorWidthAvailable3 = document.getElementById('doorWidthAvailable3');
-        doorWidthAvailable3.innerHTML = arguments[8].textContent;
-        var remark = document.getElementById('remark');
-        remark.innerHTML = arguments[9].textContent;
+        $("#actualValue").val(arguments[0].textContent);
+        $("#pcsNum").val(arguments[1].textContent);
+        $("#textValue").val(arguments[2].textContent);
+        $("#doorWidthAll1").val(arguments[3].textContent);
+        $("#doorWidthAll2").val(arguments[4].textContent);
+        $("#doorWidthAll3").val(arguments[5].textContent);
+        $("#doorWidthAvailable1").val(arguments[6].textContent);
+        $("#doorWidthAvailable2").val(arguments[7].textContent);
+        $("#doorWidthAvailable3").val(arguments[8].textContent);
+        $("#remark").val(arguments[8].textContent);
+        // var actualValue = document.getElementById('actualValue');
+        // actualValue.innerHTML = arguments[0].textContent;
+        // var pcsNum = document.getElementById('pcsNum');
+        // pcsNum.innerHTML = arguments[1].textContent;
+        // var textValue = document.getElementById('textValue');
+        // textValue.innerHTML = arguments[2].textContent;
+        // var doorWidthAll1 = document.getElementById('doorWidthAll1');
+        // doorWidthAll1.innerHTML = arguments[3].textContent;
+        // var doorWidthAll2 = document.getElementById('doorWidthAll2');
+        // doorWidthAll2.innerHTML = arguments[4].textContent;
+        // var doorWidthAll3 = document.getElementById('doorWidthAll3');
+        // doorWidthAll3.innerHTML = arguments[5].textContent;
+        // var doorWidthAvailable1 = document.getElementById('doorWidthAvailable1');
+        // doorWidthAvailable1.innerHTML = arguments[6].textContent;
+        // var doorWidthAvailable2 = document.getElementById('doorWidthAvailable2');
+        // doorWidthAvailable2.innerHTML = arguments[7].textContent;
+        // var doorWidthAvailable3 = document.getElementById('doorWidthAvailable3');
+        // doorWidthAvailable3.innerHTML = arguments[8].textContent;
+        // var remark = document.getElementById('remark');
+        // remark.innerHTML = arguments[9].textContent;
         $("#isPass").val(arguments[10].textContent);
         var isAndExample = document.getElementById('isAndExample');
         isAndExample.checked = arguments[11].textContent;
@@ -1800,13 +1809,13 @@ function toggleNumberKeyboardDelete() {
 function appendNumber(num, event) {
     event.preventDefault(); // 阻止默认行为
     //event.stopPropagation(); // 阻止事件冒泡，保持文本框焦点
-    numberInput.textContent += num;
+    numberInput.value += num;
 }
 
 function clearInput(event) {
     event.preventDefault(); // 阻止默认行为
     //event.stopPropagation(); // 阻止事件冒泡，保持文本框焦点
-    numberInput.textContent = '';
+    numberInput.value = '';
 }
 
 function preventAll(event) {
